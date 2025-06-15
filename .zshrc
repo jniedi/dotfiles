@@ -20,7 +20,7 @@ compinit
 
 source <(fzf --zsh)
 
-PS1="%m:%2~ $ "
+PS1="%n@%m:%2~ $ "
 
 # zsh history
 HISTFILE=~/.zsh_history

@@ -1,4 +1,6 @@
-error() {
+#!/usr/bin/env zsh
+
+function error() {
     printf "Error: $1\n" >&2; exit 1
 }
 

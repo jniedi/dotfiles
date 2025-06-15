@@ -1,0 +1,7 @@
+[general]
+import = ["~/.config/alacritty/dark.toml",]
+live_config_reload = true
+
+[window]
+decorations_theme_variant = "Light"
+

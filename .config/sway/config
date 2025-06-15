@@ -146,6 +146,8 @@ input type:keyboard {
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
+    bindsym $mod+d exec ~/.local/bin/sway_do.sh
+
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -210,7 +212,7 @@ mode $browser {
 }
 
 bindsym $mod+r mode "resize"
-#
+
 # Utilities:
 #
     # Special keys to adjust volume via PulseAudio

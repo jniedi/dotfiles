@@ -10,4 +10,8 @@ git clone --separate-git-dir=$HOME/.dotfiles https://github.com/jniedi/dotfiles.
 cp -r $HOME/dotfiles-tmp/.* ~  # Copy everything
 rm -r $HOME/dotfiles-tmp
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 -k; # NOTE: -k option keeps .zshrc
+
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+config config status.showUntrackedFiles no
+
 echo "Everything set!"

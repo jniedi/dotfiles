@@ -1,0 +1,16 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\nunmap h\nunmap l\nmap h previousTab\nmap l nextTab",
+  "scrollStepSize": 90,
+  "settingsVersion": "2.2.1",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\n\nbackground: black;\nborder: 1px solid black;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: white;\nfont-weight: bold;\nfont-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://expert.ethz.ch/*"
+    }
+  ]
+}

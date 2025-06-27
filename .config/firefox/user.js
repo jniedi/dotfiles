@@ -213,11 +213,6 @@ user_pref("browser.sessionstore.max_windows_undo", 0);
 // Disable saving of recently closed tabs/windows
 user_pref("browser.sessionstore.privacy_level", 2);
 
-user_pref("parrot.success", "FAILED: network.dns.localDomains = ...");
-user_pref(
-    "network.dns.localDomains",
-    "www.reddit.com, www.youtube.com, www.ardmediathek.de, www.blick.ch, www.watson.ch , srf.ch, www.srf.ch",
-);
 user_pref("parrot.success", "FAILED: browser.sessionstore.enabled = false");
 user_pref("browser.sessionstore.enabled", false);
 

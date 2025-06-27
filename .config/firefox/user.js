@@ -212,8 +212,6 @@ user_pref("browser.sessionstore.max_windows_undo", 0);
 
 // Disable saving of recently closed tabs/windows
 user_pref("browser.sessionstore.privacy_level", 2);
-
-user_pref("parrot.success", "FAILED: browser.sessionstore.enabled = false");
 user_pref("browser.sessionstore.enabled", false);
 
 user_pref("parrot.success", "FAILED: browser.fullscreen.autohide = true");
@@ -222,8 +220,7 @@ user_pref("browser.fullscreen.autohide", true);
 /** DISK CACHE ***/
 user_pref("browser.cache.disk.enable", false);
 user_pref("browser.cache.memory.enable", true);
-// disable all animations
-user_pref("toolkit.cosmeticAnimations.enabled", false);
+user_pref("browser.cache.memory.capacity", 1048576);  // ~1GB
 
 user_pref("general.smoothScroll.lines.durationMaxMS", 125);
 user_pref("general.smoothScroll.lines.durationMinMS", 125);
@@ -247,5 +244,26 @@ user_pref("browser.tabs.unloadOnLowMemory",true);
 user_pref("browser.low_commit_space_threshold_percent",100);
 user_pref("browser.tabs.min_inactive_duration_before_unload ",3600000);
 
-user_pref("parrot.success", "TRUE :)");
 
+
+
+
+
+
+
+// the following is local to this machine
+// Disable Telemetry and Data Collection
+user_pref("toolkit.telemetry.enabled", false);
+user_pref("toolkit.telemetry.unified", false);
+user_pref("toolkit.telemetry.archive.enabled", false);
+user_pref("toolkit.telemetry.newProfilePing.enabled", false);
+user_pref("toolkit.telemetry.bhrPing.enabled", false);
+user_pref("toolkit.telemetry.reportingpolicy.firstRun", false);
+user_pref("toolkit.telemetry.updatePing.enabled", false);
+user_pref("toolkit.telemetry.errors.enabled", false);
+user_pref("toolkit.telemetry.server", "");
+user_pref("dom.ipc.processCount", 2);
+user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
+
+
+user_pref("parrot.success", "TRUE");

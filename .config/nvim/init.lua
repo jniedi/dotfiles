@@ -1,7 +1,23 @@
-vim.g.mapleader = " "    vim.g.maplocalleader = " "
-vim.o.ignorecase = true  vim.o.smartcase = true
-vim.o.breakindent = true vim.o.undofile = true
-vim.g.netrw_banner = 0
+local pluginpath = vim.fn.stdpath("data") .. "/site/pack/plugins/start/"
+if not vim.loop.fs_stat(pluginpath) then
+  vim.fn.system({ "mkdir", "-p", pluginpath})
+end
+
+if not vim.loop.fs_stat(pluginpath .. "ultisnips.git") then
+  vim.fn.system({ "git", "clone", "https://github.com/SirVer/ultisnips.git", pluginpath .. "ultisnips.git", })
+  vim.opt.rtp:append(pluginpath .. "ultisnips.git")
+end
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+
+vim.g.UltiSnipsExpandTrigger = '<C-l>'
+vim.g.UltiSnipsJumpForwardTrigger = '<C-l>'
+vim.g.UltiSnipsJumpBackwardTrigger = '<C-h>'
+vim.g.UltiSnipsSnippetDirectories = { 'snips' }
+vim.opt.termguicolors = true -- enable 24-bit RGB color in the TUI
+vim.g.netrw_banner = ""
+
 
 vim.o.clipboard = "unnamedplus"
 vim.cmd("syntax off | colorscheme vim") 
@@ -36,7 +52,7 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set("n", "<C-s>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
 vim.keymap.set("n", "<leader><space>", ":ls<cr>:b ")
 vim.keymap.set("n", "<leader>e", ":Explore<cr>")
-vim.keymap.set("n", "<leader>w", ":set number!<cr>")
+vim.keymap.set("n", "<leader>ln", ":set number!<cr>")
 vim.keymap.set("n", "<leader>x",  scratch_to_quickfix)
 vim.keymap.set("n", "<leader>h",  function() vim.bo.buftype = "" vim.bo.bufhidden = "hide" vim.bo.swapfile = true end)
 vim.keymap.set("n", "<leader>so", function() vim.cmd("enew")  vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.v.oldfiles) scratch() end) 
@@ -132,7 +148,7 @@ vim.keymap.set("n", "<leader>/", function()
   end)
 end)
 
-
+--
 ---- end of custom telescope 
 --- in case I ever want to go back to telescope
 -- local pluginpath = vim.fn.stdpath("data") .. "/site/pack/plugins/start/"

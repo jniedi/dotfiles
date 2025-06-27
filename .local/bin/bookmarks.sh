@@ -6,7 +6,9 @@
 # save: save to correct file in ~/.config/bookmarks.sh/bookmarks
 
 
-DATA_FILE=~/.config/bookmarks.sh/bookmarks
+DATA_FILE=~/.cache/bookmarks
+
+[ ! -f $DATA_FILE ] && touch $DATA_FILE && echo "https://www.theguardian.com/europe" >> $DATA_FILE
 
 if [[ $1 == "open" ]]; then
     url=$(cat $DATA_FILE | bemenu --list "100 down")

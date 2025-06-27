@@ -3,8 +3,10 @@
 TFILE=~/.cache/light
 if [ -f $TFILE ]; then
     rm $TFILE
-    sed -i 's/light.toml/dark.toml/' ~/.config/alacritty/alacritty.toml
 else
     touch $TFILE
-    sed -i 's/dark.toml/light.toml/' ~/.config/alacritty/alacritty.toml
 fi
+sed -i 's/background/TEMP/' ~/.config/alacritty/alacritty.toml
+sed -i 's/foreground/background/' ~/.config/alacritty/alacritty.toml
+sed -i 's/TEMP/foreground/' ~/.config/alacritty/alacritty.toml
+

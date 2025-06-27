@@ -22,9 +22,11 @@ output DP-3 resolution 3840x2160 position 1920 0
 #
 # Example configuration:
 #
+
+
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 500 'swaylock -f -c 000000' \
+         timeout 800 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -75,7 +77,7 @@ input type:keyboard {
     bindsym $mod+Shift+r reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+q exit
+    bindsym $mod+Shift+e exit
 #
 # Moving around:
 #
@@ -127,15 +129,16 @@ input type:keyboard {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-#
-# Layout stuff:
-#
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
+
     bindsym $mod+e layout toggle split
-    bindsym $mod+d exec ~/.local/bin/sway_do.sh
+    bindsym $mod+d exec ~/.local/bin/sway_do.sh  
+    bindsym $mod+Shift+s exec ~/.local/bin/take_screenshot.sh
+    bindsym $mod+o exec ~/.local/bin/open_pdf.sh
+    bindsym $mod+c exec wl-paste >> ~/documents/notes/checkout.md
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+
 
 
     # Make the current focus fullscreen
@@ -161,6 +164,30 @@ input type:keyboard {
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+
+
+
+
+set $PDF pdf
+
+bindsym $mod+p mode $PDF
+
+
+mode $PDF  {
+
+    bindsym o exec ~/.local/bin/open_pdf.sh, mode "default"
+    # TODO: recollq bemenu query
+    # bindsym q exec ~/.local/bin/open_pdf.sh, mode "default"
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+
+
+
 #
 # Resizing containers:
 #
@@ -213,7 +240,6 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
 
 
 smart_borders on

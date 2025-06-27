@@ -5,6 +5,7 @@ OPTIONS='
 say hello,notify-send "HELLO THERE" "this is a message"
 lock screen,systemctl suspend && swaylock
 move workspaces,~/.local/bin/mv_workspaces.sh
+toggle dark/light mode,~/.local/bin/toggle_scheme.sh
 '
 
 SEL=$(echo $OPTIONS | cut -d , -f1 | sort -ui  | bemenu -p "DO: ")

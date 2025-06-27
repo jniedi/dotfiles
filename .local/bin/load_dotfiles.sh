@@ -14,11 +14,11 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 
 
 
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 config config status.showUntrackedFiles no
 
 
 echo "Setting up nvim..."
-/usr/bin/nvim --headless "+Lazy! update" +qa
+nvim --headless "+Lazy! update" +qa
 
 echo "Everything set!"

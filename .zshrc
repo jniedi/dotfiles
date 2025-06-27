@@ -114,7 +114,7 @@ alias \
 
 # Colorize commands when possible.
 alias \
-	ls="ls -hN --color=auto --group-directories-first" \
+	ls="ls -hN --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \
@@ -132,6 +132,9 @@ alias \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
     ff="firefox" \
+    j=jobs \
+    rfk=rfkill
+    
 
 
 alias -g G='| grep'   
@@ -140,15 +143,8 @@ alias -g ...='../..'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-
-
 zd() {
   cd "$(zoxide query -i)"
 }
 
-
-
-
 eval "$(zoxide init zsh)"
-
-# vim: set ft=zsh:

@@ -69,7 +69,6 @@ alias dirs='dirs -v'
 alias pd='pushd -q'
 alias gd='popd -q'
 alias pac='sudo pacman -S'
-alias con="nv -c /stopped"
 alias texsym="zat $HOME/resources/references/symbols-a4.pdf &"
 alias python=/usr/bin/python3
 alias py=/usr/bin/python3
@@ -142,6 +141,7 @@ alias -g L='| less'
 alias -g ...='../..'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias con='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 zd() {
   cd "$(zoxide query -i)"

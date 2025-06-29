@@ -130,10 +130,18 @@ alias \
 	xi="sudo xbps-install" \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
-    ff="firefox" \
-    j=jobs \
-    rfk=rfkill
+ ff="firefox" \
+ j=jobs \
+ rfk=rfkill \
+ rfkba=rfkill block all\
+ nwon=nmcli radio wifi on \
+ nwoff=nmcli radio wifi off \
+ ndwc=nmcli device wifi connect \
+
+  
     
+
+
 
 
 alias -g G='| grep'   
@@ -141,7 +149,11 @@ alias -g L='| less'
 alias -g ...='../..'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias con='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+
+alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
+      conla="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
+
 
 zd() {
   cd "$(zoxide query -i)"

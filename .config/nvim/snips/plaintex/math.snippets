@@ -1,0 +1,78 @@
+snippet _ "_{$1}$0" i
+_{$1}$0
+endsnippet
+
+snippet ^ "^{$1}$0" i
+^{$1}$0
+endsnippet
+
+snippet oname "\operatorname{$1}$0" i
+\operatorname{$1}$0
+endsnippet
+
+snippet sub "\subset{$1}$0" i
+\subset{$1}$0
+endsnippet
+
+snippet sse "\subseteq{$1}$0" iA
+\subseteq{$1}$0
+endsnippet
+
+# ----------------------------
+# Section \mathbb
+snippet mbb "\mathbb{$1}$0" iA
+\mathbb{$1}$0
+endsnippet
+
+snippet \R "\mathbb{R}$0" iA
+\mathbb{R}$0
+endsnippet
+
+snippet \C "\mathbb{C}$0" iA
+\mathbb{C}$0
+endsnippet
+
+snippet Rmn "\mathbb{R}^{m\times n}" iA
+\mathbb{R}^{m\times n}
+endsnippet
+
+snippet Cmn "\mathbb{C}^{m\times n}" iA
+\mathbb{C}^{m\times n}
+endsnippet
+
+snippet Xxx "\mathbb{C}^{m\times n}" iA
+\mathbb{${1:R}}^{${2:m}\times ${3:n}}$0
+endsnippet
+
+
+# -----------------------------------
+# Operators
+
+snippet exp "\mathbb{C}^{m\times n}" i
+\operatorname{exp}($1)$0
+endsnippet
+
+
+
+
+
+# ----------------------------
+# Comparisons
+
+
+snippet leq "\leqslant" iA
+\leqslant
+endsnippet
+
+snippet geq "\geqslant" iA
+\geqslant
+endsnippet
+
+
+# linear ode
+snippet linODE "linear ODE" iA
+a_$1y^($1)+a_{$1-1}y^{($1-1)}+...+a_1y'+a_0y=${2:b}
+endsnippet
+
+
+

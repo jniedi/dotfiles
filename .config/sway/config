@@ -170,21 +170,28 @@ input type:keyboard {
 
 
 set $PDF pdf
-
 bindsym $mod+p mode $PDF
 
 
 mode $PDF  {
-
-    bindsym o exec ~/.local/bin/open_pdf.sh, mode "default"
+    bindsym o mode "default", exec ~/.local/bin/open_pdf.sh
     # TODO: recollq bemenu query
-    # bindsym q exec ~/.local/bin/open_pdf.sh, mode "default"
+    # bindsym q  mode "default", exec ~/.local/bin/open_pdf.sh
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
+set $TODO todo
+bindsym $mod+t mode $TODO
 
+
+mode $TODO  {
+    bindsym l mode "default", exec ~/.local/bin/todo.sh
+    bindsym a mode "default", exec ~/.local/bin/todo.sh append
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 
 
@@ -247,26 +254,5 @@ default_border pixel 2
 
 
 for_window [app_id="firefox"] border none
-
-
-
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-# bar {
-#     position top
-#
-#     # When the status_command prints a new line to stdout, swaybar updates.
-#     # The default just shows the current date and time.
-#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-#
-#     colors {
-#         statusline #ffffff
-#         background #323232
-#         inactive_workspace #32323200 #32323200 #5c5c5c
-#     }
-# }
-
 
 include /etc/sway/config.d/*

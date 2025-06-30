@@ -1,0 +1,14 @@
+
+
+We can use the following command to install packages listed in a file:
+```zsh
+pacman -S --needed - < packages.txt
+```
+
+
+To list all explicily installed packages, we can use:
+```
+pacman -Qqe 
+```
+
+Without the `q` pacman prints the versions of the packages as well.

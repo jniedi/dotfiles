@@ -3,6 +3,7 @@ if not vim.loop.fs_stat(pluginpath) then
   vim.fn.system({ "mkdir", "-p", pluginpath})
 end
 
+-- TODO: add functionality to check for updates
 if not vim.loop.fs_stat(pluginpath .. "ultisnips.git") then
   vim.fn.system({ "git", "clone", "https://github.com/SirVer/ultisnips.git", pluginpath .. "ultisnips.git", })
   vim.opt.rtp:append(pluginpath .. "ultisnips.git")

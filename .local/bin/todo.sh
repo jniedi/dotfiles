@@ -12,6 +12,7 @@ function error(){
 TODOS=~/.cache/todos
 
 # If the file doesn't exist, send notifcation and exit
+
 [[ ! -f $TODOS ]] && error 'Todo file does not exist!'
 
 if [[ $1 == 'append' ]]; then

@@ -72,7 +72,7 @@ alias pac='sudo pacman -S'
 alias texsym="zat $HOME/resources/references/symbols-a4.pdf &"
 alias python=/usr/bin/python3
 alias py=/usr/bin/python3
-alias copypath='pwd | xclip -sel clipboard'
+alias copypath='pwd | wl-copy'
 
 
 # tmux(p)
@@ -133,12 +133,13 @@ alias \
  ff="firefox" \
  j=jobs \
  rfk=rfkill \
- rfkba=rfkill block all\
- nwon=nmcli radio wifi on \
- nwoff=nmcli radio wifi off \
- ndwc=nmcli device wifi connect \
+ rfkba='rfkill block all'\
+ nmwon='nmcli radio wifi on' \
+ nmwoff='nmcli radio wifi off' \
+ nmdwc='nmcli device wifi connect' \
 
   
+# xdg-mime default org.pwmt.zathura.desktop application/pdf
     
 
 
@@ -152,7 +153,9 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 
 alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
-      conla="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
+      conla="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all" \
+      concm='con commit -m'
+
 
 
 zd() {

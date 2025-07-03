@@ -141,6 +141,11 @@ vim.api.nvim_create_user_command("TextSearch", function(opts)
 
 end, { nargs = "+", bang = true })
 
+
+-- vim.api.nvim_create_user_command("CompileLatex", function(opts, file or "main.tex")
+--   vim.notify(file, 3)
+-- end, { nargs = "?", bang = true })
+
 vim.keymap.set("n", "<leader>q", scratch_to_quickfix)
 vim.keymap.set("n", "<leader>sf", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("FileSearch " .. name) end end) end)
 vim.keymap.set("n", "<leader>lf", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("FileSearch! " .. name) end end) end)

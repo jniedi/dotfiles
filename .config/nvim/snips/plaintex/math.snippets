@@ -18,8 +18,10 @@ snippet sse "\subseteq{$1}$0" iA
 \subseteq{$1}$0
 endsnippet
 
-# ----------------------------
-# Section \mathbb
+
+# -----------------------------------
+# mathbb
+
 snippet mbb "\mathbb{$1}$0" iA
 \mathbb{$1}$0
 endsnippet
@@ -32,30 +34,23 @@ snippet \C "\mathbb{C}$0" iA
 \mathbb{C}$0
 endsnippet
 
-snippet Rmn "\mathbb{R}^{m\times n}" iA
-\mathbb{R}^{m\times n}
-endsnippet
-
-snippet Cmn "\mathbb{C}^{m\times n}" iA
-\mathbb{C}^{m\times n}
-endsnippet
-
-snippet Xxx "\mathbb{C}^{m\times n}" iA
+snippet Xxx "\mathbb{?}^{?\times ?}" iA
 \mathbb{${1:R}}^{${2:m}\times ${3:n}}$0
 endsnippet
 
+snippet Xx "\mathbb{?}^{?\times ?}" i
+\mathbb{${1:R}}^{${2:m}}$0
+endsnippet
 
+# end mathbb
 # -----------------------------------
-# Operators
+# operators
 
 snippet exp "\mathbb{C}^{m\times n}" i
 \operatorname{exp}($1)$0
 endsnippet
 
-
-
-
-
+# end operators
 # ----------------------------
 # Comparisons
 

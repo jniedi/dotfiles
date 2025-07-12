@@ -47,9 +47,7 @@ local function scratch_to_quickfix(close_qf) local items, bufnr = {}, vim.api.nv
 local function extcmd(cmd, qf, close_qf, novsplit) out = vim.fn.systemlist(cmd) if not out or #out == 0 then return end
   vim.cmd(novsplit and "enew" or "vnew") vim.api.nvim_buf_set_lines( 0, 0, -1, false, out) scratch() if qf then scratch_to_quickfix(close_qf) end end
 
-
-
-vim.keymap.set('n', '<leader>ue', ':UltiSnipsEdit<cr>') -- TODO: check to how to change to call function directly
+vim.keymap.set('n', '<leader>ue', ':UltiSnipsEdit<cr>')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')     vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set("n", "<C-n>", ":cn<cr>")     vim.keymap.set("n", "<C-p>", ":cp<cr>")
 vim.keymap.set("n", "<leader>n", ":bn<cr>") vim.keymap.set("n", "<leader>p", ":bp<cr>") vim.keymap.set("n", "<leader>d", ":bd<cr>")
@@ -142,9 +140,15 @@ vim.api.nvim_create_user_command("TextSearch", function(opts)
 end, { nargs = "+", bang = true })
 
 
--- vim.api.nvim_create_user_command("CompileLatex", function(opts, file or "main.tex")
---   vim.notify(file, 3)
--- end, { nargs = "?", bang = true })
+-- Use fd to search for a pattern and open all results in new buffers
+vim.api.nvim_create_user_command("QuickFdEdit", function(opts)
+  vim.cmd("n `fd --max-depth 3 --type f " .. opts.args .. "`")
+  vim.cmd("ls")
+end, { nargs = "+" })
+
+-- use fd to quickly edit files found
+vim.keymap.set("n", "<leader>qf", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("QuickFdEdit " .. name) end end) end)
+
 
 vim.keymap.set("n", "<leader>q", scratch_to_quickfix)
 vim.keymap.set("n", "<leader>sf", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("FileSearch " .. name) end end) end)

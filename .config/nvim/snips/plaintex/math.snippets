@@ -6,21 +6,19 @@ snippet ^ "^{$1}$0" i
 ^{$1}$0
 endsnippet
 
-snippet oname "\operatorname{$1}$0" i
-\operatorname{$1}$0
+snippet lrab "\[$1\]$0" i
+\[$1\]$0
 endsnippet
+
 
 snippet sub "\subset{$1}$0" i
 \subset{$1}$0
 endsnippet
 
-snippet sse "\subseteq{$1}$0" iA
+snippet sse "\subseteq{$1}$0" i
 \subseteq{$1}$0
 endsnippet
 
-
-# -----------------------------------
-# mathbb
 
 snippet mbb "\mathbb{$1}$0" iA
 \mathbb{$1}$0
@@ -42,18 +40,21 @@ snippet Xx "\mathbb{?}^{?\times ?}" i
 \mathbb{${1:R}}^{${2:m}}$0
 endsnippet
 
-# end mathbb
-# -----------------------------------
-# operators
-
 snippet exp "\mathbb{C}^{m\times n}" i
 \operatorname{exp}($1)$0
 endsnippet
 
-# end operators
-# ----------------------------
-# Comparisons
+snippet oname "\operatorname{$1}$0" i
+\operatorname{$1}$0
+endsnippet
 
+snippet argm "\operatorname{arg m${1:ax}}_{$2}$0" i
+\operatorname{arg m${1:ax}}_{$2}$0
+endsnippet
+
+snippet hat "\hat{$1}$0" i
+\hat{$1}$0
+endsnippet
 
 snippet leq "\leqslant" iA
 \leqslant
@@ -63,11 +64,82 @@ snippet geq "\geqslant" iA
 \geqslant
 endsnippet
 
-
-# linear ode
 snippet linODE "linear ODE" iA
 a_$1y^($1)+a_{$1-1}y^{($1-1)}+...+a_1y'+a_0y=${2:b}
 endsnippet
 
+snippet dfdx "Derivative of f" iA
+\fraction{d${1:f}^{$2}}{d${3:x}^{$2}}$0
+endsnippet
+
+snippet pfpx "Partial derivative" iA
+\fraction{\partial${1:f}^{$2}}{\partial${3:x}^{$2}}$0
+endsnippet
+
+snippet mcal "\mathcal{$1}$0" iA
+\mathcal{$1}$0
+endsnippet
 
 
+
+snippet lrcb "\{$1\}$0" i
+\\{$1\\}$0
+endsnippet
+
+
+# ----------------------
+# greek letters
+snippet \a "\alpha" i
+\alpha
+endsnippet
+
+snippet \e "\epsilon" i
+\epsilon
+endsnippet
+
+snippet \t "theta" i
+\theta
+endsnippet
+
+snippet \s "\epsilon" i
+\sigma
+endsnippet
+
+snippet \O "theta" i
+\Omega
+endsnippet
+
+snippet \S "\epsilon" i
+\Sigma
+endsnippet
+
+snippet \l "\lambda" i
+\lambda
+endsnippet
+
+snippet \L "\Lambda" i
+\Lambda
+endsnippet
+
+# end greek letters
+# ----------------------
+
+snippet frac "\fraction{$1}{$2}$0" i
+\fraction{$1}{$2}$0
+endsnippet
+
+snippet prod "\prod_{$1}^{$2}$0" i
+\prod_{$1}^{$2}$0
+endsnippet
+
+snippet sum "\sum{$1}^{$2}$0" i
+\sum_{$1}^{$2}$0
+endsnippet
+
+snippet txx "\text{$1}$0" iA
+\text{$1}$0
+endsnippet
+
+snippet txx "\text{$1}$0" iA
+\text{$1}$0
+endsnippet

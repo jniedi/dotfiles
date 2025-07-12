@@ -2,5 +2,5 @@
 live_config_reload = true
 
 [colors.primary]
-foreground = "#000000"
-background = "#ffffff"
+background = "#000000"
+foreground = "#ffffff"

@@ -1,0 +1,29 @@
+snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
+\begin{${1:`!p
+if match.group(2) is not None:
+    snip.rv = "itemize" if match.group(3) == "item" else match.group(3)
+else:
+    snip.rv = "something"`}}
+    `!p
+snip.rv = "\item " if match.group(3) == "item" else "" 
+`$2
+\end{$1}$0
+endsnippet
+
+snippet "(s)?(ss)?sec([*n])?" "begin{} / end{}" br
+\\`!p
+t=""
+if match.group(1) == "s": 
+    t="sub"
+elif match.group(2) == "ss":
+    t="subsub"
+snip.rv=t
+`section`!p
+if match.group(3) == "*" or match.group(3) == "n":
+    snip.rv="*"
+`{${1:${VISUAL}}}
+endsnippet
+
+snippet tbf "bold text" 
+\textbf{${1:${VISUAL}}}$0
+endsnippet

@@ -45,8 +45,9 @@ zle -N down-line-or-beginning-search
 bindkey "^p" up-line-or-beginning-search
 bindkey "^n" down-line-or-beginning-search
 
-alias lt='latexmk -norc -halt-on-error -outdir=output'
-alias ltc='latexmk -pdf -outdir=output -pvc --shell-escape'
+alias lt='latexmk -norc -halt-on-error -outdir=output -auxdir=aux'
+alias ltc='latexmk -pdf -outdir=output -auxdir=aux -pvc --shell-escape'
+alias ltcq='latexmk -pdf -outdir=output -auxdir=aux -pvc --shell-escape -quiet'
 alias la='ls -lah'
 alias afk='systemctl suspend'
 alias afkl='systemctl suspend && swaylock'
@@ -136,9 +137,13 @@ alias \
  rfkba='rfkill block all'\
  nmwon='nmcli radio wifi on' \
  nmwoff='nmcli radio wifi off' \
+ nmdw='nmcli device wifi ' \
  nmdwc='nmcli device wifi connect' \
 
-  
+# typos
+alias :wq=exit
+
+
 # xdg-mime default org.pwmt.zathura.desktop application/pdf
     
 
@@ -154,7 +159,8 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
       conla="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all" \
-      concm='con commit -m'
+      concm='con commit -m'  \
+      const='con status'
 
 
 

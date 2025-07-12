@@ -1,0 +1,55 @@
+#global !p
+#
+#endglobal
+
+
+# TODO: add pointer support
+snippet "(([ivdl])([*p])? )?fn ?(\w*)?" "function snippet" rb
+/**
+ * @brief $6`!p def extract_param_names(args):
+    args = args.strip("()")
+    if not args:
+        return ""
+    names = []
+    for part in args.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        # Split on spaces and remove pointer stars from names
+        tokens = part.split()
+        if len(tokens) >= 2:
+            name = tokens[-1].lstrip("*")
+            names.append(f" * @param {name}")
+    return "\n".join(names)
+snip.rv = "\n" + extract_param_names(t[4]) if t[4] != "" else ""
+`
+${5:`!p
+if t[1] != "void":
+    snip.rv = " * @return"
+` $7}
+*/
+${1:`!p
+if match.group(2) == "i":
+    snip.rv = "int"
+elif match.group(2) == "v":
+    snip.rv = "void"
+elif match.group(2) == "d":
+    snip.rv = "double"
+elif match.group(2) == "l":
+    snip.rv = "long"
+elif match.group(2) == "c":
+    snip.rv = "char"
+else:
+    snip.rv = "void"
+if match.group(3) is not None:
+    snip.rv+="*"
+`} ${3:`!p
+snip.rv = match.group(4) if match.group(4) is not None else "fn"
+`}($4){
+    ${0:// TODO:}
+    return${8:`!p
+if t[1] != "void":
+    snip.rv = " 0"
+`};
+}
+endsnippet

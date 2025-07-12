@@ -203,67 +203,6 @@ user_pref("privacy.clearOnShutdown.history", true);
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 user_pref("privacy.history.custom", true); // Ensures custom settings apply
 
-// Disable form & search history
-user_pref("browser.formfill.enable", false);
-
-// Disable session restore (no recent closed tabs/windows)
-user_pref("browser.sessionstore.max_tabs_undo", 0);
-user_pref("browser.sessionstore.max_windows_undo", 0);
-
-// Disable saving of recently closed tabs/windows
-user_pref("browser.sessionstore.privacy_level", 2);
-user_pref("browser.sessionstore.enabled", false);
-
-user_pref("parrot.success", "FAILED: browser.fullscreen.autohide = true");
-user_pref("browser.fullscreen.autohide", true);
-
-/** DISK CACHE ***/
-user_pref("browser.cache.disk.enable", false);
-user_pref("browser.cache.memory.enable", true);
-user_pref("browser.cache.memory.capacity", 1048576);  // ~1GB
-
-user_pref("general.smoothScroll.lines.durationMaxMS", 125);
-user_pref("general.smoothScroll.lines.durationMinMS", 125);
-user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 200);
-user_pref("general.smoothScroll.mouseWheel.durationMinMS", 100);
-user_pref("general.smoothScroll.msdPhysics.enabled", true);
-user_pref("general.smoothScroll.other.durationMaxMS", 125);
-user_pref("general.smoothScroll.other.durationMinMS", 125);
-user_pref("general.smoothScroll.pages.durationMaxMS", 125);
-user_pref("general.smoothScroll.pages.durationMinMS", 125);
-
-
-user_pref("mousewheel.min_line_scroll_amount", 30);
-user_pref("mousewheel.system_scroll_override_on_root_content.enabled", true);
-user_pref("mousewheel.system_scroll_override_on_root_content.horizontal.factor", 175);
-user_pref("mousewheel.system_scroll_override_on_root_content.vertical.factor", 175);
-user_pref("toolkit.scrollbox.horizontalScrollDistance", 6);
-user_pref("toolkit.scrollbox.verticalScrollDistance", 2);
-
-user_pref("browser.tabs.unloadOnLowMemory",true);
-user_pref("browser.low_commit_space_threshold_percent",100);
-user_pref("browser.tabs.min_inactive_duration_before_unload ",3600000);
-
-
-
-
-
-
-
-
-// the following is local to this machine
-// Disable Telemetry and Data Collection
-user_pref("toolkit.telemetry.enabled", false);
-user_pref("toolkit.telemetry.unified", false);
-user_pref("toolkit.telemetry.archive.enabled", false);
-user_pref("toolkit.telemetry.newProfilePing.enabled", false);
-user_pref("toolkit.telemetry.bhrPing.enabled", false);
-user_pref("toolkit.telemetry.reportingpolicy.firstRun", false);
-user_pref("toolkit.telemetry.updatePing.enabled", false);
-user_pref("toolkit.telemetry.errors.enabled", false);
-user_pref("toolkit.telemetry.server", "");
-user_pref("dom.ipc.processCount", 2);
-user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
 
 
 user_pref("parrot.success", "TRUE");

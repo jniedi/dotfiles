@@ -24,14 +24,6 @@ output DP-3 resolution 3840x2160 position 1920 0
 #
 
 
-exec swayidle -w \
-         timeout 500 'swaylock -f -c 000000' \
-         timeout 800 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
 #
@@ -219,20 +211,38 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+b  mode default, exec "~/.local/bin/bookmarks.sh open"
+# bindsym $mod+b  mode default, exec "~/.local/bin/bookmarks.sh open"
 set $browser BROWSER
-bindsym $mod+Shift+b mode $browser
+bindsym $mod+b mode $browser
 
 mode $browser {
 
     # Save current bookmark
-    bindsym $mod+s mode default, exec "~/.local/bin/bookmarks.sh save" 
-    bindsym s      mode default, exec "~/.local/bin/bookmarks.sh save" 
+    bindsym b           mode default, exec "~/.local/bin/bookmarks.sh open"
+    # bindsym $mod+s      mode default, exec "~/.local/bin/bookmarks.sh save" 
+    # bindsym s           mode default, exec "~/.local/bin/bookmarks.sh save" 
+    # switch to mode engines 
+    bindsym s mode $engine
 
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+set $engine ENGINE
+mode $engine {
+    # different engines
+    bindsym w           mode default, exec "~/.local/bin/websearch.sh wikipedia"
+    bindsym d           mode default, exec "~/.local/bin/websearch.sh"
+    bindsym s           mode default, exec "~/.local/bin/websearch.sh scholar"
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+
 
 bindsym $mod+r mode "resize"
 

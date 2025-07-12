@@ -2,6 +2,9 @@
 
 
 # append/list todos without opening a terminal
+# the goal is to avoid procastinating via appending
+# the thing I wanted to do to the list of todos 
+# for later reference
 
 # TODO: add functionality to check if run in terminal
 function error(){

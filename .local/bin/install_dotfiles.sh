@@ -6,6 +6,9 @@ function error() {
 
 [ -d ~/.dotfiles ] && error '~/.dotfiles already exists'
 
+# TOD
+# TODO: fix according to https://github.com/radleylewis/dotfiles
+
 git clone --separate-git-dir=$HOME/.dotfiles https://github.com/jniedi/dotfiles.git $HOME/dotfiles-tmp
 cp -r $HOME/dotfiles-tmp/.* ~  # Copy everything
 rm -r $HOME/dotfiles-tmp

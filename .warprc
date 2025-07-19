@@ -4,8 +4,9 @@ b:~/.local/bin
 bin:~/.local/bin
 books:~/resources/books
 c:~/.config
+ciml:~/projects/cheatsheets/iml
 con:~/repos/dotfiles/stow/dot-config
-csiml:~/repos/cheatsheets/iml
+csiml:~/projects/cheatsheets/iml
 dcon:~/dotfiles/stow/dot-config
 dmenu:~/repos/dmenu
 docs:~/documents
@@ -14,7 +15,7 @@ dotfiles:~/repos/dotfiles
 dwm:~/repos/dwm
 iml:~/documents/school/introduction_to_machine_learning
 iml_pro:~/repos/iml_project
-n:~/documents/zettelkasten
+n:~/documents/notes
 nv:~/.config/nvim
 r:~/resources/books
 rai:~/resources/books/computer_science/ai

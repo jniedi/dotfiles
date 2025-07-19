@@ -21,5 +21,5 @@ TODOS=~/.cache/todos
 if [[ $1 == 'append' ]]; then
     cat /dev/null | bemenu >> $TODOS
 else # the default is listing the head of the file
-   cat $TODOS | bemenu --list 15 
+   cat $TODOS | bemenu --list 50
 fi

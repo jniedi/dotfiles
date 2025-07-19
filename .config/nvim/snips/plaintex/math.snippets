@@ -32,12 +32,12 @@ snippet \C "\mathbb{C}$0" iA
 \mathbb{C}$0
 endsnippet
 
-snippet Xxx "\mathbb{?}^{?\times ?}" iA
-\mathbb{${1:R}}^{${2:m}\times ${3:n}}$0
-endsnippet
 
-snippet Xx "\mathbb{?}^{?\times ?}" i
-\mathbb{${1:R}}^{${2:m}}$0
+snippet "([CR])(\w)(\w)?" "\mathbb{?}^{?\times ?}" ir
+\mathbb{`!p
+post = "\\times " + match.group(3) if match.group(3) is not None else ""
+snip.rv = match.group(1)  + "}^{" + match.group(2) + post
+`}$0
 endsnippet
 
 snippet exp "\mathbb{C}^{m\times n}" i
@@ -56,11 +56,11 @@ snippet hat "\hat{$1}$0" i
 \hat{$1}$0
 endsnippet
 
-snippet leq "\leqslant" iA
+snippet leq "\leqslant" i
 \leqslant
 endsnippet
 
-snippet geq "\geqslant" iA
+snippet geq "\geqslant" i
 \geqslant
 endsnippet
 
@@ -69,11 +69,11 @@ a_$1y^($1)+a_{$1-1}y^{($1-1)}+...+a_1y'+a_0y=${2:b}
 endsnippet
 
 snippet dfdx "Derivative of f" iA
-\fraction{d${1:f}^{$2}}{d${3:x}^{$2}}$0
+\frac{d${1:f}^{$2}}{d${3:x}^{$2}}$0
 endsnippet
 
 snippet pfpx "Partial derivative" iA
-\fraction{\partial${1:f}^{$2}}{\partial${3:x}^{$2}}$0
+\frac{\partial${1:f}^{$2}}{\partial${3:x}^{$2}}$0
 endsnippet
 
 snippet mcal "\mathcal{$1}$0" iA
@@ -91,6 +91,10 @@ endsnippet
 # greek letters
 snippet \a "\alpha" i
 \alpha
+endsnippet
+
+snippet \d "\delta" i
+\delta
 endsnippet
 
 snippet \e "\epsilon" i
@@ -124,8 +128,8 @@ endsnippet
 # end greek letters
 # ----------------------
 
-snippet frac "\fraction{$1}{$2}$0" i
-\fraction{$1}{$2}$0
+snippet frac "\frac{$1}{$2}$0" i
+\frac{$1}{$2}$0
 endsnippet
 
 snippet prod "\prod_{$1}^{$2}$0" i

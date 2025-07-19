@@ -1,7 +1,13 @@
+# Can add other abbreviations here
 snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
 \begin{${1:`!p
 if match.group(2) is not None:
-    snip.rv = "itemize" if match.group(3) == "item" else match.group(3)
+    if match.group(3) == "item":
+        snip.rv = "itemize"
+    elif match.group(3) == "eq":
+        snip.rv = "equation"
+    else:
+        snip.rv = match.group(3)
 else:
     snip.rv = "something"`}}
     `!p

@@ -1,3 +1,7 @@
+-- ----------------------------------------------
+-- ----------------------------------------------
+-- plugins
+
 local pluginpath = vim.fn.stdpath("data") .. "/site/pack/plugins/start/"
 if not vim.loop.fs_stat(pluginpath) then
   vim.fn.system({ "mkdir", "-p", pluginpath})
@@ -9,32 +13,291 @@ if not vim.loop.fs_stat(pluginpath .. "ultisnips.git") then
   vim.opt.rtp:append(pluginpath .. "ultisnips.git")
 end
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
-
 vim.g.UltiSnipsExpandTrigger = '<C-l>'
 vim.g.UltiSnipsJumpForwardTrigger = '<C-l>'
 vim.g.UltiSnipsJumpBackwardTrigger = '<C-h>'
+
+
+
+-- ----------------------------------------------
+-- ----------------------------------------------
+-- variables
+local vim = vim
+
+-- ----------------------------------------------
+-- ----------------------------------------------
+-- options
+
+-- TODO: add conceal stuff
+-- TODO: add comments
 vim.g.UltiSnipsSnippetDirectories = { 'snips' }
 vim.opt.termguicolors = true -- enable 24-bit RGB color in the TUI
 vim.g.netrw_banner = ""
-
-
+vim.o.ignorecase = true
+vim.o.smartcase = true
 vim.o.clipboard = "unnamedplus"
-vim.cmd("syntax off | colorscheme vim") 
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
-if vim.uv.fs_stat(vim.fn.expand("~") .. "/.cache/light") then
-    vim.api.nvim_set_hl(0, "Normal", { fg = "#000000" })
-else
-    -- darkmode
-    vim.api.nvim_set_hl(0, "Normal", { fg = "#ffff00" }) -- orange: fg = "#ffaf00"
-end
+-- use (relative) line numbers
+vim.o.number = true
+vim.o.relativenumber = true
 
-_G.basic_excludes = { ".git", "*.egg-info", "__pycache__", "wandb","target" } _G.ext_excludes = vim.list_extend(vim.deepcopy(_G.basic_excludes), { ".venv", })
+-- enable list characters
+vim.o.list = true
+vim.o.listchars ="tab:\\t,trail:␣"
+
+-- Enable break indent
+vim.o.breakindent = true
+
+-- Save undo history
+vim.o.undofile = true
+
+-- Decrease mapped sequence wait time
+vim.o.timeoutlen = 300
+
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+-- Keep signcolumn on by default
+vim.o.signcolumn = 'yes'
+
+-- Decrease update time
+vim.o.updatetime = 250
+
+-- Decrease mapped sequence wait time
+vim.o.timeoutlen = 300
+
+-- start scrolling down earlier
+vim.o.scrolloff = 10
+
+-- Preview substitutions live, as you type!
+vim.o.inccommand = 'split'
+
+
+-- ----------------------------------------------
+-- ----------------------------------------------
+-- keymaps
+
+-- use escaple to remove highlight of search
+vim.keymap.set("n","<esc>","<cmd>nohlsearch<cr>")
+
+-- source the init.lua file
+vim.keymap.set('n', '<leader>sc', ':source ~/.config/nvim/init.lua<cr>')
+
+-- move line cursor is on around
+vim.keymap.set("n", "<C-j>", ":move .+1<CR>")
+vim.keymap.set("v", "<C-j>", ":move '>+1<CR>gv")
+
+-- move visual selection around
+vim.keymap.set("n", "<C-k>", ":move .-2<CR>")
+vim.keymap.set("v", "<C-k>", ":move '<-2<CR>gv")
+
+-- quickly edit the snippets file(s) for the filetype of the buffer
+vim.keymap.set('n', '<leader>ue', ':UltiSnipsEdit<cr>')
+
+-- move pages down and up
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- quickfix list stuff
+vim.keymap.set("n", "<C-n>", ":cn<cr>")
+vim.keymap.set("n", "<C-p>", ":cp<cr>")
+
+-- buffer stuff
+vim.keymap.set("n", "<A-n>", ":bn<cr>")
+vim.keymap.set("n", "<A-p>", ":bp<cr>")
+vim.keymap.set("n", "<A-d>", ":bd<cr>")
+vim.keymap.set("n", "<A-l>", ":ls<cr>:b ")
+
+-- toggle quickfix list
+vim.keymap.set("n", "<C-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
+
+-- diagnostic keymaps
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- use fd to quickly edit files according to the pattern
+vim.keymap.set("n", "<leader>qf", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("QuickFdEdit " .. name) end end) end)
+
+
+
+-- ----------------------------------------------
+-- ----------------------------------------------
+-- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end, group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }), pattern = "*", })
-vim.api.nvim_create_autocmd("FileType",  { callback = function() local i = 4
+
+vim.api.nvim_create_autocmd("FileType",  { callback = 
+  function() 
+  local i = 4
     for _, line in ipairs(vim.api.nvim_buf_get_lines(0, 0, 100, false)) do local cind = line:match("^(%s+)") if cind and not line:match("^%s*$") then i = math.min(i, #cind) end end
     vim.opt_local.expandtab=true vim.opt_local.shiftwidth=i vim.opt_local.tabstop=i vim.opt_local.softtabstop = i end , })
+
+
+-- ----------------------------------------------
+-- ----------------------------------------------
+-- LSP
+
+-- https://wiki.archlinux.org/title/Language_Server_Protocol
+
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
+local function find_root(patterns)
+  local path = vim.fn.expand('%:p:h')
+  local root = vim.fs.find(patterns, { path = path, upward = true })[1]
+  return root and vim.fn.fnamemodify(root, ':h') or path
+end
+
+-- python
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'python',
+  callback = function()
+  local server = 'pylsp'
+  if vim.fn.executable(server) == 1 then
+  vim.lsp.start({
+    name = server,
+    cmd = {server},
+    filetypes = {'python'},
+    root_dir = find_root({'pyproject.toml', 'setup.py', 'setup.cfg', 'main.py', 'requirements.txt', '.git'}),
+    settings = {
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+              enabled = false
+          },
+          flake8 = {
+              enabled = true,
+          },
+          black = {
+              enabled = true
+          }
+        }
+      }
+    },
+    on_attach = function(client, bufnr)
+      vim.lsp.completion.enable(true, client.id, bufnr, {
+        autotrigger = true,
+        convert = function(item)
+          return { abbr = item.label:gsub('%b()', '') }
+        end,
+      })
+    end,
+  })
+else
+  vim.notify("Server " .. server .. " not found!", vim.log.levels.WARN)
+  end
+end,
+  desc = 'Start Python LSP'
+})
+
+
+-- c/cpp
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'cpp', 'hpp','c'},
+  callback = function()
+  local server = 'clangd'
+  if vim.fn.executable(server) == 1 then
+  vim.lsp.start({
+    name = server,
+    cmd = {server},
+    filetypes = {'cpp', 'c', 'hpp' },
+    root_dir = find_root({".clangd" }),
+    on_attach = function(client, bufnr)
+      vim.lsp.completion.enable(true, client.id, bufnr, {
+        autotrigger = true,
+        convert = function(item)
+          return { abbr = item.label:gsub('%b()', '') }
+        end,
+      })
+    end,
+  })
+else
+  vim.notify("Server " .. server .. " not found!", vim.log.levels.WARN)
+  end
+end,
+  desc = 'Start cpp LSP'
+})
+
+-- lua
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'lua',
+  callback = function()
+  local server = 'lua-language-server'
+  if vim.fn.executable(server) == 1 then
+  vim.lsp.start({
+    name = server,
+    cmd = {server},
+    filetypes = {'lua'},
+    -- Sets the "root directory" to the parent directory of the file in the
+    -- current buffer that contains either a ".luarc.json" or a
+    -- ".luarc.jsonc" file. Files that share a root directory will reuse
+    -- the connection to the same LSP server.
+    -- Nested lists indicate equal priority, see |vim.lsp.Config|.
+     root_markers = { {"init.lua", '.luarc.json', '.luarc.jsonc' }, '.git' },
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        }
+      }
+    },
+    on_attach = function(client, bufnr)
+      vim.lsp.completion.enable(true, client.id, bufnr, {
+        autotrigger = true,
+        convert = function(item)
+          return { abbr = item.label:gsub('%b()', '') }
+        end,
+      })
+    end,
+  })
+else
+  vim.notify("Server " .. server .. " not found!", vim.log.levels.WARN)
+  end
+end,
+  desc = 'Start lua LSP'
+})
+
+
+local triggers = {'.'}
+vim.api.nvim_create_autocmd('InsertCharPre', {
+  buffer = vim.api.nvim_get_current_buf(),
+  callback = function()
+    if vim.fn.pumvisible() == 1 or vim.fn.state('m') == 'm' then
+      return
+    end
+    local char = vim.v.char
+    if vim.list_contains(triggers, char) then
+      -- local key = vim.keycode('<C-x><C-n>')
+      -- vim.api.nvim_feedkeys(key, 'm', false)
+       vim.lsp.completion.get()
+    end
+  end
+})
+
+-- GLOBAL DEFAULTS
+-- grr gra grn gri grt i_CTRL-S an in These GLOBAL keymaps are created unconditionally when Nvim starts:
+-- "grn" is mapped in Normal mode to vim.lsp.buf.rename()
+-- "gra" is mapped in Normal and Visual mode to vim.lsp.buf.code_action()
+-- "grr" is mapped in Normal mode to vim.lsp.buf.references()
+-- "gri" is mapped in Normal mode to vim.lsp.buf.implementation()
+-- "grt" is mapped in Normal mode to vim.lsp.buf.type_definition()
+-- "gO" is mapped in Normal mode to vim.lsp.buf.document_symbol()
+-- CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()
+-- "an" and "in" are mapped in Visual mode to outer and inner incremental selections, respectively, using vim.lsp.buf.selection_range()
+
+vim.diagnostic.config({
+  signs = true,
+  virtual_text = true, -- optional: show inline text (disable if you prefer signs only)
+  update_in_insert = false,
+  underline = true,
+})
+
+
+-- ----------------------------------------------
+-- ----------------------------------------------
+-- stuff to sort
+
+_G.basic_excludes = { ".git", "*.egg-info", "__pycache__", "wandb","target" } _G.ext_excludes = vim.list_extend(vim.deepcopy(_G.basic_excludes), { ".venv", })
+
 local function scratch() vim.bo.buftype = "nofile" vim.bo.bufhidden = "wipe" vim.bo.swapfile = false end
 local function pre_search() if vim.bo.filetype == "netrw" then return vim.b.netrw_curdir, _G.basic_excludes, {} else return vim.fn.getcwd(), _G.ext_excludes, {} end end
 local function scratch_to_quickfix(close_qf) local items, bufnr = {}, vim.api.nvim_get_current_buf() 
@@ -47,14 +310,14 @@ local function scratch_to_quickfix(close_qf) local items, bufnr = {}, vim.api.nv
 local function extcmd(cmd, qf, close_qf, novsplit) out = vim.fn.systemlist(cmd) if not out or #out == 0 then return end
   vim.cmd(novsplit and "enew" or "vnew") vim.api.nvim_buf_set_lines( 0, 0, -1, false, out) scratch() if qf then scratch_to_quickfix(close_qf) end end
 
-vim.keymap.set('n', '<leader>ue', ':UltiSnipsEdit<cr>')
-vim.keymap.set('n', '<C-d>', '<C-d>zz')     vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set("n", "<C-n>", ":cn<cr>")     vim.keymap.set("n", "<C-p>", ":cp<cr>")
-vim.keymap.set("n", "<leader>n", ":bn<cr>") vim.keymap.set("n", "<leader>p", ":bp<cr>") vim.keymap.set("n", "<leader>d", ":bd<cr>")
+
+
+-- use alt+[npd] to go to next/previous buffer or to delete the buffer
+
 vim.keymap.set("x", "<leader>p", "\"_dP")
-vim.keymap.set("n", "<C-s>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
 vim.keymap.set("n", "<leader><space>", ":ls<cr>:b ")
 vim.keymap.set("n", "<leader>e", ":Explore<cr>")
+vim.keymap.set("n", "-", ":Explore<cr>")
 vim.keymap.set("n", "<leader>ln", ":set number!<cr>")
 vim.keymap.set("n", "<leader>x",  scratch_to_quickfix)
 vim.keymap.set("n", "<leader>h",  function() vim.bo.buftype = "" vim.bo.bufhidden = "hide" vim.bo.swapfile = true end)
@@ -74,6 +337,10 @@ vim.keymap.set("n", "<leader>l", function() local bn, ft = vim.fn.expand("%"), v
   elseif ft == "rust" then vim.fn.systemlist("cargo fmt") extcmd("cargo check && cargo clippy") end end)
 local letters = "abcdefghijklmnopqrstuvwxyz" for i = 1, #letters do local l = letters:sub(i, i) local u = l:upper() vim.keymap.set('n', '<leader>a' .. l, "m" .. u)  vim.keymap.set('n', '<leader>j' .. l, "'" .. u) end
 vim.keymap.set("n", "<leader>c", function() vim.ui.input({ prompt = "> " }, function(c) if c then extcmd(c) end end) end)
+
+-- use leader m to quickly run make
+vim.keymap.set("n", "<leader>m", ":make<CR>")
+
 
 
 vim.keymap.set('n', '<leader>bl', function()
@@ -146,8 +413,6 @@ vim.api.nvim_create_user_command("QuickFdEdit", function(opts)
   vim.cmd("ls")
 end, { nargs = "+" })
 
--- use fd to quickly edit files found
-vim.keymap.set("n", "<leader>qf", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("QuickFdEdit " .. name) end end) end)
 
 
 vim.keymap.set("n", "<leader>q", scratch_to_quickfix)
@@ -161,32 +426,3 @@ vim.keymap.set("n", "<leader>/", function()
     run_search("grep -n '" .. pattern .. "' " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
   end)
 end)
-
---
----- end of custom telescope 
---- in case I ever want to go back to telescope
--- local pluginpath = vim.fn.stdpath("data") .. "/site/pack/plugins/start/"
--- if not vim.loop.fs_stat(pluginpath) then
---   vim.fn.system({ "git", "clone", "https://github.com/yobibyte/telescope.nvim", "--branch=0.1.x", pluginpath .. "telescope.nvim", })
---   vim.opt.rtp:append(pluginpath .. "telescope.nvim")
---   vim.fn.system({ "git", "clone", "https://github.com/yobibyte/plenary.nvim", pluginpath .. "plenary.nvim", })
--- end
--- vim.keymap.set("n", "<leader>sf", function() 
---   local config = { previewer = false, layout_strategy = "center", layout_config = { height = 0.4, }, } 
---   if vim.bo.filetype == "netrw" then config.cwd = vim.fn.expand("%:p:h") config.no_ignore = true end
---   require("telescope.builtin").find_files(config)
--- end)
--- vim.keymap.set("n", "<leader>sg", function() 
---   local config = {}
---   if vim.bo.filetype == "netrw" then
---     config.search_dirs = {vim.b.netrw_curdir} 
---     config.additional_args = function() return { "--hidden", "--no-ignore" } end
---   end
---   require("telescope.builtin").live_grep(config)
--- end)
-
-vim.keymap.set("n", "<leader>o",  function() vim.cmd.edit(vim.fn.fnameescape(vim.fn.trim(vim.fn.getreg("+")))) end)
-vim.keymap.set("n", "<C-j>", ":move .+1<CR>")
-vim.keymap.set("n", "<C-k>", ":move .-2<CR>")
-vim.keymap.set("v", "<C-j>", ":move '>+1<CR>gv")
-vim.keymap.set("v", "<C-k>", ":move '<-2<CR>gv")

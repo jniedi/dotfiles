@@ -1,0 +1,45 @@
+#snippet "for(\w?)" "for snippet" r
+#for(int `!p
+#var = match.group(1) if match.group(0) is not None else "i"
+#snip.rv = var ++ "=0" 
+#`=$1;
+#endsnippet
+
+snippet for "for loop"
+for($1;$2;$3){
+    $0
+}
+endsnippet
+
+
+snippet "if(e?l?) (.*)" "if else block" r
+if(`!p
+if match.group(2) is not None:
+    snip.rv = match.group(2)
+elif match.group(1) is not None:
+    snip.rv = match.group(1)
+`){
+    $2
+}`!p
+if match.group(1) in ("e","el"):
+    snip.rv=" else{"
+`
+    $3
+`!p
+if match.group(1) in ("e","el"):
+    snip.rv="}"
+`
+endsnippet
+
+snippet "if(e?l?)" "if else block" r
+if($1){
+    $2
+}`!p
+snip.rv = "else {" if match.group(0) is not None else ""
+`
+    $3
+`!p
+snip.rv = "}" if match.group(0) is not None else ""
+`
+$0
+endsnippet

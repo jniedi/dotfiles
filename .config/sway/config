@@ -186,6 +186,22 @@ mode $TODO  {
 }
 
 
+# MODES
+
+set $websearch websearch
+bindsym $mod+w mode $websearch
+
+mode $websearch {
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym w           mode default, exec "~/.local/bin/websearch.sh wikipedia"
+    bindsym g           mode default, exec "~/.local/bin/websearch.sh github"
+    # wiby: search engine for the *c*lassic web
+    bindsym c           mode default, exec "~/.local/bin/websearch.sh wiby"
+    bindsym s           mode default, exec "~/.local/bin/websearch.sh scholar"
+    bindsym d           mode default, exec "~/.local/bin/websearch.sh"
+
+}
 
 #
 # Resizing containers:
@@ -199,13 +215,11 @@ mode "resize" {
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
+# Ditto, with arrow keys
     bindsym Left resize shrink width 10px
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
-
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"

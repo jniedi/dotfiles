@@ -9,8 +9,6 @@ plug "Aloxaf/fzf-tab"
 plug "Freed-Wu/fzf-tab-source"
 plug "mfaerevaag/wd"
 
-
-
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
@@ -60,112 +58,24 @@ alias d='dirs -v'
 alias md='mkdir -p'
 alias rmzip='rm -r *.zip'
 alias rmr='rm -r'
-alias pdw='pwd'
-alias manp='man-preview'
-alias cl='clear'
 alias nv='nvim'
+alias vim='nvim'
 alias zat='zathura -P 0 &>/dev/null'
-alias q='exit'
-alias dirs='dirs -v'
-alias pd='pushd -q'
-alias gd='popd -q'
-alias pac='sudo pacman -S'
-alias texsym="zat $HOME/resources/references/symbols-a4.pdf &"
-alias python=/usr/bin/python3
-alias py=/usr/bin/python3
-alias copypath='pwd | wl-copy'
+alias -g G='| grep'   
+alias -g L='| less' 
+alias -g ...='../..'
+alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
+      conla="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all" 
 
+for command in mount umount sv pacman su shutdown poweroff reboot ; do
+    alias $command="sudo $command"
+done; unset command
 
-# tmux(p)
-alias ta="tmux attach -t" \
-      tls="tmux ls" \
-      tks="tmux kill-server" \
-      tnwn="tmux new-window -n" \
-      tnw="tmux new-window" \
-      tns="tmux new -s" \
-      td="tmux detach" \
-      tksess='tmux kill-session' \
-      tl="tmuxp load" \
-      tlfs='tmuxp load $(fd session.yml | fzf --height=~100%)'
-
-
-alias o="xdg-open"
-alias time=/usr/bin/time
-alias eth_vpn='sudo openconnect -u jniederer@student-net.ethz.ch --useragent=AnyConnect -g student-net sslvpn.ethz.ch'
 
 # Use $XINITRC variable if file exists.
 [ -f "$XINITRC" ] && alias startx='startx $XINITRC'
 
-# sudo not required for some system commands
-for command in mount umount sv pacman updatedb su shutdown poweroff reboot ; do
-	alias $command="sudo $command"
-done; unset command
 
 
-# Verbosity and settings that you pretty much just always are going to want.
-alias \
-	cp="cp -iv" \
-	mv="mv -iv" \
-	rm="rm -vI" \
-	bc="bc -ql" \
-	rsync="rsync -vrPlu" \
-	mkd="mkdir -pv" \
-	ffmpeg="ffmpeg -hide_banner"
-
-# Colorize commands when possible.
-alias \
-	ls="ls -hN --group-directories-first" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi" \
-	ip="ip -color=auto"
-
-alias \
-	ka="killall" \
-	g="git" \
-	YT="youtube-viewer" \
-	sdn="shutdown -h now" \
-	e='$EDITOR' \
-	v='$EDITOR' \
-	p="pacman" \
-	xi="sudo xbps-install" \
-	xr="sudo xbps-remove -R" \
-	xq="xbps-query" \
- ff="firefox" \
- j=jobs \
- rfk=rfkill \
- rfkba='rfkill block all'\
- nmwon='nmcli radio wifi on' \
- nmwoff='nmcli radio wifi off' \
- nmdw='nmcli device wifi ' \
- nmdwc='nmcli device wifi connect' \
-
-# typos
-alias :wq=exit
-
-
-# xdg-mime default org.pwmt.zathura.desktop application/pdf
-    
-
-
-
-
-alias -g G='| grep'   
-alias -g L='| less' 
-alias -g ...='../..'
-
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-
-alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
-      conla="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all" \
-      concm='con commit -m'  \
-      const='con status'
-
-
-
-zd() {
-  cd "$(zoxide query -i)"
-}
-
+alias zd="cd \"$(zoxide query -i)\""
 eval "$(zoxide init zsh)"

@@ -273,16 +273,12 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
   end
 })
 
--- GLOBAL DEFAULTS
--- grr gra grn gri grt i_CTRL-S an in These GLOBAL keymaps are created unconditionally when Nvim starts:
--- "grn" is mapped in Normal mode to vim.lsp.buf.rename()
--- "gra" is mapped in Normal and Visual mode to vim.lsp.buf.code_action()
--- "grr" is mapped in Normal mode to vim.lsp.buf.references()
--- "gri" is mapped in Normal mode to vim.lsp.buf.implementation()
--- "grt" is mapped in Normal mode to vim.lsp.buf.type_definition()
--- "gO" is mapped in Normal mode to vim.lsp.buf.document_symbol()
--- CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()
--- "an" and "in" are mapped in Visual mode to outer and inner incremental selections, respectively, using vim.lsp.buf.selection_range()
+vim.keymap.set("n" , "<leader>lca" , function() vim.lsp.buf.code_action() end)
+vim.keymap.set("n","<leader>lrn", function() vim.lsp.buf.rename() end)
+vim.keymap.set("n","<leader>lrf", function() vim.lsp.buf.references() end)
+vim.keymap.set("n","<leader>lim", function() vim.lsp.buf.implementation() end)
+vim.keymap.set("n","<leader>ltd", function() vim.lsp.buf.type_definition() end)
+vim.keymap.set("n","<leader>lds", function() vim.lsp.buf.document_symbol() end)
 
 vim.diagnostic.config({
   signs = true,
@@ -310,10 +306,7 @@ local function scratch_to_quickfix(close_qf) local items, bufnr = {}, vim.api.nv
 local function extcmd(cmd, qf, close_qf, novsplit) out = vim.fn.systemlist(cmd) if not out or #out == 0 then return end
   vim.cmd(novsplit and "enew" or "vnew") vim.api.nvim_buf_set_lines( 0, 0, -1, false, out) scratch() if qf then scratch_to_quickfix(close_qf) end end
 
-
-
 -- use alt+[npd] to go to next/previous buffer or to delete the buffer
-
 vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set("n", "<leader><space>", ":ls<cr>:b ")
 vim.keymap.set("n", "<leader>e", ":Explore<cr>")

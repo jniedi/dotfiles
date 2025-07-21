@@ -45,7 +45,7 @@ vim.o.relativenumber = true
 
 -- enable list characters
 vim.o.list = true
-vim.o.listchars ="tab:\\t,trail:␣"
+vim.o.listchars ="tab:>-,trail:␣"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -81,6 +81,9 @@ vim.o.inccommand = 'split'
 -- keymaps
 
 -- use escaple to remove highlight of search
+vim.keymap.set("n","<leader>m",":Man ")
+
+-- use escaple to remove highlight of search
 vim.keymap.set("n","<esc>","<cmd>nohlsearch<cr>")
 
 -- source the init.lua file
@@ -110,6 +113,9 @@ vim.keymap.set("n", "<A-n>", ":bn<cr>")
 vim.keymap.set("n", "<A-p>", ":bp<cr>")
 vim.keymap.set("n", "<A-d>", ":bd<cr>")
 vim.keymap.set("n", "<A-l>", ":ls<cr>:b ")
+vim.keymap.set("i", "<A-n>", "<esc><cmd>bn<cr>a")
+vim.keymap.set("i", "<A-p>", "<esc><cmd>bp<cr>a")
+
 
 -- toggle quickfix list
 vim.keymap.set("n", "<C-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
@@ -119,8 +125,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- use fd to quickly edit files according to the pattern
 vim.keymap.set("n", "<leader>qf", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("QuickFdEdit " .. name) end end) end)
-
-
 
 -- ----------------------------------------------
 -- ----------------------------------------------
@@ -331,8 +335,6 @@ vim.keymap.set("n", "<leader>l", function() local bn, ft = vim.fn.expand("%"), v
 local letters = "abcdefghijklmnopqrstuvwxyz" for i = 1, #letters do local l = letters:sub(i, i) local u = l:upper() vim.keymap.set('n', '<leader>a' .. l, "m" .. u)  vim.keymap.set('n', '<leader>j' .. l, "'" .. u) end
 vim.keymap.set("n", "<leader>c", function() vim.ui.input({ prompt = "> " }, function(c) if c then extcmd(c) end end) end)
 
--- use leader m to quickly run make
-vim.keymap.set("n", "<leader>m", ":make<CR>")
 
 
 

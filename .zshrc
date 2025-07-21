@@ -46,22 +46,17 @@ bindkey "^n" down-line-or-beginning-search
 alias lt='latexmk -norc -halt-on-error -outdir=output -auxdir=aux'
 alias ltc='latexmk -pdf -outdir=output -auxdir=aux -pvc --shell-escape'
 alias ltcq='latexmk -pdf -outdir=output -auxdir=aux -pvc --shell-escape -quiet'
-alias la='ls -lah'
 alias afk='systemctl suspend'
 alias afkl='systemctl suspend && swaylock'
-alias ll='eza -lagoMF --icons -s modified --hyperlink --group-directories-first  --git --git-repos --time-style long-iso'
-alias llt='eza -alM --icons --tree -s modified --hyperlink --group-directories-first  --git --git-repos'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias d='dirs -v'
 alias md='mkdir -p'
-alias rmzip='rm -r *.zip'
-alias rmr='rm -r'
 alias nv='nvim'
 alias vim='nvim'
 alias zat='zathura -P 0 &>/dev/null'
-alias -g G='| grep'   
+alias -g G='| grep'
 alias -g L='| less' 
 alias -g ...='../..'
 alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
@@ -75,7 +70,5 @@ done; unset command
 # Use $XINITRC variable if file exists.
 [ -f "$XINITRC" ] && alias startx='startx $XINITRC'
 
-
-
-alias zd="cd \"$(zoxide query -i)\""
+function zd() { cd \"$(zoxide query -i)\" }
 eval "$(zoxide init zsh)"

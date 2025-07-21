@@ -16,7 +16,7 @@ if [[ $1 == "open" ]]; then
 elif [[ $1 == "save" ]]; then
     bookmark=$(wl-paste)
     echo "$bookmark" >> $DATA_FILE
-    notify-send "Added bookmark" "Bookmark $bookmark added to file"
+    # notify-send "Added bookmark" "Bookmark $bookmark added to file"
 else
     echo "usage: bookmark.sh open|save"
 fi

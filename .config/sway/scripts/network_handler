@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+
+[[ -z $1 ]] && exit 1
+
+
+case "$1" in
+    "disable")
+        nmcli radio wifi off
+        notify-send 'Network Info' "Wifi disabled"
+        ;;
+    "enable")
+        nmcli radio wifi on
+        # notify-send 'Network Info' "Wifi enabled"
+        sel=$(nmcli device wifi list | tail --lines=+2 | bemenu -ip 'Select network>' -l 50) 
+        [[ -z $sel ]] && exit 1
+        echo $sel | tr ' ' '_'
+        ;;
+    "status")
+        notify-send 'Network Info' "$(nmcli radio wifi)"
+        ;;
+    *)
+        exit 1
+        ;;
+    
+esac
+
+grep -o -E "([[:digit:]][[:digit:]]:){5}[[:digit:]]{2}"

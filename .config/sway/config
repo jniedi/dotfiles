@@ -6,103 +6,46 @@ set $right l
 set $term alacritty
 set $menu bemenu-run
 
-### Output configuration
-#
-#
-# Example configuration:
-#
+floating_modifier $mod normal
+
+smart_borders on
+default_border pixel 2
+
+
 output eDP-1 resolution 1920x1080 position 0 0
 output DP-3 resolution 3840x2160 position 1920 0
 
 
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
-### Idle configuration
-#
-# Example configuration:
-#
+# Utilities:
+# Special keys to adjust volume via PulseAudio
+bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+# Special keys to adjust brightness via brightnessctl
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+# Special key to take a screenshot with grim
 
 
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input type:touchpad {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
 input type:keyboard {
     repeat_delay 300
     repeat_rate 50
 }
 
-#
-# You can also configure each device individually.
-# Read `man 5 sway-input` for more information about this section.
 
-### Key bindings
-#
-# Basics:
-#
-    # Start a terminal
+# mod
 bindsym $mod+Return exec $term
-
-# Kill focused window
 bindsym $mod+q kill
-
-# Start your launcher
 bindsym $mod+space exec $menu
-
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod normal
-
-
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+u workspace prev
 bindsym $mod+i workspace next
-
-# Reload the configuration file
-bindsym $mod+Shift+r reload
-
-# Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exit
-#
-# Moving around:
-#
-# Move your focus around
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-# Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
-# Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -113,7 +56,19 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
-# Move focused container to workspace
+bindsym $mod+e layout toggle split
+bindsym $mod+d exec ~/.local/bin/sway_do.sh 
+bindsym $mod+o exec ~/.local/bin/open_pdf.sh
+bindsym $mod+c exec wl-paste >> ~/documents/notes/checkout.md
+bindsym $mod+f fullscreen
+bindsym $mod+a focus parent
+bindsym $mod+minus scratchpad show
+
+# mod+shift
+bindsym $mod+Shift+n mode $network
+bindsym $mod+Shift+s mode $system
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -124,54 +79,39 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+r reload
+bindsym $mod+p mode $PDF
+bindsym $mod+w mode $websearch
+bindsym $mod+n scratchpad show
 
+# ------------------------------------------
+# ------------------------------------------
+# modes
 
-bindsym $mod+e layout toggle split
-bindsym $mod+d exec ~/.local/bin/sway_do.sh  
-bindsym $mod+Shift+s exec ~/.local/bin/take_screenshot.sh
-bindsym $mod+o exec ~/.local/bin/open_pdf.sh
-bindsym $mod+c exec wl-paste >> ~/documents/notes/checkout.md
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
-
-
-
-# Make the current focus fullscreen
-bindsym $mod+f fullscreen
-
-# Toggle the current focus between tiling and floating mode
-bindsym $mod+Shift+space floating toggle
-
-# Swap focus between the tiling area and the floating area
-# bindsym $mod+space focus mode_toggle
-
-# Move focus to the parent container
-bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
-
-
+set $system system
+mode $system  {
+    bindsym l exec systemctl suspend && swaylock
+    # Exit sway (logs you out of your Wayland session)
+    bindsym e exit
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 set $PDF pdf
-bindsym $mod+p mode $PDF
-
 mode $PDF  {
     bindsym o mode "default", exec ~/.config/sway/scripts/open_pdf.sh
     bindsym b mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/books
     bindsym s mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/scripts
     bindsym e mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/exercises
+    bindsym l mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/lecture_slides/
     bindsym p mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/papers
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -192,8 +132,6 @@ mode $TODO  {
 # MODES
 
 set $websearch websearch
-bindsym $mod+w mode $websearch
-
 mode $websearch {
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -207,94 +145,20 @@ mode $websearch {
 
 }
 
-#
-# Resizing containers:
-#
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-# Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-# bindsym $mod+b  mode default, exec "~/.local/bin/bookmarks.sh open"
-set $browser BROWSER
-bindsym $mod+b mode $browser
-
-mode $browser {
-
-    # Save current bookmark
-    bindsym b           mode default, exec "~/.local/bin/bookmarks.sh open"
-    # bindsym $mod+s      mode default, exec "~/.local/bin/bookmarks.sh save" 
-    # bindsym s           mode default, exec "~/.local/bin/bookmarks.sh save" 
-    # switch to mode engines 
-    bindsym s mode $engine
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-set $engine ENGINE
-mode $engine {
-    # different engines
-    bindsym w           mode default, exec "~/.local/bin/websearch.sh wikipedia"
-    bindsym d           mode default, exec "~/.local/bin/websearch.sh"
-    bindsym s           mode default, exec "~/.local/bin/websearch.sh scholar"
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-
-bindsym $mod+r mode "resize"
-
-# Utilities:
-#
-    # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-    # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-    # Special key to take a screenshot with grim
-
-
-smart_borders on
-default_border pixel 2
 
 for_window [app_id="firefox"] border none
 
 
 
 set $network NETWORK
-bindsym $mod+Shift+n mode $network
 mode $network {
-	bindsym e mode "default", exec "~/.config/sway/scripts/network_handler enable"
+    bindsym e mode "default", exec "~/.config/sway/scripts/network_handler enable"
     bindsym d mode "default", exec "~/.config/sway/scripts/network_handler disable"
-    bindsym s mode "default", exec "~/.config/sway/scripts/network_handler status" # query status 
-    bindsym q mode "default", exec "~/.config/sway/scripts/network_handler query" # query status 
+    bindsym s mode "default", exec "~/.config/sway/scripts/network_handler status" # query status
+    bindsym q mode "default", exec "~/.config/sway/scripts/network_handler query" # query status
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-# scratchpad
-bindsym $mod+n scratchpad show
 
 include /etc/sway/config.d/*

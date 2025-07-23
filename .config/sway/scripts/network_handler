@@ -6,14 +6,14 @@
 case "$1" in
     "disable")
         nmcli radio wifi off
-        notify-send 'Network Info' "Wifi disabled"
         ;;
     "enable")
         nmcli radio wifi on
-        # notify-send 'Network Info' "Wifi enabled"
-        sel=$(nmcli device wifi list | tail --lines=+2 | bemenu -ip 'Select network>' -l 50) 
+        ;;
+    "query")
+        sel=$( nmcli device wifi list | tail --lines=+2  | sed 's/ \{2,\}/ /g' | cut -d ' ' -f3  | bemenu -ip 'Select network>' -l 50)
         [[ -z $sel ]] && exit 1
-        echo $sel | tr ' ' '_'
+        nmcli device wifi connect $sel
         ;;
     "status")
         notify-send 'Network Info' "$(nmcli radio wifi)"
@@ -24,4 +24,3 @@ case "$1" in
     
 esac
 
-grep -o -E "([[:digit:]][[:digit:]]:){5}[[:digit:]]{2}"

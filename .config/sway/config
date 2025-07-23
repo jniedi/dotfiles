@@ -164,17 +164,15 @@ bindsym $mod+a focus parent
 
 
 
-
-
 set $PDF pdf
 bindsym $mod+p mode $PDF
 
-
 mode $PDF  {
-    bindsym o mode "default", exec ~/.local/bin/open_pdf.sh
-    # TODO: recollq bemenu query
-    # bindsym q  mode "default", exec ~/.local/bin/open_pdf.sh
-    # Return to default mode
+    bindsym o mode "default", exec ~/.config/sway/scripts/open_pdf.sh
+    bindsym b mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/books
+    bindsym s mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/scripts
+    bindsym e mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/exercises
+    bindsym p mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/papers
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -290,6 +288,7 @@ mode $network {
 	bindsym e mode "default", exec "~/.config/sway/scripts/network_handler enable"
     bindsym d mode "default", exec "~/.config/sway/scripts/network_handler disable"
     bindsym s mode "default", exec "~/.config/sway/scripts/network_handler status" # query status 
+    bindsym q mode "default", exec "~/.config/sway/scripts/network_handler query" # query status 
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"

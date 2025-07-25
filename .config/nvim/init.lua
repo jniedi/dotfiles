@@ -73,7 +73,7 @@ vim.o.signcolumn = 'yes'
 vim.o.scrolloff = 10
 
 -- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
+-- vim.o.inccommand = 'split'
 
 -- File handling
 vim.opt.backup = false                             -- Don't create backup files

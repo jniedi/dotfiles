@@ -66,9 +66,5 @@ for command in mount umount sv pacman su shutdown poweroff reboot ; do
     alias $command="sudo $command"
 done; unset command
 
-
-# Use $XINITRC variable if file exists.
-[ -f "$XINITRC" ] && alias startx='startx $XINITRC'
-
-function zd() { cd \"$(zoxide query -i)\" }
+function zd() { cd $(zoxide query -i) }
 eval "$(zoxide init zsh)"

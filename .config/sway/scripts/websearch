@@ -19,6 +19,12 @@ elif [[ $1 == 'scholar' ]]; then
    [[ -z $query ]] && exit 1
    xdg-open "https://scholar.google.com/scholar?q=$query"
 
+elif [[ $1 == 'all' ]]; then
+   query="$(echo "" | bemenu --prompt 'all>' | tr ' ' '+')"
+   [[ -z $query ]] && exit 1
+   xdg-open "https://google.com/search?q=$query"
+   xdg-open "https://duckduckgo.com/?q=$query"
+
 elif [[ $1 == 'google' ]]; then
    query="$(echo "" | bemenu --prompt 'google>' | tr ' ' '+')"
    [[ -z $query ]] && exit 1

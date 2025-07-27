@@ -112,6 +112,7 @@ mode $PDF  {
     bindsym e mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/exercises
     bindsym l mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/lecture_slides
     bindsym p mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/papers
+    bindsym m mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/manuals
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -127,6 +128,7 @@ mode $websearch {
     bindsym c           mode default, exec "~/.config/sway/scripts/websearch wiby"
     bindsym s           mode default, exec "~/.config/sway/scripts/websearch scholar"
     bindsym t           mode default, exec "~/.config/sway/scripts/websearch this"
+    bindsym a           mode default, exec "~/.config/sway/scripts/websearch all"
     bindsym d           mode default, exec "~/.config/sway/scripts/websearch"
 }
 

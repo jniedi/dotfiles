@@ -59,8 +59,8 @@ bindsym $mod+0 workspace number 10
 bindsym $mod+e layout toggle split
 bindsym $mod+f fullscreen
 bindsym $mod+a focus parent
-bindsym $mod+s mode $screenshot
 bindsym $mod+minus scratchpad show
+bindsym $mod+s mode $screenshot
 
 # mod+shift
 bindsym $mod+Shift+n mode $network
@@ -140,6 +140,7 @@ mode $screenshot {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 
 for_window [app_id="librewolf"] border none
 

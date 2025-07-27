@@ -97,10 +97,9 @@ bindsym $mod+t fullscreen,focus right,fullscreen
 
 set $system system
 mode $system  {
-    # bindsym l exec systemctl suspend && swaylock
+    bindsym l exec systemctl suspend && swaylock
     # Exit sway (logs you out of your Wayland session)
     bindsym e exit
-    bindsym i exec $term, floating enable, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -123,12 +122,12 @@ mode $websearch {
     bindsym Escape mode "default"
     bindsym b           mode default, exec "~/.config/sway/scripts/bookmarks open"
     bindsym w           mode default, exec "~/.config/sway/scripts/websearch wikipedia"
-    bindsym g           mode default, exec "~/.config/sway/scripts/websearch github"
+    bindsym g           mode default, exec "~/.config/sway/scripts/websearch google"
     # wiby: search engine for the *c*lassic web
     bindsym c           mode default, exec "~/.config/sway/scripts/websearch wiby"
     bindsym s           mode default, exec "~/.config/sway/scripts/websearch scholar"
+    bindsym t           mode default, exec "~/.config/sway/scripts/websearch this"
     bindsym d           mode default, exec "~/.config/sway/scripts/websearch"
-
 }
 
 set $screenshot SCREENSHOT

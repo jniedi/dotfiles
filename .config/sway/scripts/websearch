@@ -11,15 +11,18 @@ if [[ $1 == 'wikipedia' ]]; then
    [[ -z $query ]] && exit 1
     xdg-open "https://en.wikipedia.org/w/index.php?search=$query"
 
+elif [[ $1 == 'this' ]]; then
+   xdg-open "https://duckduckgo.com/?q=$(wl-paste)"
+
 elif [[ $1 == 'scholar' ]]; then
    query="$(echo "" | bemenu --prompt 'scholar>' | tr ' ' '+')"
    [[ -z $query ]] && exit 1
    xdg-open "https://scholar.google.com/scholar?q=$query"
 
-elif [[ $1 == 'github' ]]; then
-   query="$(echo "" | bemenu --prompt 'github>' | tr ' ' '+')"
+elif [[ $1 == 'google' ]]; then
+   query="$(echo "" | bemenu --prompt 'google>' | tr ' ' '+')"
    [[ -z $query ]] && exit 1
-   xdg-open "https://github.com/search?q=$query"
+   xdg-open "https://google.com/search?q=$query"
 
 # wiby: search engine for the classic web
 elif [[ $1 == 'wiby' ]]; then
@@ -27,10 +30,10 @@ elif [[ $1 == 'wiby' ]]; then
    [[ -z $query ]] && exit 1
    xdg-open "https://wiby.org/?q=$query"
 
-# the default is ddg
-else  
+# DEFAULT
+else
    query="$(echo "" | bemenu --prompt 'ddg>')"
    [[ -z $query ]] && exit 1
-   xdg-open "https://html.duckduckgo.com/html?q=$query"
+   xdg-open "https://duckduckgo.com/?q=$query"
 fi
 

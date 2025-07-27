@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+
+grim -g "$(slurp)" - | swappy -f - -o ~/.screenshots/$(date +%H:%M:%S).png

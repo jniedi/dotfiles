@@ -1,7 +1,0 @@
-#!/usr/bin/env zsh
-
-url=$(gum choose < $BOOKMARKS)
-echo $url | sed  -e 's/\//\\\\\\\//g'
-
-# Delete all the lines containing $url using sed
-sed -e "/$url/d" $BOOKMARKS

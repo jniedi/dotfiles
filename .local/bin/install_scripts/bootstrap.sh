@@ -1,9 +1,6 @@
 #!/usr/bin/env zsh
 
-
 # This script installs all packages for my setup
-
-
 error() {
     printf "Error: $1\n" >&2; exit 1
 }

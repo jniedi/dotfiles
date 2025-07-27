@@ -57,11 +57,9 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 bindsym $mod+e layout toggle split
-bindsym $mod+d exec ~/.local/bin/sway_do.sh 
-bindsym $mod+o exec ~/.local/bin/open_pdf.sh
-bindsym $mod+c exec wl-paste >> ~/documents/notes/checkout.md
 bindsym $mod+f fullscreen
 bindsym $mod+a focus parent
+bindsym $mod+s mode $screenshot
 bindsym $mod+minus scratchpad show
 
 # mod+shift
@@ -91,7 +89,6 @@ bindsym $mod+Shift+r reload
 bindsym $mod+p mode $PDF
 bindsym $mod+w mode $websearch
 bindsym $mod+n scratchpad show
-bindsym $mod+Shift+t mode $TODO
 bindsym $mod+t fullscreen,focus right,fullscreen
 
 # ------------------------------------------
@@ -110,45 +107,41 @@ mode $system  {
 
 set $PDF pdf
 mode $PDF  {
-    bindsym o mode "default", exec ~/.config/sway/scripts/open_pdf.sh
-    bindsym b mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/books
-    bindsym s mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/scripts
-    bindsym e mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/exercises
-    bindsym l mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/lecture_slides/
-    bindsym p mode "default", exec ~/.config/sway/scripts/open_pdf.sh ~/res/papers
+    bindsym o mode "default", exec ~/.config/sway/scripts/open_pdf
+    bindsym b mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/books
+    bindsym s mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/scripts
+    bindsym e mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/exercises
+    bindsym l mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/lecture_slides
+    bindsym p mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/papers
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-set $TODO todo
-mode $TODO  {
-    bindsym l mode "default", exec ~/.local/bin/todo.sh
-    bindsym a mode "default", exec ~/.local/bin/todo.sh append
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-
-# MODES
 
 set $websearch websearch
 mode $websearch {
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym b           mode default, exec "~/.local/bin/bookmarks.sh open"
-    bindsym w           mode default, exec "~/.local/bin/websearch.sh wikipedia"
-    bindsym g           mode default, exec "~/.local/bin/websearch.sh github"
+    bindsym b           mode default, exec "~/.config/sway/scripts/bookmarks open"
+    bindsym w           mode default, exec "~/.config/sway/scripts/websearch wikipedia"
+    bindsym g           mode default, exec "~/.config/sway/scripts/websearch github"
     # wiby: search engine for the *c*lassic web
-    bindsym c           mode default, exec "~/.local/bin/websearch.sh wiby"
-    bindsym s           mode default, exec "~/.local/bin/websearch.sh scholar"
-    bindsym d           mode default, exec "~/.local/bin/websearch.sh"
+    bindsym c           mode default, exec "~/.config/sway/scripts/websearch wiby"
+    bindsym s           mode default, exec "~/.config/sway/scripts/websearch scholar"
+    bindsym d           mode default, exec "~/.config/sway/scripts/websearch"
 
 }
 
+set $screenshot SCREENSHOT
+mode $screenshot {
+    bindsym s mode "default", exec ~/.config/sway/scripts/take_screenshot
+    bindsym t mode "default", exec ~/.config/sway/scripts/take_screenshot
+    bindsym g mode "default", exec ~/.config/sway/scripts/copy_screenshot_path
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
-for_window [app_id="firefox"] border none
-
-
+for_window [app_id="librewolf"] border none
 
 set $network NETWORK
 mode $network {

@@ -1,0 +1,3 @@
+f=$(ls ~/.screenshots | bemenu -l 50)
+[[ -z $f ]] && exit 1
+printf "~/.screenshots/$f" | wl-copy

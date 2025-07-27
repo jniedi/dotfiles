@@ -7,14 +7,10 @@ plug "zap-zsh/vim"
 plug "chivalryq/git-alias"
 plug "Aloxaf/fzf-tab"
 plug "Freed-Wu/fzf-tab-source"
-plug "mfaerevaag/wd"
 
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
-
-# ----------------------
-# Old zshrc
 
 source <(fzf --zsh)
 
@@ -67,4 +63,6 @@ for command in mount umount sv pacman su shutdown poweroff reboot ; do
 done; unset command
 
 function zd() { cd $(zoxide query -i) }
+alias wd=zd
+
 eval "$(zoxide init zsh)"

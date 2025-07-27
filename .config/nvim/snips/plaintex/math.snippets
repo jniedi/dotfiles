@@ -73,18 +73,20 @@ a_$1y^($1)+a_{$1-1}y^{($1-1)}+...+a_1y'+a_0y=${2:b}
 endsnippet
 
 snippet dfdx "Derivative of f" iA
-\frac{d${1:f}^{$2}}{d${3:x}^{$2}}$0
+\frac{d${1:f}^{$2}}{d${3:x}^{$4}}$0
 endsnippet
 
 snippet pfpx "Partial derivative" iA
-\frac{\partial${1:f}^{$2}}{\partial${3:x}^{$2}}$0
+\frac{\partial ${1:f}^{$2}_{$3}}{\partial ${4:x}^{$5}_{$6}}$0
 endsnippet
 
 snippet mcal "\mathcal{$1}$0" iA
 \mathcal{$1}$0
 endsnippet
 
-
+snippet int "\int" i
+\int_{$1}^{$2}
+endsnippet
 
 snippet lrcb "\{$1\}$0" i
 \\{$1\\}$0
@@ -93,12 +95,17 @@ endsnippet
 
 # ----------------------
 # greek letters
+
 snippet \a "\alpha" i
 \alpha
 endsnippet
 
 snippet \d "\delta" i
 \delta
+endsnippet
+
+snippet \g "\gamma" i
+\gamma
 endsnippet
 
 snippet \e "\epsilon" i
@@ -157,7 +164,7 @@ snippet lar "\text{$1}$0" i
 endsnippet
 
 snippet lim "\limit_{$1}^{$2}$0" i
-\lim_{$1}^{$2}$0
+\lim_{$1}$0
 endsnippet
 
 snippet fa "" i
@@ -166,4 +173,13 @@ endsnippet
 
 snippet ex "" i
 \exits\;
+endsnippet
+
+
+snippet curve "" i
+\gamma:[a,b]\rightarrow\mathbb{R}^{n}
+endsnippet
+
+snippet lrav "left right absolute value" i
+\big|$1\big|$0
 endsnippet

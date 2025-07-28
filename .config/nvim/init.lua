@@ -324,6 +324,7 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
   end
 })
 
+-- lsp stuff
 vim.keymap.set("n" , "<leader>lca" , function() vim.lsp.buf.code_action() end)
 vim.keymap.set("n","<leader>lrn", function() vim.lsp.buf.rename() end)
 vim.keymap.set("n","<leader>lrf", function() vim.lsp.buf.references() end)

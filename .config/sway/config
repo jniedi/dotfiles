@@ -97,7 +97,7 @@ bindsym $mod+t fullscreen,focus right,fullscreen
 
 set $system system
 mode $system  {
-    bindsym l exec systemctl suspend && swaylock
+    bindsym l mode "default", exec systemctl suspend && swaylock
     # Exit sway (logs you out of your Wayland session)
     bindsym e exit
     bindsym Return mode "default"

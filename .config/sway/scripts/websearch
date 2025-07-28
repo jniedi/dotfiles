@@ -22,6 +22,7 @@ elif [[ $1 == 'scholar' ]]; then
 elif [[ $1 == 'all' ]]; then
    query="$(echo "" | bemenu --prompt 'all>' | tr ' ' '+')"
    [[ -z $query ]] && exit 1
+   xdg-open "https://en.wikipedia.org/w/index.php?search=$query"
    xdg-open "https://google.com/search?q=$query"
    xdg-open "https://duckduckgo.com/?q=$query"
 
@@ -36,10 +37,19 @@ elif [[ $1 == 'wiby' ]]; then
    [[ -z $query ]] && exit 1
    xdg-open "https://wiby.org/?q=$query"
 
+# wiby: search engine for the classic web
+elif [[ $1 == 'repo' ]]; then
+   query="$(echo "" | bemenu --prompt 'repo>' | tr ' ' '+')"
+   [[ -z $query ]] && exit 1
+   xdg-open "https://archlinux.org/packages/?sort=&q=$query"
+   xdg-open "https://aur.archlinux.org/packages?O=0&SeB=nd&K=$query"
+   xdg-open "https://duckduckgo.com/?q=arch+linux+$query"
+
+
+
 # DEFAULT
 else
    query="$(echo "" | bemenu --prompt 'ddg>')"
    [[ -z $query ]] && exit 1
    xdg-open "https://duckduckgo.com/?q=$query"
 fi
-

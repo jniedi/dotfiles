@@ -63,6 +63,6 @@ for command in mount umount sv pacman su shutdown poweroff reboot ; do
 done; unset command
 
 function zd() { cd $(zoxide query -i) }
-alias wd=zd
+alias wd=z
 
 eval "$(zoxide init zsh)"

@@ -1,39 +1,19 @@
 # Can add other abbreviations here
-snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
-\begin{${1:`!p
-if match.group(2) is not None:
-    if match.group(3) == "item":
-        snip.rv = "itemize"
-    elif match.group(3) == "eq":
-        snip.rv = "equation"
-    else:
-        snip.rv = match.group(3)
-else:
-    snip.rv = "something"`}}
-    `!p
-snip.rv = "\item " if match.group(3) == "item" else "" 
-`$2
-\end{$1}$0
+
+snippet eq "begin end equation environment" b
+\begin{equation*}
+	$0
+\end{equation*}
 endsnippet
 
-snippet "(s)?(ss)?sec([*n])?" "begin{} / end{}" br
-\\`!p
-t=""
-if match.group(1) == "s": 
-    t="sub"
-elif match.group(2) == "ss":
-    t="subsub"
-snip.rv=t
-`section`!p
-if match.group(3) == "*" or match.group(3) == "n":
-    snip.rv="*"
-`{${1:${VISUAL}}}
+snippet neq "begin end equation environment" b
+\begin{equation}
+	$0
+\end{equation}
 endsnippet
 
-snippet tbf "bold text" 
-\textbf{${1:${VISUAL}}}$0
-endsnippet
-
-snippet T "bold text" b
-\textbf{T:}$0
+snippet be "begin end block" b
+\begin{$1}
+	$0
+\end{$1}
 endsnippet

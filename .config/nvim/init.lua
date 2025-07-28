@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(pluginpath .. "ultisnips.git") then
 end
 vim.api.nvim_set_hl(0, "Normal", { fg = "#ffffff", bg = "#000000" })
 
-
+vim.cmd("colorscheme retrobox")
 vim.g.UltiSnipsExpandTrigger = '<C-l>'
 vim.g.UltiSnipsJumpForwardTrigger = '<C-l>'
 vim.g.UltiSnipsJumpBackwardTrigger = '<C-h>'
@@ -20,7 +20,6 @@ vim.opt.termguicolors = true
 vim.g.netrw_banner = ""
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.clipboard = "unnamedplus"
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.o.number = true
@@ -44,21 +43,49 @@ vim.opt.ttimeoutlen = 0
 vim.opt.autoread = true
 vim.opt.autowrite = false
 
+---
+
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.api.nvim_set_keymap("n", "<leader>tf", "<Plug>PlenaryTestFile", { noremap = false, silent = false })
+
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "=ap", "ma=ap'a")
+
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
+vim.keymap.set("n", "Q", "<nop>")
+
+
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+vim.keymap.set("n", "<leader>fr", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n","<leader>m",":Man ")
 vim.keymap.set("n","<esc>","<cmd>nohlsearch<cr>")
 
-
 vim.keymap.set('n', '<leader>sc', ':source ~/.config/nvim/init.lua<cr>')
 -- vim.keymap.set("n", "<C-j>", ":move .+1<CR>")
 vim.keymap.set("v", "<C-j>", ":move '>+1<CR>gv")
--- vim.keymap.set("n", "<C-k>", ":move .-2<CR>")
 vim.keymap.set("v", "<C-k>", ":move '<-2<CR>gv")
 vim.keymap.set('n', '<leader>ue', ':UltiSnipsEdit<cr>')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set("n", "<C-j>", ":cn<cr>")
-vim.keymap.set("n", "<C-k>", ":cp<cr>")
 vim.keymap.set("n", "<A-n>", ":bn<cr>")
 vim.keymap.set("n", "<A-p>", ":bp<cr>")
 vim.keymap.set("n", "<A-d>", ":bd<cr>")

@@ -26,6 +26,8 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ t
 # Special keys to adjust brightness via brightnessctl
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked XF86Display exec pgrep gammastep && pkill gammastep || gammastep -PO 2000
+
 # Special key to take a screenshot with grim
 
 
@@ -129,6 +131,7 @@ mode $websearch {
     bindsym s           mode default, exec "~/.config/sway/scripts/websearch scholar"
     bindsym t           mode default, exec "~/.config/sway/scripts/websearch this"
     bindsym a           mode default, exec "~/.config/sway/scripts/websearch all"
+    bindsym r           mode default, exec "~/.config/sway/scripts/websearch repo"
     bindsym d           mode default, exec "~/.config/sway/scripts/websearch"
 }
 

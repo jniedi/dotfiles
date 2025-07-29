@@ -7,6 +7,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.api.nvim_set_keymap("n", "<leader>tf", "<Plug>PlenaryTestFile", { noremap = false, silent = false })
 
+
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -16,6 +17,9 @@ vim.keymap.set("n", "=ap", "ma=ap'a")
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
+
+-- copy/paste stuff to/from the system clipbaord
+vim.keymap.set("n", "<leader>p", [["+P]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
@@ -30,6 +34,9 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>fr", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- create new file under cursor if it doesn't exist
+vim.keymap.set("n","<leader>nf",":e <cfile><cr>")
 
 vim.keymap.set("n","<leader>m",":Man ")
 vim.keymap.set("n","<esc>","<cmd>nohlsearch<cr>")
@@ -47,13 +54,13 @@ vim.keymap.set("n", "<A-d>", ":bd<cr>")
 vim.keymap.set("n", "<A-l>", ":ls<cr>:b ")
 vim.keymap.set("i", "<A-n>", "<esc><cmd>bn<cr>a")
 vim.keymap.set("i", "<A-p>", "<esc><cmd>bp<cr>a")
-vim.keymap.set("n", "<A-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
 
 -- diagnostic keymaps: what is this for?
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 
-
+-- functions
+vim.keymap.set("n", "<A-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
 vim.keymap.set("n", "<leader>q", require("functions").scratch_to_quickfix )
 vim.keymap.set("n", "<leader>sf", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("FileSearch " .. name) end end) end)
 vim.keymap.set("n", "<leader>ff", function() vim.ui.input({ prompt = "> " }, function(name) if name then vim.cmd("FileSearch! " .. name) end end) end)
@@ -66,8 +73,11 @@ vim.keymap.set("n", "<leader>/", function()
   end)
 end)
 
+
+
+
 -- use alt+[npd] to go to next/previous buffer or to delete the buffer
-vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set("x", "<leader>p", "\"+dP")
 vim.keymap.set("n", "<leader><space>", ":ls<cr>:b ")
 vim.keymap.set("n", "<leader>e", ":Explore<cr>")
 vim.keymap.set("n", "-", ":Explore<cr>")
@@ -94,7 +104,7 @@ vim.keymap.set("n", "<leader>l",
             vim.cmd("edit")
         elseif ft == "rust" then
             vim.fn.systemlist("cargo fmt") functions.extcmd("cargo check && cargo clippy") 
-        end 
+        end
     end
 )
 

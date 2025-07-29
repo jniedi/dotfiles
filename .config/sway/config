@@ -11,9 +11,13 @@ floating_modifier $mod normal
 smart_borders on
 default_border pixel 2
 
-
 output eDP-1 resolution 1920x1080 position 0 0
 output DP-3 resolution 3840x2160 position 1920 0
+
+# applications
+# Workaround of segfault on wayland
+exec proton-mail --ozone-platform-hint=auto
+exec /usr/bin/dunst
 
 
 
@@ -63,6 +67,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+a focus parent
 bindsym $mod+minus scratchpad show
 bindsym $mod+s mode $screenshot
+bindsym $mod+b mode $bookmarks
 
 # mod+shift
 bindsym $mod+Shift+n mode $network
@@ -134,6 +139,15 @@ mode $websearch {
     bindsym r           mode default, exec "~/.config/sway/scripts/websearch repo"
     bindsym d           mode default, exec "~/.config/sway/scripts/websearch"
 }
+
+set $bookmarks bookmarks
+mode $bookmarks {
+    bindsym o           mode default, exec "~/.config/sway/scripts/bookmarks open"
+    bindsym a           mode default, exec "wl-paste >> ~/.cache/bookmarks"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 
 set $screenshot SCREENSHOT
 mode $screenshot {

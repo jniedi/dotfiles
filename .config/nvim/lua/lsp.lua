@@ -142,13 +142,15 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
   end
 })
 
--- lsp stuff
-vim.keymap.set("n" , "<leader>lca" , function() vim.lsp.buf.code_action() end)
-vim.keymap.set("n","<leader>lrn", function() vim.lsp.buf.rename() end)
-vim.keymap.set("n","<leader>lrf", function() vim.lsp.buf.references() end)
-vim.keymap.set("n","<leader>lim", function() vim.lsp.buf.implementation() end)
-vim.keymap.set("n","<leader>ltd", function() vim.lsp.buf.type_definition() end)
-vim.keymap.set("n","<leader>lds", function() vim.lsp.buf.document_symbol() end)
+-- lsp stuff without l prefix
+vim.keymap.set("n" , "<leader>ca" , function() vim.lsp.buf.code_action() end)
+vim.keymap.set("n","<leader>rn", function() vim.lsp.buf.rename() end)
+vim.keymap.set("n","<leader>rf", function() vim.lsp.buf.references() end)
+vim.keymap.set("n","<leader>im", function() vim.lsp.buf.implementation() end)
+vim.keymap.set("n","<leader>td", function() vim.lsp.buf.type_definition() end)
+vim.keymap.set("n","<leader>ds", function() vim.lsp.buf.document_symbol() end)
+vim.keymap.set("n","<leader>fo", function() vim.lsp.buf.format() end)
+
 
 vim.diagnostic.config({
   signs = true,

@@ -16,8 +16,8 @@ output DP-3 resolution 3840x2160 position 1920 0
 
 # applications
 # Workaround of segfault on wayland
-exec proton-mail --ozone-platform-hint=auto
 exec /usr/bin/dunst
+exec (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
 
 
 

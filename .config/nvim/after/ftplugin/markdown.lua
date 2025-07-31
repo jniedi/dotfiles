@@ -9,3 +9,6 @@ vim.keymap.set("n", "<leader>aa",
                 end
             end)
     end, { silent = true })
+
+
+vim.g.vim_markdown_conceal = 1

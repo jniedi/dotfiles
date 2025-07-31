@@ -7,7 +7,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.api.nvim_set_keymap("n", "<leader>tf", "<Plug>PlenaryTestFile", { noremap = false, silent = false })
 
-
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -17,9 +16,8 @@ vim.keymap.set("n", "=ap", "ma=ap'a")
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
-
 -- copy/paste stuff to/from the system clipbaord
-vim.keymap.set("n", "<leader>p", [["+P]])
+vim.keymap.set("n", "<leader>pp", [["+P]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
@@ -48,12 +46,10 @@ vim.keymap.set("v", "<C-k>", ":move '<-2<CR>gv")
 vim.keymap.set('n', '<leader>ue', ':UltiSnipsEdit<cr>')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set("n", "<A-n>", ":bn<cr>")
-vim.keymap.set("n", "<A-p>", ":bp<cr>")
-vim.keymap.set("n", "<A-d>", ":bd<cr>")
-vim.keymap.set("n", "<A-l>", ":ls<cr>:b ")
-vim.keymap.set("i", "<A-n>", "<esc><cmd>bn<cr>a")
-vim.keymap.set("i", "<A-p>", "<esc><cmd>bp<cr>a")
+
+-- buffer stuff
+vim.keymap.set("n", "<C-n>", ":bn<cr>")
+vim.keymap.set("n", "<C-p>", ":bp<cr>")
 
 -- diagnostic keymaps: what is this for?
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })

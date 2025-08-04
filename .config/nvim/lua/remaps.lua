@@ -63,12 +63,16 @@ vim.keymap.set("n", "<leader>ff",
     function() vim.ui.input({ prompt = "ff> " }, function(name) if name then vim.cmd("FileSearch! " .. name) end end) end)
 
 vim.keymap.set("n", "<leader>sg",
-    function() vim.ui.input({ prompt = "sg> " },
-            function(pattern) if pattern then vim.cmd("TextSearch " .. pattern) end end) end)
+    function()
+        vim.ui.input({ prompt = "sg> " },
+            function(pattern) if pattern then vim.cmd("TextSearch " .. pattern) end end)
+    end)
 
 vim.keymap.set("n", "<leader>fg",
-    function() vim.ui.input({ prompt = "fg> " },
-            function(pattern) if pattern then vim.cmd("TextSearch! " .. pattern) end end) end)
+    function()
+        vim.ui.input({ prompt = "fg> " },
+            function(pattern) if pattern then vim.cmd("TextSearch! " .. pattern) end end)
+    end)
 vim.keymap.set("n", "<leader>/", function()
     vim.ui.input({ prompt = "> " }, function(pattern)
         if not pattern or pattern == "" then return end
@@ -101,17 +105,25 @@ vim.keymap.set("n", "<leader>gb", function() functions.extcmd("git blame " .. vi
 vim.keymap.set("n", "<leader>gs", function() functions.extcmd("git show " .. vim.fn.expand("<cword>")) end)
 vim.keymap.set("n", "<leader>gc", function() functions.extcmd("git diff --name-only --diff-filter=U", true) end)
 vim.keymap.set("n", "<leader>gp",
-    function() vim.cmd("edit " ..
-        vim.fn.system("python3 -c 'import site; print(site.getsitepackages()[0])'"):gsub("%s+$", "") .. "/.") end)
+    function()
+        vim.cmd("edit " ..
+            vim.fn.system("python3 -c 'import site; print(site.getsitepackages()[0])'"):gsub("%s+$", "") .. "/.")
+    end)
 vim.keymap.set("n", "<leader>gr",
     function()
         local reg = os.getenv("CARGO_HOME") or (os.getenv("HOME") .. "/.cargo") .. "/registry/src"
         vim.cmd("edit " .. reg .. "/" .. vim.fn.systemlist("ls -1 " .. reg)[1])
     end)
 vim.keymap.set("n", "<leader>ss",
-    function() vim.ui.input({ prompt = "> " },
-            function(p) if p then functions.extcmd("grep -in '" ..
-                    p .. "' " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0))) end end) end)
+    function()
+        vim.ui.input({ prompt = "> " },
+            function(p)
+                if p then
+                    functions.extcmd("grep -in '" ..
+                        p .. "' " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+                end
+            end)
+    end)
 vim.keymap.set("n", "<leader>sg",
     function()
         vim.ui.input({ prompt = "> " }, function(p)
@@ -130,7 +142,8 @@ vim.keymap.set("n", "<leader>sf",
                 local path, excludes, ex = functions.pre_search()
                 for _, pat in ipairs(excludes) do table.insert(ex, string.format("-path '*%s*' -prune -o", pat)) end
                 functions.extcmd(
-                string.format("find %s %s -path '*%s*' -print", vim.fn.shellescape(path), table.concat(ex, " "), p), true,
+                    string.format("find %s %s -path '*%s*' -print", vim.fn.shellescape(path), table.concat(ex, " "), p),
+                    true,
                     true)
             end
         end)
@@ -181,3 +194,27 @@ vim.keymap.set('n', '<leader>bl', function()
     vim.fn.setqflist(qf_list, 'r')
     vim.cmd('copen')
 end, {})
+
+-- TODO: this
+-- -- change next occurence of $
+-- -- TODO: fix to be able to handle span more than one line
+-- vim.keymap.set('n', 'ci$', function()
+--     -- bufnum, lnum, col, off
+--     local pos = vim.fn.getpos('.')
+--     print(pos[2])
+--     local line = vim.api.nvim_buf_get_lines(0,pos[2]-1,pos[2],false)
+--     local pos = 0
+--     for i,c in ipairs(line) do
+--         if c == '$' then
+--             pos = i
+--         end
+--     end
+--     print(line)
+--
+--     -- if pos == 0 and line[0] ~= '$' then
+--     --     vim.notify('No $ found',vim.log.levels.WARN)
+--     -- else
+--     --     vim.notify('$ found',vim.log.levels.WARN)
+--     -- end
+--
+-- end)

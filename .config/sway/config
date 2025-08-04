@@ -102,13 +102,17 @@ bindsym $mod+t fullscreen,focus right,fullscreen
 # ------------------------------------------
 # modes
 
+# mode system
 set $system system
 mode $system  {
     bindsym l mode "default", exec systemctl suspend && swaylock
+    bindsym r mode "default", exec pgrep gammastep && pkill gammastep || gammastep -PO 2000
     # Exit sway (logs you out of your Wayland session)
-    bindsym e exit
+    bindsym p mode "default", exec ping -c 1 sbb.ch || notify-send 'ERROR'
+    bindsym a mode "default", exec pavucontrol
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym e exit
 }
 
 set $PDF pdf
@@ -134,6 +138,7 @@ mode $websearch {
     # wiby: search engine for the *c*lassic web
     bindsym c           mode default, exec "~/.config/sway/scripts/websearch wiby"
     bindsym s           mode default, exec "~/.config/sway/scripts/websearch scholar"
+    bindsym o           mode default, exec "xdg-open `wl-paste`"
     bindsym t           mode default, exec "~/.config/sway/scripts/websearch this"
     bindsym a           mode default, exec "~/.config/sway/scripts/websearch all"
     bindsym r           mode default, exec "~/.config/sway/scripts/websearch repo"
@@ -144,6 +149,7 @@ set $bookmarks bookmarks
 mode $bookmarks {
     bindsym o           mode default, exec "~/.config/sway/scripts/bookmarks open"
     bindsym a           mode default, exec "wl-paste >> ~/.cache/bookmarks"
+    bindsym s           mode default, exec "wl-paste >> ~/.cache/bookmarks"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }

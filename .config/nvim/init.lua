@@ -6,9 +6,13 @@ if not vim.loop.fs_stat(pluginpath) then
 end
 
 if not vim.loop.fs_stat(pluginpath .. "ultisnips.git") then
-  vim.fn.system({ "git", "clone", "https://github.com/SirVer/ultisnips.git", pluginpath .. "ultisnips.git", })
+  vim.fn.system({ "git", "clone","https://github.com/SirVer/ultisnips.git", pluginpath .. "ultisnips.git", })
   vim.opt.rtp:append(pluginpath .. "ultisnips.git")
 end
+
+-- TODO:
+-- vim.pack.add({"https://github.com/SirVer/ultisnips.git"})
+
 
 require("options")
 require("remaps")

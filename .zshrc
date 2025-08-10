@@ -39,8 +39,6 @@ bindkey "^n" down-line-or-beginning-search
 
 alias ltc='latexmk -pdf -outdir=output -auxdir=aux -pvc --shell-escape'
 alias ltcq='latexmk -pdf -outdir=output -auxdir=aux -pvc --shell-escape -quiet'
-alias nv='nvim'
-alias vim='nvim'
 alias zat='zathura -P 0 &>/dev/null'
 alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias conla="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all" 

@@ -20,16 +20,20 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.signcolumn = 'yes'
 vim.o.scrolloff = 10
-vim.opt.backup = false
-vim.opt.writebackup = false
-vim.opt.swapfile = false
-vim.opt.undofile = true
-vim.opt.undodir = vim.fn.expand("~/.vim/undodir")
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 500
-vim.opt.ttimeoutlen = 0
-vim.opt.autoread = true
-vim.opt.autowrite = false
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.swapfile = false
+vim.o.undofile = true
+vim.o.undodir = vim.fn.expand("~/.vim/undodir")
+vim.o.updatetime = 250
+vim.o.timeoutlen = 500
+vim.o.ttimeoutlen = 0
+vim.o.autoread = true
+vim.o.autowrite = false
+
+vim.opt.winborder="rounded"
+
+
 
 -- Command-line completion
 vim.opt.wildmenu = true

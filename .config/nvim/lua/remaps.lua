@@ -1,79 +1,83 @@
 local vim = vim
 local functions = require("functions")
-
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
-vim.api.nvim_set_keymap("n", "<leader>tf", "<Plug>PlenaryTestFile", { noremap = false, silent = false })
-
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "=ap", "ma=ap'a")
-
-vim.keymap.set("x", "<leader>p", [["_dP]])
-
--- copy/paste stuff to/from the system clipbaord
-vim.keymap.set("n", "<leader>pp", [["+P]])
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-
-vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
-vim.keymap.set("n", "Q", "<nop>")
+local map = vim.keymap.set
 
 
-vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "<leader>fr", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+map("n", "J", "mzJ`z")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+map("n", "=ap", "ma=ap'a")
+
+map({ "x", "n" }, "<leader>p", "\"+p")
+map({ "x", "n" }, "<leader>P", "\"+P")
+
+map({ "x", "n" }, "<leader>y", "\"+y")
+map({ "x", "v" }, "<leader>Y", "\"+Y")
+
+
+
+map({ "n", "v" }, "<leader>d", "\"_d")
+map("n", "Q", "<nop>")
+
+
+map("n", "<C-p>", "<cmd>cprev<CR>zz")
+map("n", "<C-n>", "<cmd>cnext<CR>zz")
+map("n", "<leader>k", "<cmd>lnext<CR>zz")
+map("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+map("n", "<leader>fr", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
+map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- create new file under cursor if it doesn't exist
-vim.keymap.set("n", "<leader>nf", ":e <cfile><cr>")
+map("n", "<leader>nf", ":e <cfile><cr>")
 
-vim.keymap.set("n", "<leader>m", ":Man ")
-vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>")
+map("n", "<leader>m", ":Man ")
+map("n", "<esc>", "<cmd>nohlsearch<cr>")
 
-vim.keymap.set('n', '<leader>sc', ':source ~/.config/nvim/init.lua<cr>')
--- vim.keymap.set("n", "<C-j>", ":move .+1<CR>")
-vim.keymap.set("v", "<C-j>", ":move '>+1<CR>gv")
-vim.keymap.set("v", "<C-k>", ":move '<-2<CR>gv")
-vim.keymap.set('n', '<leader>ue', ':UltiSnipsEdit<cr>')
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
+map('n', '<leader>sc', ':source ~/.config/nvim/init.lua<cr>')
+-- map("n", "<C-j>", ":move .+1<CR>")
+map("v", "<C-j>", ":move '>+1<CR>gv")
+map("v", "<C-k>", ":move '<-2<CR>gv")
+map('n', '<leader>ue', ':UltiSnipsEdit<cr>')
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
 
 -- buffer stuff
-vim.keymap.set("n", "<C-n>", ":bn<cr>")
-vim.keymap.set("n", "<C-p>", ":bp<cr>")
+map("n", "<M-n>", ":bn<cr>")
+map("n", "<M-p>", ":bp<cr>")
+map("n", "<M-l>", ":ls<cr>:b ")
 
 -- diagnostic keymaps: what is this for?
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+
+-- TODO
+-- make quickfixlist  controlled by control modifier
 
 -- functions
-vim.keymap.set("n", "<A-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
-vim.keymap.set("n", "<leader>q", require("functions").scratch_to_quickfix)
+map("n", "<C-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
+map("n", "<leader>q", require("functions").scratch_to_quickfix)
 
-vim.keymap.set("n", "<leader>ff",
+map("n", "<leader>ff",
     function() vim.ui.input({ prompt = "ff> " }, function(name) if name then vim.cmd("FileSearch! " .. name) end end) end)
 
-vim.keymap.set("n", "<leader>sg",
+map("n", "<leader>sg",
     function()
         vim.ui.input({ prompt = "sg> " },
             function(pattern) if pattern then vim.cmd("TextSearch " .. pattern) end end)
     end)
 
-vim.keymap.set("n", "<leader>fg",
+map("n", "<leader>fg",
     function()
         vim.ui.input({ prompt = "fg> " },
             function(pattern) if pattern then vim.cmd("TextSearch! " .. pattern) end end)
     end)
-vim.keymap.set("n", "<leader>/", function()
+map("n", "<leader>/", function()
     vim.ui.input({ prompt = "> " }, function(pattern)
         if not pattern or pattern == "" then return end
         functions.run_search("grep -n '" .. pattern .. "' " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
@@ -84,37 +88,36 @@ end)
 
 
 -- use alt+[npd] to go to next/previous buffer or to delete the buffer
-vim.keymap.set("x", "<leader>p", "\"+dP")
-vim.keymap.set("n", "<leader><space>", ":ls<cr>:b ")
-vim.keymap.set("n", "<leader>e", ":Explore<cr>")
-vim.keymap.set("n", "-", ":Explore<cr>")
-vim.keymap.set("n", "<leader>ln", ":set number!<cr>")
+map("n", "<leader><space>", ":ls<cr>:b ")
+map("n", "<leader>e", ":Explore<cr>")
+map("n", "-", ":Explore<cr>")
+map("n", "<leader>ln", ":set number!<cr>")
 
-vim.keymap.set("n", "<leader>h", function()
+map("n", "<leader>h", function()
     vim.bo.buftype = ""
     vim.bo.bufhidden = "hide"
     vim.bo.swapfile = true
 end)
-vim.keymap.set("n", "<leader>so",
+map("n", "<leader>so",
     function()
         vim.cmd("enew")
         vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.v.oldfiles)
         functions.scratch()
     end)
-vim.keymap.set("n", "<leader>gb", function() functions.extcmd("git blame " .. vim.fn.expand("%"), false, false, true) end)
-vim.keymap.set("n", "<leader>gs", function() functions.extcmd("git show " .. vim.fn.expand("<cword>")) end)
-vim.keymap.set("n", "<leader>gc", function() functions.extcmd("git diff --name-only --diff-filter=U", true) end)
-vim.keymap.set("n", "<leader>gp",
+map("n", "<leader>gb", function() functions.extcmd("git blame " .. vim.fn.expand("%"), false, false, true) end)
+map("n", "<leader>gs", function() functions.extcmd("git show " .. vim.fn.expand("<cword>")) end)
+map("n", "<leader>gc", function() functions.extcmd("git diff --name-only --diff-filter=U", true) end)
+map("n", "<leader>gp",
     function()
         vim.cmd("edit " ..
             vim.fn.system("python3 -c 'import site; print(site.getsitepackages()[0])'"):gsub("%s+$", "") .. "/.")
     end)
-vim.keymap.set("n", "<leader>gr",
+map("n", "<leader>gr",
     function()
         local reg = os.getenv("CARGO_HOME") or (os.getenv("HOME") .. "/.cargo") .. "/registry/src"
         vim.cmd("edit " .. reg .. "/" .. vim.fn.systemlist("ls -1 " .. reg)[1])
     end)
-vim.keymap.set("n", "<leader>ss",
+map("n", "<leader>ss",
     function()
         vim.ui.input({ prompt = "> " },
             function(p)
@@ -124,7 +127,7 @@ vim.keymap.set("n", "<leader>ss",
                 end
             end)
     end)
-vim.keymap.set("n", "<leader>sg",
+map("n", "<leader>sg",
     function()
         vim.ui.input({ prompt = "> " }, function(p)
             if p then
@@ -135,7 +138,7 @@ vim.keymap.set("n", "<leader>sg",
         end)
     end)
 
-vim.keymap.set("n", "<leader>sf",
+map("n", "<leader>sf",
     function()
         vim.ui.input({ prompt = "> " }, function(p)
             if p then
@@ -149,7 +152,7 @@ vim.keymap.set("n", "<leader>sf",
         end)
     end)
 
-vim.keymap.set("n", "<leader>l",
+map("n", "<leader>l",
     function()
         local bn, ft = vim.fn.expand("%"), vim.bo.filetype
         if ft == "python" then
@@ -168,11 +171,11 @@ local letters = "abcdefghijklmnopqrstuvwxyz"
 for i = 1, #letters do
     local l = letters:sub(i, i)
     local u = l:upper()
-    vim.keymap.set('n', '<leader>a' .. l, "m" .. u)
-    vim.keymap.set('n', '<leader>j' .. l, "'" .. u)
+    map('n', '<leader>a' .. l, "m" .. u)
+    map('n', '<leader>j' .. l, "'" .. u)
 end
 
-vim.keymap.set("n", "<leader>c",
+map("n", "<leader>c",
     function()
         vim.ui.input({ prompt = "> " },
             function(c)
@@ -181,7 +184,7 @@ vim.keymap.set("n", "<leader>c",
     end
 )
 
-vim.keymap.set('n', '<leader>bl', function()
+map('n', '<leader>bl', function()
     local qf_list = {}
     for _, buf in ipairs(vim.fn.getbufinfo()) do
         if buf.listed == 1 then
@@ -198,7 +201,7 @@ end, {})
 -- TODO: this
 -- -- change next occurence of $
 -- -- TODO: fix to be able to handle span more than one line
--- vim.keymap.set('n', 'ci$', function()
+-- map('n', 'ci$', function()
 --     -- bufnum, lnum, col, off
 --     local pos = vim.fn.getpos('.')
 --     print(pos[2])

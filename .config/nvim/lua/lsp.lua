@@ -1,5 +1,7 @@
 local vim=vim
 
+-- TODO: simplyfy
+
 -- Create undo directory if it doesn't exist
 local undodir = vim.fn.expand("~/.vim/undodir")
 if vim.fn.isdirectory(undodir) == 0 then
@@ -143,13 +145,13 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
 })
 
 -- lsp stuff without l prefix
-vim.keymap.set("n" , "<leader>ca" , function() vim.lsp.buf.code_action() end)
-vim.keymap.set("n","<leader>rn", function() vim.lsp.buf.rename() end)
-vim.keymap.set("n","<leader>rf", function() vim.lsp.buf.references() end)
-vim.keymap.set("n","<leader>im", function() vim.lsp.buf.implementation() end)
-vim.keymap.set("n","<leader>td", function() vim.lsp.buf.type_definition() end)
-vim.keymap.set("n","<leader>ds", function() vim.lsp.buf.document_symbol() end)
-vim.keymap.set("n","<leader>fo", function() vim.lsp.buf.format() end)
+vim.keymap.set("n" , "<leader>ca" , vim.lsp.buf.code_action )
+vim.keymap.set("n","<leader>rn", vim.lsp.buf.rename )
+vim.keymap.set("n","<leader>rf", vim.lsp.buf.references )
+vim.keymap.set("n","<leader>im", vim.lsp.buf.implementation )
+vim.keymap.set("n","<leader>td", vim.lsp.buf.type_definition )
+vim.keymap.set("n","<leader>ds", vim.lsp.buf.document_symbol )
+vim.keymap.set("n","<leader>fo", vim.lsp.buf.format )
 
 
 vim.diagnostic.config({

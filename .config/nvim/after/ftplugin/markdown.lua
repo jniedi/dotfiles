@@ -5,9 +5,16 @@ vim.keymap.set("n", "<leader>aa",
         vim.ui.input({ prompt = "alias> " },
             function(name)
                 if name then
-                    vim.system({ "ln", "-fs", vim.fn.expand("%") , name .. ".md" })
+                    vim.system({ "ln", "-fs", vim.fn.expand("%"), name .. ".md" })
                 end
             end)
+    end, { silent = true })
+
+vim.keymap.set("n", "<leader>wp",
+    function()
+        local filename = string.gsub(vim.fn.expand("%"),".md","")
+        filename = string.gsub(filename,"_", " ")
+        vim.ui.open("https://en.wikipedia.org/w/index.php?search="..filename)
     end, { silent = true })
 
 

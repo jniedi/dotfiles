@@ -198,6 +198,18 @@ map('n', '<leader>bl', function()
     vim.cmd('copen')
 end, {})
 
+-- -- lsp stuff without l prefix
+-- Can be done natively with g..
+-- vim.keymap.set("n" , "<leader>ca" , vim.lsp.buf.code_action )
+-- vim.keymap.set("n","<leader>rn", vim.lsp.buf.rename )
+-- vim.keymap.set("n","<leader>rf", vim.lsp.buf.references )
+-- vim.keymap.set("n","<leader>im", vim.lsp.buf.implementation )
+-- vim.keymap.set("n","<leader>td", vim.lsp.buf.type_definition )
+-- vim.keymap.set("n","<leader>ds", vim.lsp.buf.document_symbol )
+-- vim.keymap.set("n","<leader>fo", vim.lsp.buf.format )
+
+
+ 
 -- TODO: this
 -- -- change next occurence of $
 -- -- TODO: fix to be able to handle span more than one line

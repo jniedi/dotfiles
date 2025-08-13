@@ -1,0 +1,31 @@
+#global !p
+#import utils
+#endglobal
+
+snippet link "" 
+#link($1)[$2]$0
+endsnippet
+
+snippet "(\S+)\^" "" r
+(`!p
+snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
+`)^($1)$0
+endsnippet
+
+snippet "(\S+)_" "" r
+(`!p
+snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
+`)_($1)$0
+endsnippet
+
+snippet mlm "multiline math"
+$ $1 $$0
+endsnippet
+
+snippet $$ "multiline math"
+$ $1 $$0
+endsnippet
+
+snippet $ "multiline math"
+$$1$$0
+endsnippet

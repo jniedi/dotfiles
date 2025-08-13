@@ -15,8 +15,9 @@ output eDP-1 resolution 1920x1080 position 0 0
 output DP-3 resolution 3840x2160 position 1920 0
 
 # applications
-# Workaround of segfault on wayland
 exec /usr/bin/dunst
+
+# segfault Workaround on wayland
 exec (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
 
 

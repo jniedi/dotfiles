@@ -14,8 +14,7 @@ endsnippet
 
 snippet "if(e?l?) (.*)" "if else block" r
 if(`!p
-if match.group(2) is not None:
-    snip.rv = match.group(2)
+if match.group(2) is not None: snip.rv = match.group(2)
 elif match.group(1) is not None:
     snip.rv = match.group(1)
 `){

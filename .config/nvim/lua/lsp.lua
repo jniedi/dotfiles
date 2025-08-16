@@ -1,5 +1,4 @@
 local vim=vim
-
 -- TODO: simplyfy
 
 -- Create undo directory if it doesn't exist
@@ -144,10 +143,24 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
   end
 })
 
+-- TODO: toggle redline with <C-d> 
 vim.diagnostic.config({
-  signs = true,
-  virtual_text = true, -- optional: show inline text (disable if you prefer signs only)
+    signs = true,
+        -- signs = {
+        --     text = {
+        --         [vim.diagnostic.severity.ERROR] = '',
+        --         [vim.diagnostic.severity.WARN] = '',
+        --     },
+        --     linehl = {
+        --         [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+        --     },
+        --     numhl = {
+        --         [vim.diagnostic.severity.WARN] = 'WarningMsg',
+        --     },
+        -- },
+  virtual_text = false,
   update_in_insert = false,
-  underline = false,
+  underline = true,
 })
 
+local test = "hello there"

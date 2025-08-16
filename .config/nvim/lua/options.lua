@@ -2,6 +2,7 @@ local vim=vim
 vim.cmd("colorscheme retrobox")
 vim.g.UltiSnipsExpandTrigger = '<C-l>'
 vim.g.UltiSnipsJumpForwardTrigger = '<C-l>'
+vim.o.joinspaces = true
 vim.g.UltiSnipsJumpBackwardTrigger = '<C-h>'
 vim.g.UltiSnipsSnippetDirectories = { 'snips' }
 vim.opt.termguicolors = true
@@ -33,7 +34,7 @@ vim.o.autowrite = false
 
 vim.opt.winborder="rounded"
 
-
+vim.cmd(":hi statusline guibg=NONE")
 
 -- Command-line completion
 vim.opt.wildmenu = true

@@ -19,8 +19,6 @@ map({ "x", "n" }, "<leader>P", "\"+P")
 map({ "x", "n" }, "<leader>y", "\"+y")
 map({ "x", "v" }, "<leader>Y", "\"+Y")
 
-
-
 map({ "n", "v" }, "<leader>d", "\"_d")
 map("n", "Q", "<nop>")
 
@@ -30,7 +28,6 @@ map("n", "<C-n>", "<cmd>cnext<CR>zz")
 map("n", "<leader>k", "<cmd>lnext<CR>zz")
 map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-map("n", "<leader>fr", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- create new file under cursor if it doesn't exist
@@ -52,58 +49,36 @@ map("n", "<M-n>", ":bn<cr>")
 map("n", "<M-p>", ":bp<cr>")
 map("n", "<M-l>", ":ls<cr>:b ")
 
--- diagnostic keymaps: what is this for?
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
-
 -- TODO
 -- make quickfixlist  controlled by control modifier
 
 -- functions
 map("n", "<C-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
-map("n", "<leader>q", require("functions").scratch_to_quickfix)
-
-map("n", "<leader>ff",
-    function() vim.ui.input({ prompt = "ff> " }, function(name) if name then vim.cmd("FileSearch! " .. name) end end) end)
-
-map("n", "<leader>sg",
-    function()
-        vim.ui.input({ prompt = "sg> " },
-            function(pattern) if pattern then vim.cmd("TextSearch " .. pattern) end end)
-    end)
-
-map("n", "<leader>fg",
-    function()
-        vim.ui.input({ prompt = "fg> " },
-            function(pattern) if pattern then vim.cmd("TextSearch! " .. pattern) end end)
-    end)
-map("n", "<leader>/", function()
-    vim.ui.input({ prompt = "> " }, function(pattern)
-        if not pattern or pattern == "" then return end
-        functions.run_search("grep -n '" .. pattern .. "' " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
-    end)
-end)
 
 
+map("n", "<leader>f", ":Pick files<CR>")
+map("n", "<leader>h", ":Pick help<CR>")
+
+map("n", "<leader>g", ":Pick grep_live<CR>")
 
 
 -- use alt+[npd] to go to next/previous buffer or to delete the buffer
 map("n", "<leader><space>", ":ls<cr>:b ")
 map("n", "<leader>e", ":Explore<cr>")
+-- toggles full height explore
+map("n", "<C-e>", ":Lexplore<cr>")
+map("n", "<leader>ce", ":Lexplore ~/.config/nvim<cr>")
 map("n", "-", ":Explore<cr>")
 map("n", "<leader>ln", ":set number!<cr>")
 
-map("n", "<leader>h", function()
-    vim.bo.buftype = ""
-    vim.bo.bufhidden = "hide"
-    vim.bo.swapfile = true
-end)
 map("n", "<leader>so",
     function()
         vim.cmd("enew")
         vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.v.oldfiles)
         functions.scratch()
     end)
+
+
 map("n", "<leader>gb", function() functions.extcmd("git blame " .. vim.fn.expand("%"), false, false, true) end)
 map("n", "<leader>gs", function() functions.extcmd("git show " .. vim.fn.expand("<cword>")) end)
 map("n", "<leader>gc", function() functions.extcmd("git diff --name-only --diff-filter=U", true) end)
@@ -138,35 +113,6 @@ map("n", "<leader>sg",
         end)
     end)
 
-map("n", "<leader>sf",
-    function()
-        vim.ui.input({ prompt = "> " }, function(p)
-            if p then
-                local path, excludes, ex = functions.pre_search()
-                for _, pat in ipairs(excludes) do table.insert(ex, string.format("-path '*%s*' -prune -o", pat)) end
-                functions.extcmd(
-                    string.format("find %s %s -path '*%s*' -print", vim.fn.shellescape(path), table.concat(ex, " "), p),
-                    true,
-                    true)
-            end
-        end)
-    end)
-
-map("n", "<leader>l",
-    function()
-        local bn, ft = vim.fn.expand("%"), vim.bo.filetype
-        if ft == "python" then
-            functions.extcmd("isort -q " .. bn .. "&& black -q " .. bn)
-            functions.extcmd("ruff check --output-format=concise --quiet " .. bn, true)
-            vim.cmd("edit")
-        elseif ft == "rust" then
-            vim.fn.systemlist("cargo fmt")
-            functions.extcmd("cargo check && cargo clippy")
-        end
-    end
-)
-
-
 local letters = "abcdefghijklmnopqrstuvwxyz"
 for i = 1, #letters do
     local l = letters:sub(i, i)
@@ -174,15 +120,6 @@ for i = 1, #letters do
     map('n', '<leader>a' .. l, "m" .. u)
     map('n', '<leader>j' .. l, "'" .. u)
 end
-
-map("n", "<leader>c",
-    function()
-        vim.ui.input({ prompt = "> " },
-            function(c)
-                if c then functions.extcmd(c) end
-            end)
-    end
-)
 
 map('n', '<leader>bl', function()
     local qf_list = {}
@@ -208,8 +145,14 @@ end, {})
 -- vim.keymap.set("n","<leader>ds", vim.lsp.buf.document_symbol )
 -- vim.keymap.set("n","<leader>fo", vim.lsp.buf.format )
 
+-- add indicator to statusline?
 
- 
+vim.keymap.set({'n','i'}, "<C-d>", function()
+    local new_config = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })
+
+
 -- TODO: this
 -- -- change next occurence of $
 -- -- TODO: fix to be able to handle span more than one line

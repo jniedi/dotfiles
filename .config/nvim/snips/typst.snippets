@@ -3,7 +3,7 @@
 #endglobal
 
 snippet link "" 
-#link($1)[$2]$0
+#link($1)[${VISUAL}]$0
 endsnippet
 
 snippet "(\S+)\^" "" r
@@ -16,6 +16,18 @@ snippet "(\S+)_" "" r
 (`!p
 snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
 `)_($1)$0
+endsnippet
+
+snippet "(\w)bb" "make stuff bb" r
+bb(`!p
+snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
+`)$0
+endsnippet
+
+snippet "(\w)cal" "make stuff caligraphic" r
+cal(`!p
+snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
+`)$0
 endsnippet
 
 snippet mlm "multiline math"

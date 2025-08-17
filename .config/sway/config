@@ -101,6 +101,7 @@ bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+r reload
+bindsym $mod+Shift+p mode $password
 bindsym $mod+p mode $PDF
 bindsym $mod+w mode $websearch
 bindsym $mod+n scratchpad show
@@ -109,6 +110,15 @@ bindsym $mod+t fullscreen,focus right,fullscreen
 # ------------------------------------------
 # ------------------------------------------
 # modes
+
+# mode passwords
+set $password PASSWORD
+mode $password  {
+    bindsym g mode "default", exec ~/.config/sway/scripts/get_password
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym e exit
+}
 
 # mode system
 set $system system

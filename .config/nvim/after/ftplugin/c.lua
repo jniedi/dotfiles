@@ -1,3 +1,4 @@
+vim.cmd([[
 setlocal textwidth=100
 setlocal comments-=:// comments+=:///,://
 
@@ -23,3 +24,4 @@ if fnamemodify(@%, ':p') =~# 'neovim'
 endif
 
 command! InsertCBreak         norm! i#include <signal.h>raise(SIGINT);
+]])

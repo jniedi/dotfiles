@@ -46,10 +46,11 @@ elif [[ $1 == 'repo' ]]; then
    xdg-open "https://duckduckgo.com/?q=arch+linux+$query"
 
 
-
 # DEFAULT
 else
    query="$(echo "" | bemenu --prompt 'ddg>')"
    [[ -z $query ]] && exit 1
+   # go to first result
+   query="\\$query"
    xdg-open "https://duckduckgo.com/?q=$query"
 fi

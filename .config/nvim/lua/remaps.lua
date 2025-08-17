@@ -47,6 +47,7 @@ map("n", "<M-n>", ":bn<cr>")
 map("n", "<M-p>", ":bp<cr>")
 map("n", "<M-l>", ":ls<cr>:b ")
 
+-- is this really useful?
 map("n", "<leader>c", "1z=")
 
 -- TODO

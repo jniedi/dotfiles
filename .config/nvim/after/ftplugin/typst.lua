@@ -7,3 +7,10 @@ vim.keymap.set("n", "<leader>wp",
         filename = string.gsub(filename,"_", " ")
         vim.ui.open("https://en.wikipedia.org/w/index.php?search="..filename)
     end, { silent = true })
+
+vim.cmd([[
+"obfuscate paragraph
+nmap <leader>op vapg?
+nmap <leader>tp :TypstPreview<CR>
+set spell
+]])

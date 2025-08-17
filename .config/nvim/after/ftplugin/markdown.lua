@@ -19,3 +19,8 @@ map("n", "<leader>wp",
     end, { silent = true })
 
 vim.g.vim_markdown_conceal = 1
+
+vim.cmd([[
+"obfuscate paragraph
+nmap <leader>op vapg?
+]])

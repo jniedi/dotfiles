@@ -1,7 +1,7 @@
+MiniExtra = MiniExtra
 local vim = vim
 local functions = require("functions")
 local map = vim.keymap.set
-
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
@@ -22,7 +22,6 @@ map({ "x", "v" }, "<leader>Y", "\"+Y")
 map({ "n", "v" }, "<leader>d", "\"_d")
 map("n", "Q", "<nop>")
 
-
 map("n", "<C-p>", "<cmd>cprev<CR>zz")
 map("n", "<C-n>", "<cmd>cnext<CR>zz")
 map("n", "<leader>k", "<cmd>lnext<CR>zz")
@@ -36,7 +35,6 @@ map("n", "<leader>nf", ":e <cfile><cr>")
 map("n", "<leader>m", ":Man ")
 map("n", "<esc>", "<cmd>nohlsearch<cr>")
 
-map('n', '<leader>sc', ':source ~/.config/nvim/init.lua<cr>')
 -- map("n", "<C-j>", ":move .+1<CR>")
 map("v", "<C-j>", ":move '>+1<CR>gv")
 map("v", "<C-k>", ":move '<-2<CR>gv")
@@ -49,107 +47,69 @@ map("n", "<M-n>", ":bn<cr>")
 map("n", "<M-p>", ":bp<cr>")
 map("n", "<M-l>", ":ls<cr>:b ")
 
+map("n", "<leader>c", "1z=")
+
 -- TODO
 -- make quickfixlist  controlled by control modifier
 
--- functions
+-- toggle quickfix list visibility
 map("n", "<C-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
 
+-- Window stuff
+-- quickly jump to other window
+map("n","<C-w><C-e>", "<C-w><C-w>", {})
+map("n","<Up>" ,"<C-w>+",{})
+map("n","<Down>" ,"<C-w>-",{})
+map("n","<Left>" ,"<C-w><",{})
+map("n","<Right>" ,"<C-w>>",{})
 
+
+-- Pick stuff
 map("n", "<leader>f", ":Pick files<CR>")
+map("n", "<leader>s", ":Pick files<CR>")
+map("n", "<leader>b", ":Pick buffers<CR>")
 map("n", "<leader>h", ":Pick help<CR>")
 
-map("n", "<leader>g", ":Pick grep_live<CR>")
+-- remove mini.extra if I don't actually need it
+map("n", "<leader>d", function() MiniExtra.pickers.diagnostic() end, {})
+map("n", "<leader>g", function() MiniExtra.pickers.git_hunks() end, {})
+map("n", "<leader>w", function() MiniExtra.pickers.history() end, {})
+
+map("n", "<leader><space>", ":Pick buffers<CR>")
+
+map("n", "<M-f>", ":Pick files<CR>")
+map("n", "<M-b>", ":Pick buffers<CR>")
+map("n", "<M-h>", ":Pick help<CR>")
+
 
 
 -- use alt+[npd] to go to next/previous buffer or to delete the buffer
-map("n", "<leader><space>", ":ls<cr>:b ")
 map("n", "<leader>e", ":Explore<cr>")
 -- toggles full height explore
 map("n", "<C-e>", ":Lexplore<cr>")
-map("n", "<leader>ce", ":Lexplore ~/.config/nvim<cr>")
 map("n", "-", ":Explore<cr>")
 map("n", "<leader>ln", ":set number!<cr>")
 
-map("n", "<leader>so",
-    function()
-        vim.cmd("enew")
-        vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.v.oldfiles)
-        functions.scratch()
-    end)
+-- map("n", "<leader>so",
+--     function()
+--         vim.cmd("enew")
+--         vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.v.oldfiles)
+--         functions.scratch()
+--     end)
 
-
-map("n", "<leader>gb", function() functions.extcmd("git blame " .. vim.fn.expand("%"), false, false, true) end)
-map("n", "<leader>gs", function() functions.extcmd("git show " .. vim.fn.expand("<cword>")) end)
-map("n", "<leader>gc", function() functions.extcmd("git diff --name-only --diff-filter=U", true) end)
-map("n", "<leader>gp",
-    function()
-        vim.cmd("edit " ..
-            vim.fn.system("python3 -c 'import site; print(site.getsitepackages()[0])'"):gsub("%s+$", "") .. "/.")
-    end)
-map("n", "<leader>gr",
-    function()
-        local reg = os.getenv("CARGO_HOME") or (os.getenv("HOME") .. "/.cargo") .. "/registry/src"
-        vim.cmd("edit " .. reg .. "/" .. vim.fn.systemlist("ls -1 " .. reg)[1])
-    end)
-map("n", "<leader>ss",
-    function()
-        vim.ui.input({ prompt = "> " },
-            function(p)
-                if p then
-                    functions.extcmd("grep -in '" ..
-                        p .. "' " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
-                end
-            end)
-    end)
-map("n", "<leader>sg",
-    function()
-        vim.ui.input({ prompt = "> " }, function(p)
-            if p then
-                local path, excludes, ex = functions.pre_search()
-                for _, pat in ipairs(excludes) do table.insert(ex, string.format("--exclude-dir='%s'", pat)) end
-                functions.extcmd(string.format("grep -IEnr %s '%s' %s", table.concat(ex, " "), p, path), true)
-            end
-        end)
-    end)
-
-local letters = "abcdefghijklmnopqrstuvwxyz"
-for i = 1, #letters do
-    local l = letters:sub(i, i)
-    local u = l:upper()
-    map('n', '<leader>a' .. l, "m" .. u)
-    map('n', '<leader>j' .. l, "'" .. u)
-end
-
-map('n', '<leader>bl', function()
-    local qf_list = {}
-    for _, buf in ipairs(vim.fn.getbufinfo()) do
-        if buf.listed == 1 then
-            table.insert(qf_list, {
-                filename = buf.name ~= '' and buf.name or '[No Name]',
-                text = ':' .. buf.bufnr
-            })
-        end
-    end
-    vim.fn.setqflist(qf_list, 'r')
-    vim.cmd('copen')
-end, {})
-
--- -- lsp stuff without l prefix
--- Can be done natively with g..
--- vim.keymap.set("n" , "<leader>ca" , vim.lsp.buf.code_action )
--- vim.keymap.set("n","<leader>rn", vim.lsp.buf.rename )
--- vim.keymap.set("n","<leader>rf", vim.lsp.buf.references )
--- vim.keymap.set("n","<leader>im", vim.lsp.buf.implementation )
--- vim.keymap.set("n","<leader>td", vim.lsp.buf.type_definition )
--- vim.keymap.set("n","<leader>ds", vim.lsp.buf.document_symbol )
--- vim.keymap.set("n","<leader>fo", vim.lsp.buf.format )
+-- map("n", "<leader>gb", function() functions.extcmd("git blame " .. vim.fn.expand("%"), false, false, true) end)
+-- map("n", "<leader>gs", function() functions.extcmd("git show " .. vim.fn.expand("<cword>")) end)
+-- map("n", "<leader>gc", function() functions.extcmd("git diff --name-only --diff-filter=U", true) end)
+-- map("n", "<leader>gp",
+--     function()
+--         vim.cmd("edit " ..
+--             vim.fn.system("python3 -c 'import site; print(site.getsitepackages()[0])'"):gsub("%s+$", "") .. "/.")
+--     end)
 
 -- add indicator to statusline?
-
 vim.keymap.set({'n','i'}, "<C-d>", function()
-    local new_config = not vim.diagnostic.config().virtual_lines
-    vim.diagnostic.config({ virtual_lines = new_config })
+    local togglerino = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = togglerino })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
 

@@ -1,9 +1,9 @@
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
 
 # ---- fzf/sk integration (assuming sk supports bash) ----
 # This loads sk (or fzf) keybindings and completion
-source <(sk --shell bash)
+# source <(sk --shell bash)
 
 # ---- Prompt ----
 PS1="\w \$ "
@@ -15,9 +15,11 @@ HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 
 export EDITOR=nvim
-export PATH="./usr/lib/ccache/bin:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux:/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
+export MANPAGER='nvim +Man!'
+# export PATH="./usr/lib/ccache/bin:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux:/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 
 set -o vi
+
 
 bind '"\C-n": history-search-forward'
 bind '"\C-p": history-search-backward'

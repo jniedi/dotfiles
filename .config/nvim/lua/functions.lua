@@ -11,14 +11,14 @@ M.scratch_to_quickfix = function(close_qf)
         if line ~= "" then
             local f, lnum, text = line:match("^([^:]+):(%d+):(.*)$")
             if f and lnum then
-                table.insert(items, { filename = vim.fn.fnamemodify(f, ":p"), lnum = tonumber(lnum), text = text, })                   -- for grep filename:line:text
+                table.insert(items, { filename = vim.fn.fnamemodify(f, ":p"), lnum = tonumber(lnum), text = text, }) -- for grep filename:line:text
             else
                 local lnum, text = line:match("^(%d+):(.*)$")
                 if lnum and text then
                     table.insert(items,
-                        { filename = vim.fn.bufname(vim.fn.bufnr("#")), lnum = tonumber(lnum), text = text, })                         -- for current buffer grep
+                        { filename = vim.fn.bufname(vim.fn.bufnr("#")), lnum = tonumber(lnum), text = text, }) -- for current buffer grep
                 else
-                    table.insert(items, { filename = vim.fn.fnamemodify(line, ":p") })                                                 -- for find results, only fnames
+                    table.insert(items, { filename = vim.fn.fnamemodify(line, ":p") })                         -- for find results, only fnames
                 end
             end
         end

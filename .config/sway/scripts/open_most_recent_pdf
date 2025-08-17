@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+[[ -z ~/.cache/open_pdf_cache ]] && exit 1
+
+zathura  $(cat ~/.cache/open_pdf_cache)

@@ -20,6 +20,11 @@ local plugins = {
         p = pluginpath .. "mini.pick.git",
         url = "https://github.com/echasnovski/mini.pick.git",
     },
+    {
+        p = pluginpath .. "mini.extra.git",
+        url = "https://github.com/echasnovski/mini.extra.git",
+    }
+
 }
 
 
@@ -34,6 +39,7 @@ end
 -- vim.pack.add({"https://github.com/SirVer/ultisnips.git"})
 
 require('mini.pick').setup()
+require('mini.extra').setup()
 require("options")
 require("remaps")
 require("autocommands")

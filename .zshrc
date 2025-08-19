@@ -32,5 +32,3 @@ alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias open=xdg-open
 alias zat=zathura --fork --page=0
 alias nv=nvim
-alias vim=nvim
-alias plans_for_we='MANPAGER=cat man true | sed -n '4p' | cut -d - -f2'

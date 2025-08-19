@@ -145,12 +145,16 @@ vim.api.nvim_create_user_command("TextSearch", function(opts)
 end, { nargs = "+", bang = true })
 
 vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = { "*:i", "i:*" },
+    command = "set invlist"
+})
+
+vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = { "*:i", "i:*" },
     callback = function()
-        local is_enabled = vim.opt.list:get()
-        vim.opt.list = not is_enabled
+        vim.cmd([[set invcul]])
     end
-}
-)
+})
 
 -- vim.api.nvim_create_autocmd("ModeChanged", {
 --     callback = function()

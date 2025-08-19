@@ -31,7 +31,9 @@ snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
 endsnippet
 
 snippet mlm "multiline math"
-$ $1 $$0
+$ 
+$0 
+$
 endsnippet
 
 snippet $$ "multiline math"
@@ -44,4 +46,216 @@ endsnippet
 
 snippet * "" 
 *${VISUAL}$1*$0
+endsnippet
+
+snippet / "" 
+($1)/($2)$0
+endsnippet
+
+
+# TODO
+snippet _ "_{$1}$0" i
+_{$1}$0
+endsnippet
+
+snippet ^ "^{$1}$0" i
+^{$1}$0
+endsnippet
+
+snippet lsab "\[$1\]$0" i
+\[$1\]$0
+endsnippet
+
+
+snippet sub "\subset{$1}$0" i
+\subset$0
+endsnippet
+
+snippet sse "\subseteq{$1}$0" i
+\subseteq$0
+endsnippet
+
+
+snippet mbb "\mathbb{$1}$0" iA
+\mathbb{$1}$0
+endsnippet
+
+snippet \R "\mathbb{R}$0" iA
+\mathbb{R}$0
+endsnippet
+
+snippet \C "\mathbb{C}$0" iA
+\mathbb{C}$0
+endsnippet
+
+snippet \P "\mathbb{P}$0" i
+\mathbb{P}$0
+endsnippet
+
+
+snippet "([CR])(\w)(\w)?" "R" ir
+#`!p
+post = " times " + match.group(3) if match.group(3) is not None else ""
+snip.rv = match.group(1)  + "^(" + match.group(2) + post + ")"
+` $0
+endsnippet
+
+snippet exp "\mathbb{C}^{m\times n}" i
+\operatorname{exp}($1)$0
+endsnippet
+
+snippet oname "\operatorname{$1}$0" i
+\operatorname{$1}$0
+endsnippet
+
+snippet argm "\operatorname{arg m${1:ax}}_{$2}$0" i
+\operatorname{arg m${1:ax}}_{$2}$0
+endsnippet
+
+snippet hat "\hat{$1}$0" i
+\hat{$1}$0
+endsnippet
+
+snippet leq "\leqslant" i
+\leqslant
+endsnippet
+
+snippet geq "\geqslant" i
+\geqslant
+endsnippet
+
+snippet linODE "linear ODE" iA
+a_$1y^($1)+a_{$1-1}y^{($1-1)}+...+a_1y'+a_0y=${2:b}
+endsnippet
+
+snippet dfdx "Derivative of f" iA
+\frac{d${1:f}^{$2}}{d${3:x}^{$4}}$0
+endsnippet
+
+snippet pfpx "Partial derivative" iA
+\frac{\partial ${1:f}^{$2}_{$3}}{\partial ${4:x}^{$5}_{$6}}$0
+endsnippet
+
+snippet mcal "\mathcal{$1}$0" iA
+\mathcal{$1}$0
+endsnippet
+
+snippet int "\int" i
+\int_{$1}^{$2}
+endsnippet
+
+snippet lrcb "\{$1\}$0" i
+\\{$1\\}$0
+endsnippet
+
+
+# ----------------------
+# greek letters
+
+snippet \a "\alpha" i
+\alpha
+endsnippet
+
+snippet \d "\delta" i
+\delta
+endsnippet
+
+snippet \g "\gamma" i
+\gamma
+endsnippet
+
+snippet \e "\epsilon" i
+\epsilon
+endsnippet
+
+snippet \t "theta" i
+\theta
+endsnippet
+
+snippet \s "\epsilon" i
+\sigma
+endsnippet
+
+snippet \O "theta" i
+\Omega
+endsnippet
+
+snippet \S "\epsilon" i
+\Sigma
+endsnippet
+
+snippet \l "\lambda" i
+\lambda
+endsnippet
+
+snippet \L "\Lambda" i
+\Lambda
+endsnippet
+
+# end greek letters
+# ----------------------
+
+snippet frac "\frac{$1}{$2}$0" i
+\frac{$1}{$2}$0
+endsnippet
+
+snippet prod "\prod_{$1}^{$2}$0" i
+\prod_{$1}^{$2}$0
+endsnippet
+
+snippet sum "\sum{$1}^{$2}$0" i
+\sum_{$1}^{$2}$0
+endsnippet
+
+snippet txx "\text{$1}$0" iA
+\text{$1}$0
+endsnippet
+
+snippet rar "\text{$1}$0" i
+\rightarrow
+endsnippet
+
+snippet lar "\text{$1}$0" i
+\leftarrow
+endsnippet
+
+snippet lim "\limit_{$1}^{$2}$0" i
+\lim_{$1}$0
+endsnippet
+
+snippet fa "" i
+\forall\;
+endsnippet
+
+snippet ex "" i
+\exists\;
+endsnippet
+
+
+snippet curve "" i
+\gamma:[a,b]\rightarrow\mathbb{R}^{n}
+endsnippet
+
+snippet lrav "left right absolute value" i
+\big|$1\big|$0
+endsnippet
+
+snippet | "||" i
+\|$1\|$0
+endsnippet
+
+snippet lrab "angle brackets" i
+\langle $1 \rangle $0
+endsnippet
+
+snippet sqrt "\sqrt{}" i
+\sqrt{$1}$0
+endsnippet
+
+snippet lrb "left right ()" i 
+\left($1\right)$0
+endsnippet
+
+snippet / "fraction" i
+\fraction{$1}{$2}$0
 endsnippet

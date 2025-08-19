@@ -1,2 +1,0 @@
-swaymsg 'exec alacritty;mark scratchpad-music;move scratchpad'
-swaymsg 'exec alacritty;mark scratchpad-notes;move scratchpad'

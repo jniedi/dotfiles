@@ -124,7 +124,8 @@ mode $password  {
 set $system system
 mode $system  {
     bindsym l mode "default", exec systemctl suspend && swaylock
-    bindsym r mode "default", exec pgrep gammastep && pkill gammastep || gammastep -PO 2000
+    bindsym r mode $gammastep
+    bindsym Shift+r mode "default", exec pgrep gammastep && pkill gammastep || gammastep -PO 1500
     # Exit sway (logs you out of your Wayland session)
     bindsym p mode "default", exec ping -c 1 sbb.ch || notify-send 'ERROR'
     bindsym a mode "default", exec pavucontrol
@@ -132,6 +133,30 @@ mode $system  {
     bindsym Escape mode "default"
     bindsym e exit
 }
+
+set $gammastep GAMMASTEP
+mode $gammastep  {
+    bindsym 1 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 2000
+    bindsym 2 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 2500
+    bindsym 3 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 3000
+    bindsym 4 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 3500
+    bindsym 5 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 4000
+    bindsym 6 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 4500
+    bindsym 7 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 5000
+    bindsym 8 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 5500
+    bindsym 9 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 6000
+    bindsym 0 mode "default", exec pgrep gammastep && pkill gammastep, exec sleep 0.2 && gammastep -PO 6500
+    # TODO
+    bindsym n exec ~/.config/sway/scripts/gammastepper add
+    bindsym p exec ~/.config/sway/scripts/gammastepper sub
+    bindsym a exec ~/.config/sway/scripts/gammastepper add
+    bindsym s exec ~/.config/sway/scripts/gammastepper sub
+    # Exit sway (logs you out of your Wayland session)
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
 
 set $PDF pdf
 mode $PDF  {
@@ -189,8 +214,8 @@ set $network NETWORK
 mode $network {
     bindsym e mode "default", exec "~/.config/sway/scripts/network_handler enable"
     bindsym d mode "default", exec "~/.config/sway/scripts/network_handler disable"
-    bindsym s mode "default", exec "~/.config/sway/scripts/network_handler status" # query status
-    bindsym q mode "default", exec "~/.config/sway/scripts/network_handler query" # query status
+    bindsym s mode "default", exec "~/.config/sway/scripts/network_handler status"
+    bindsym q mode "default", exec "~/.config/sway/scripts/network_handler query"
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"

@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+
+FILE=~/.cache/gammastepper
+[[ ! -f $FILE  ]] && echo "5000" > $FILE
+oldval=$(cat $FILE)
+
+if [[ $1 == "add" ]]; then
+
+    if [[ $oldval == "6500" ]]; then
+        notify-send -u critical "Warn" "Maximum value 6500"
+    else
+        newval=$(($oldval + 500))
+        echo $newval > $FILE
+        pkill gammastep
+        sleep 1
+        gammastep -PO $newval
+    fi
+elif [[ $1 == "sub" ]];then
+    if [[ $oldval == "2000" ]]; then
+        notify-send "Warn" "Minimum value 2000"
+    else
+        newval=$(($oldval - 500))
+        echo $newval > $FILE
+        pkill gammastep
+        sleep 1
+        gammastep -PO $newval
+    fi
+fi

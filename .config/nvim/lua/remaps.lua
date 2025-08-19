@@ -47,14 +47,18 @@ map("n", "<M-n>", ":bn<cr>")
 map("n", "<M-p>", ":bp<cr>")
 map("n", "<M-l>", ":ls<cr>:b ")
 
--- is this really useful?
-map("n", "<leader>c", "1z=")
+map("n", "<leader>cm", ":ConfigEdit maps<cr>")
+map("n", "<leader>ce", ":ConfigEdit<cr>")
+map("n", "<leader>co", ":ConfigEdit options<cr>")
+map("n", "<leader>cl", ":ConfigEdit lua<cr>")
+map("n", "<leader>cf", ":ConfigEdit functions<cr>")
 
 -- TODO
 -- make quickfixlist  controlled by control modifier
 
 -- toggle quickfix list visibility
 map("n", "<C-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
+
 
 -- Window stuff
 -- quickly jump to other window
@@ -88,7 +92,7 @@ map("n", "<M-h>", ":Pick help<CR>")
 map("n", "<leader>e", ":Explore<cr>")
 -- toggles full height explore
 map("n", "<C-e>", ":Lexplore<cr>")
-map("n", "-", ":Explore<cr>")
+-- map("n", "-", ":Explore<cr>")
 map("n", "<leader>ln", ":set number!<cr>")
 
 -- map("n", "<leader>so",

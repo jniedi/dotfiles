@@ -1,5 +1,7 @@
 local vim = vim
 
+local usercmd = vim.api.nvim_create_user_command
+
 local M = {}
 
 _G.basic_excludes = { ".git", "*.egg-info", "__pycache__", "wandb", "target" , "aux", "output" }
@@ -53,5 +55,21 @@ M.extcmd = function(cmd, qf, close_qf, novsplit)
     M.scratch()
     if qf then M.scratch_to_quickfix(close_qf) end
 end
+
+
+-- Why not use tmux?
+usercmd("ConfigEdit", function(opts)
+    local dir = "~/.config/nvim"
+    local o = {
+        lua = "/lua",
+        maps = "/lua/remaps.lua",
+        functions = "/lua/functions.lua",
+        options = "/lua/options.lua",
+    }
+    if o[opts.fargs[1]] then
+        dir = dir .. o[opts.fargs[1]]
+    end
+    vim.cmd("e " .. dir)
+end , {nargs="*"})
 
 return M

@@ -30,11 +30,13 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 500
 vim.o.ttimeoutlen = 0
 vim.o.autoread = true
-vim.o.autowrite = false
+vim.o.autowrite = false -- todo: checkout what this does
+vim.o.cul = true
 
 vim.opt.winborder="rounded"
 
 vim.cmd(":hi statusline guibg=NONE")
+
 
 -- Command-line completion
 vim.opt.wildmenu = true

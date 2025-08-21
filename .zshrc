@@ -32,3 +32,4 @@ alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias open=xdg-open
 alias zat=zathura --fork --page=0
 alias nv=nvim
+alias kbb="brightnessctl --device='tpacpi::kbd_backlight' set"

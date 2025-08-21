@@ -14,10 +14,8 @@ default_border pixel 2
 output eDP-1 resolution 1920x1080 position 0 0
 output DP-3 resolution 3840x2160 position 1920 0
 
-# applications
 exec /usr/bin/dunst
-
-# segfault Workaround on wayland
+exec /usr/bin/waybar
 exec (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
 
 
@@ -101,7 +99,7 @@ bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+r reload
-bindsym $mod+Shift+p mode $password
+bindsym $mod+Shift+p exec ~/.config/sway/scripts/get_password
 bindsym $mod+p mode $PDF
 bindsym $mod+w mode $websearch
 bindsym $mod+n scratchpad show
@@ -110,15 +108,6 @@ bindsym $mod+t fullscreen,focus right,fullscreen
 # ------------------------------------------
 # ------------------------------------------
 # modes
-
-# mode passwords
-set $password PASSWORD
-mode $password  {
-    bindsym g mode "default", exec ~/.config/sway/scripts/get_password
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym e exit
-}
 
 # mode system
 set $system system
@@ -131,6 +120,8 @@ mode $system  {
     bindsym a mode "default", exec pavucontrol
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym m mode "default", exec (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
+    bindsym b exec pgrep waybar && pkill waybar || waybar
     bindsym e exit
 }
 
@@ -222,3 +213,5 @@ mode $network {
 }
 
 include /etc/sway/config.d/*
+
+

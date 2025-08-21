@@ -6,11 +6,9 @@
 case "$1" in
     "disable")
         nmcli radio wifi off
-        notify-send 'Network Info' "wifi disabled"
         ;;
     "enable")
         nmcli radio wifi on
-        notify-send 'Network Info' "wifi disabled"
         ;;
     "query")
         sel=$( nmcli device wifi list | tail --lines=+2  | sed 's/ \{2,\}/ /g' | cut -d ' ' -f3  | bemenu -ip 'Select network>' -l 50)

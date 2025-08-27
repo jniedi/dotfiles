@@ -60,6 +60,19 @@ map("n", "<leader>cf", ":ConfigEdit functions<cr>")
 map("n", "<C-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
 
 
+map("n", "<leader>ln", "<cmd>set invrelativenumber<cr>", { silent = true } )
+
+
+-- map("c","ec","e ~/.config/nvim/lua/*.lua<C-Z>")
+
+
+-- maybe find sth useful for these
+map({ "v", "i", "n" }, "<PageUp>" , "<cmd>echo 'Upps!'<cr>", {})
+map({ "v", "i", "n" }, "<PageDown>" , "<cmd>echo 'Upps!'<cr>", {})
+map({ "v", "i", "n" }, "<Home>" , "<cmd>echo 'Upps!'<cr>", {})
+map({ "v", "i", "n" }, "<End>" , "<cmd>echo 'Upps!'<cr>", {})
+
+
 -- Window stuff
 -- quickly jump to other window
 map("n","<C-w><C-e>", "<C-w><C-w>", {})
@@ -93,7 +106,6 @@ map("n", "<leader>e", ":Explore<cr>")
 -- toggles full height explore
 map("n", "<C-e>", ":Lexplore<cr>")
 -- map("n", "-", ":Explore<cr>")
-map("n", "<leader>ln", ":set number!<cr>")
 
 -- map("n", "<leader>so",
 --     function()

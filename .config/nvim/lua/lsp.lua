@@ -136,12 +136,15 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
     end
     local char = vim.v.char
     if vim.list_contains(triggers, char) then
-      -- local key = vim.keycode('<C-x><C-n>')
-      -- vim.api.nvim_feedkeys(key, 'm', false)
+      local key = vim.keycode('<C-x><C-n>')
+      vim.api.nvim_feedkeys(key, 'm', false)
        vim.lsp.completion.get()
     end
   end
 })
+
+
+
 
 -- TODO: toggle redline with <C-d> 
 vim.diagnostic.config({

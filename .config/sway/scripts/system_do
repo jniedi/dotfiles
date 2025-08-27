@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# some shortcuts to avoid typing them out
+
+OPTS="
+swaymsg output eDP-1 disable
+swaymsg output eDP-1 enable"
+
+$(echo $OPTS  | bemenu -l 50)

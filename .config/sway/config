@@ -16,7 +16,7 @@ output DP-3 resolution 3840x2160 position 1920 0
 
 exec /usr/bin/dunst
 exec /usr/bin/waybar
-exec (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
+exec_always (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
 
 
 # colors
@@ -79,17 +79,17 @@ bindsym $mod+b mode $bookmarks
 bindsym $mod+Shift+n mode $network
 bindsym $mod+Shift+s mode $system
 bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+Shift+1 move container to workspace number 1, workspace 1
-bindsym $mod+Shift+2 move container to workspace number 2, workspace 2
-bindsym $mod+Shift+3 move container to workspace number 3, workspace 3
-bindsym $mod+Shift+4 move container to workspace number 4, workspace 4
-bindsym $mod+Shift+5 move container to workspace number 5, workspace 5
-bindsym $mod+Shift+6 move container to workspace number 6, workspace 6
-bindsym $mod+Shift+7 move container to workspace number 7, workspace 7
-bindsym $mod+Shift+8 move container to workspace number 8, workspace 8
-bindsym $mod+Shift+9 move container to workspace number 9, workspace 9
-bindsym $mod+Shift+0 move container to workspace number 10, workspace 10
+bindsym $mod+Shift+space exec pgrep waybar && pkill waybar || waybar
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 bindsym $mod+Shift+Right move right
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Down move down
@@ -103,6 +103,7 @@ bindsym $mod+Shift+p exec ~/.config/sway/scripts/get_password
 bindsym $mod+p mode $PDF
 bindsym $mod+w mode $websearch
 bindsym $mod+n scratchpad show
+bindsym $mod+d exec ~/.config/sway/scripts/system_do 
 bindsym $mod+t fullscreen,focus right,fullscreen
 
 # ------------------------------------------
@@ -120,8 +121,7 @@ mode $system  {
     bindsym a mode "default", exec pavucontrol
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym m mode "default", exec (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
-    bindsym b exec pgrep waybar && pkill waybar || waybar
+    bindsym m mode "default", exec proton-mail --ozone-platform-hint=auto
     bindsym e exit
 }
 
@@ -167,13 +167,14 @@ set $websearch websearch
 mode $websearch {
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym b           mode default, exec "~/.config/sway/scripts/bookmarks open"
+    bindsym b           mode default, exec "~/.config/sway/scripts/bookmarks.sh"
     bindsym w           mode default, exec "~/.config/sway/scripts/websearch wikipedia"
     bindsym g           mode default, exec "~/.config/sway/scripts/websearch google"
     # wiby: search engine for the *c*lassic web
     bindsym c           mode default, exec "~/.config/sway/scripts/websearch wiby"
     bindsym s           mode default, exec "~/.config/sway/scripts/websearch scholar"
     bindsym o           mode default, exec "xdg-open `wl-paste`"
+    # websearch the clipboard content
     bindsym t           mode default, exec "~/.config/sway/scripts/websearch this"
     bindsym a           mode default, exec "~/.config/sway/scripts/websearch all"
     bindsym r           mode default, exec "~/.config/sway/scripts/websearch repo"
@@ -182,9 +183,10 @@ mode $websearch {
 
 set $bookmarks bookmarks
 mode $bookmarks {
-    bindsym o           mode default, exec "~/.config/sway/scripts/bookmarks open"
-    bindsym a           mode default, exec "wl-paste >> ~/.cache/bookmarks"
-    bindsym s           mode default, exec "wl-paste >> ~/.cache/bookmarks"
+    # open bookmarks
+    bindsym o           mode default, exec "~/.config/sway/scripts/bookmarks.sh"
+    # login: open and copy password to clipboard
+    bindsym l           mode default, exec "~/.config/sway/scripts/password_bookmarks.sh"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }

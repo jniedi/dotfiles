@@ -1,8 +1,6 @@
 autoload -Uz compinit               # Load and initialise completion system
 compinit
 
-source <(sk --shell zsh)
-
 PS1="%2~ $ "
 
 # zsh history

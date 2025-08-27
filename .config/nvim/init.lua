@@ -7,6 +7,7 @@ if not vim.loop.fs_stat(pluginpath) then
 end
 
 
+
 local plugins = {
     {
         p = pluginpath .. "ultisnips.git",

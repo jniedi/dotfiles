@@ -1,6 +1,10 @@
+local vim = vim
+
 vim.cmd([[
 setlocal textwidth=100
 setlocal comments-=:// comments+=:///,://
+
+"setlocal makeprg=cmake\ --build\ .
 
 nnoremap <buffer> [[    [[3<c-y>
 
@@ -25,3 +29,14 @@ endif
 
 command! InsertCBreak         norm! i#include <signal.h>raise(SIGINT);
 ]])
+
+vim.api.nvim_create_autocmd('InsertCharPre', {
+    buffer = vim.api.nvim_get_current_buf(),
+    callback = function()
+        if vim.fn.pumvisible() == 1 or vim.fn.state('m') == 'm' then
+            return
+        else
+            vim.lsp.completion.get()
+        end
+    end
+})

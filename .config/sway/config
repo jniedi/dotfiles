@@ -46,7 +46,6 @@ input type:keyboard {
     repeat_rate 50
 }
 
-
 # mod
 bindsym $mod+Return exec $term
 bindsym $mod+q kill
@@ -159,6 +158,7 @@ mode $PDF  {
     bindsym p mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/papers
     bindsym m mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/manuals
     bindsym r mode "default", exec ~/.config/sway/scripts/open_most_recent_pdf
+    bindsym Shift+r mode "default", exec ~/.config/sway/scripts/open_n_most_recent_pdf
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -183,7 +183,6 @@ mode $websearch {
 
 set $bookmarks bookmarks
 mode $bookmarks {
-    # open bookmarks
     bindsym o           mode default, exec "~/.config/sway/scripts/bookmarks.sh"
     # login: open and copy password to clipboard
     bindsym l           mode default, exec "~/.config/sway/scripts/password_bookmarks.sh"

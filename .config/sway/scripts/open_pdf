@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+
+DFILE=~/.cache/open_pdf_cache
+
 if [[ -z $1 ]]; then
     d=~/res
 else
@@ -9,5 +12,8 @@ fi
 f=$(cat <(fd -t l '.*' $d) <(fd -t f .pdf $d) | bemenu -il 50)
 [[ -z $f ]] && exit 1
 
-zathura $f
-echo $f > ~/.cache/open_pdf_cache
+TFILE=/tmp/open_pdf_tmp
+echo $f > $TFILE
+head -n 50 $DFILE >> $TFILE
+mv $TFILE $DFILE
+zathura $f &

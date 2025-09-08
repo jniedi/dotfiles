@@ -72,4 +72,12 @@ usercmd("ConfigEdit", function(opts)
     vim.cmd("e " .. dir)
 end , {nargs="*"})
 
+
+
+M.find_root = function(patterns)
+    local path = vim.fn.expand('%:p:h')
+    local root = vim.fs.find(patterns, { path = path, upward = true })[1]
+    return root and vim.fn.fnamemodify(root, ':h') or path
+end
+
 return M

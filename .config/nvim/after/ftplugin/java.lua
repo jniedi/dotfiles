@@ -1,24 +1,18 @@
 local vim = vim
 
-vim.cmd( [[
-setlocal makeprg=shellcheck\ --shell=bash\ -f\ gcc\ %
+vim.cmd([[
+set spell
+set makeprg=javac\ %
 ]])
 
 
--- TODO: add to function file
-local function find_root(patterns)
-  local path = vim.fn.expand('%:p:h')
-  local root = vim.fs.find(patterns, { path = path, upward = true })[1]
-  return root and vim.fn.fnamemodify(root, ':h') or path
-end
-
-local server = 'bash-language-server'
+local server = 'jdtls'
 if vim.fn.executable(server) == 1 then
     vim.lsp.start({
         name = server,
         cmd = { server },
-        filetypes = { 'main.ts' },
-        root_dir = find_root({ "" }),
+        filetypes = { 'java' },
+        root_dir = vim.fs.root(0, { 'main.java', '.git' }),
         on_attach = function(client, bufnr)
             vim.lsp.completion.enable(true, client.id, bufnr, {
                 autotrigger = true,
@@ -31,6 +25,7 @@ if vim.fn.executable(server) == 1 then
 else
     vim.notify("Server " .. server .. " not found!", vim.log.levels.WARN)
 end
+
 vim.api.nvim_create_autocmd('InsertCharPre', {
     buffer = vim.api.nvim_get_current_buf(),
     callback = function()

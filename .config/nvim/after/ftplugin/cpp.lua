@@ -1,24 +1,20 @@
 local vim = vim
 
-vim.cmd( [[
-setlocal makeprg=shellcheck\ --shell=bash\ -f\ gcc\ %
-]])
 
-
--- TODO: add to function file
 local function find_root(patterns)
   local path = vim.fn.expand('%:p:h')
   local root = vim.fs.find(patterns, { path = path, upward = true })[1]
   return root and vim.fn.fnamemodify(root, ':h') or path
 end
 
-local server = 'bash-language-server'
+-- c/cpp
+local server = 'clangd'
 if vim.fn.executable(server) == 1 then
     vim.lsp.start({
         name = server,
-        cmd = { server },
-        filetypes = { 'main.ts' },
-        root_dir = find_root({ "" }),
+        cmd = { 'clangd', '--background-index', '--clang-tidy', '--log=verbose' },
+        filetypes = { 'cpp', 'c', 'hpp' },
+        root_dir = find_root({ ".clangd", "compile_commands.json" }),
         on_attach = function(client, bufnr)
             vim.lsp.completion.enable(true, client.id, bufnr, {
                 autotrigger = true,

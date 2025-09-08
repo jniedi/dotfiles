@@ -42,3 +42,35 @@ snip.rv = "}" if match.group(0) is not None else ""
 `
 $0
 endsnippet
+
+snippet main "main function" bA
+int main(int argc, char** argv){
+    $0
+    return 0;
+}
+endsnippet
+
+# Headers
+snippet "h_(io|readfiles)" "Input/output with files" rbA 
+#include <iostream>
+#include <fstream>
+${1:using namespace std;}
+endsnippet
+
+# Headers
+snippet readfile "Reading lines from a file into string buffer" 
+string line;
+ifstream file("$1");
+if(file.is_open()){
+    while(getline(file,line)) {
+        $2
+    }
+} 
+endsnippet
+
+snippet acc "accumulate"
+std::accumulate($1.begin(),$1.end(),$2,[]($3){ 
+$4 
+});
+endsnippet
+

@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+[[ -z ~/.cache/open_pdf_cache ]] && exit 1
+
+f=$(cat ~/.cache/open_pdf_cache | bemenu -l 50)
+[[ -z $f ]] && exit 1
+zathura $f &

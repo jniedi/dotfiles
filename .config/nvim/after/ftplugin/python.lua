@@ -1,24 +1,33 @@
 local vim = vim
 
-vim.cmd( [[
-setlocal makeprg=shellcheck\ --shell=bash\ -f\ gcc\ %
+local funcs = require("functions")
+
+vim.cmd([[
+setlocal makeprg=python3\ %
 ]])
 
-
--- TODO: add to function file
-local function find_root(patterns)
-  local path = vim.fn.expand('%:p:h')
-  local root = vim.fs.find(patterns, { path = path, upward = true })[1]
-  return root and vim.fn.fnamemodify(root, ':h') or path
-end
-
-local server = 'bash-language-server'
+local server = 'pylsp'
 if vim.fn.executable(server) == 1 then
     vim.lsp.start({
         name = server,
         cmd = { server },
-        filetypes = { 'main.ts' },
-        root_dir = find_root({ "" }),
+        filetypes = { 'python' },
+        root_dir = funcs.find_root({ 'pyproject.toml', 'setup.py', 'setup.cfg', 'main.py', 'requirements.txt', '.git' }),
+        settings = {
+            pylsp = {
+                plugins = {
+                    pycodestyle = {
+                        enabled = false
+                    },
+                    flake8 = {
+                        enabled = true,
+                    },
+                    black = {
+                        enabled = true
+                    }
+                }
+            }
+        },
         on_attach = function(client, bufnr)
             vim.lsp.completion.enable(true, client.id, bufnr, {
                 autotrigger = true,
@@ -31,6 +40,7 @@ if vim.fn.executable(server) == 1 then
 else
     vim.notify("Server " .. server .. " not found!", vim.log.levels.WARN)
 end
+
 vim.api.nvim_create_autocmd('InsertCharPre', {
     buffer = vim.api.nvim_get_current_buf(),
     callback = function()

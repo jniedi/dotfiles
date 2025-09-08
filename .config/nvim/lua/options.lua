@@ -1,5 +1,12 @@
 local vim=vim
-vim.cmd("colorscheme retrobox")
+local diagnostic = vim.diagnostic
+
+-- Lua
+require('onedark').setup {
+    style = 'darker'
+}
+require('onedark').load()
+
 vim.g.UltiSnipsExpandTrigger = '<C-l>'
 vim.g.UltiSnipsJumpForwardTrigger = '<C-l>'
 vim.o.joinspaces = true
@@ -49,4 +56,32 @@ vim.opt.diffopt:append("linematch:60")
 -- Performance improvements
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
+
+-- Create undo directory if it doesn't exist
+local undodir = vim.fn.expand("~/.vim/undodir")
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, "p")
+end
+
+-- https://wiki.archlinux.org/title/Language_Server_Protocol
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
+
+
+-- Diagnostics
+-- TODO: toggle redline with <C-d>
+vim.diagnostic.config({
+    signs = true,
+    virtual_text = true,
+    update_in_insert = true,
+    underline = true,
+})
+
+local highlight_groups = {
+  [vim.diagnostic.severity.ERROR] = "DiagnosticVirtualTextError",
+  [vim.diagnostic.severity.WARN] = "DiagnosticVirtualTextWarn",
+  [vim.diagnostic.severity.INFO] = "DiagnosticVirtualTextInfo",
+  [vim.diagnostic.severity.HINT] = "DiagnosticVirtualTextHint",
+}
+
+local highlight_group = highlight_groups[diagnostic.severity]
 

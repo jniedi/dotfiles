@@ -12,6 +12,7 @@ vim.cmd([[
 nmap <leader>op vapg?
 set spell
 set formatprg=typstyle
+set makeprg=node\ %
 ]])
 
 local server = 'typescript-language-server'

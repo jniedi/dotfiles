@@ -15,7 +15,8 @@ dotfiles:~/repos/dotfiles
 dwm:~/repos/dwm
 iml:~/documents/school/introduction_to_machine_learning
 iml_pro:~/repos/iml_project
-n:~/documents/notes
+n:~/drive/notes
+notes:~/drive/notes
 nv:~/.config/nvim
 r:~/res
 rai:~/resources/books/computer_science/ai

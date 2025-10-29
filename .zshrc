@@ -62,4 +62,5 @@ alias zat=zathura --fork --page=0
 alias nv=nvim
 alias ls='ls --color'
 alias kbb="brightnessctl --device='tpacpi::kbd_backlight' set"
-alias twm='typst watch main.typ ~/build/cheatsheets/$(basename $(pwd))/$(basename $(pwd)).pdf'
+
+source ~/.config/zsh/functions.zsh

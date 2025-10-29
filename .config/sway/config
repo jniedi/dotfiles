@@ -11,13 +11,16 @@ floating_modifier $mod normal
 smart_borders on
 default_border pixel 2
 
-output eDP-1 resolution 1920x1080 position 0 0
-output DP-3 resolution 3840x2160 position 1920 0
+output eDP-1 resolution 1920x1080 position 3840 1080
+# change to position 1920 0 if laptop is on the left of the display
+output DP-3 resolution 3840x2160 position 0 0
 
 exec /usr/bin/dunst
 exec /usr/bin/waybar
-exec_always (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
+# exec_always (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
 
+
+focus_on_window_activation focus
 
 # colors
 client.focused          #ffc0cb #ffc0cb #ffffff
@@ -36,6 +39,9 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ t
 # Special keys to adjust brightness via brightnessctl
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked Shift+XF86MonBrightnessDown exec brightnessctl set 1%-
+bindsym --locked Shift+XF86MonBrightnessUp exec brightnessctl set 1%+
+
 bindsym --locked XF86Display exec pgrep gammastep && pkill gammastep || gammastep -PO 2000
 
 # Special key to take a screenshot with grim
@@ -50,8 +56,13 @@ input "1267:12809:ELAN067D:00_04F3:3209_Touchpad" {
     tap enabled
 }
 # Allow switching between workspaces with left and right swipes
-bindgesture swipe:right workspace prev
-bindgesture swipe:left workspace next
+bindgesture swipe:right workspace next
+bindgesture swipe:left workspace prev
+bindgesture swipe:3:up fullscreen
+bindgesture swipe:3:down fullscreen
+
+# bindgesture pinch:outward fullscreen
+# bindgesture pinch:inward fullscreen
 
 # mod
 bindsym $mod+Return exec $term
@@ -159,6 +170,7 @@ set $PDF pdf
 mode $PDF  {
     bindsym o mode "default", exec ~/.config/sway/scripts/open_pdf
     bindsym b mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/books
+    bindsym c mode "default", exec ~/.config/sway/scripts/open_pdf ~/build/cheatsheets
     bindsym s mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/scripts
     bindsym e mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/exercises
     bindsym l mode "default", exec ~/.config/sway/scripts/open_pdf ~/res/lecture_slides

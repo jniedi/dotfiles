@@ -6,11 +6,12 @@ vim.pack.add({"https://github.com/echasnovski/mini.pick.git"})
 vim.pack.add({"https://github.com/echasnovski/mini.extra.git"})
 vim.pack.add({"https://github.com/navarasu/onedark.nvim"})
 vim.pack.add({"https://github.com/lewis6991/gitsigns.nvim"})
-
+vim.pack.add({"https://github.com/norcalli/nvim-colorizer.lua"})
 
 require('mini.pick').setup()
 require('mini.extra').setup()
 require("options")
+require ('colorizer').setup()
 require("remaps")
 require("autocommands")
 require("usercommands")

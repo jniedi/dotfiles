@@ -1,9 +1,11 @@
 ala:~/.config/alacritty
 ana:~/resources/books/mathematics/analysis/real_analysis/course_analysis_2
+apc:~/projects/apc
 b:~/.local/bin
 bin:~/.local/bin
 books:~/resources/books
 c:~/.config
+capc:~/projects/cheatsheets/apc
 ciml:~/projects/cheatsheets/iml
 con:~/repos/dotfiles/stow/dot-config
 csiml:~/projects/cheatsheets/iml
@@ -12,6 +14,7 @@ dmenu:~/repos/dmenu
 docs:~/documents
 dot:~/repos/dotfiles
 dotfiles:~/repos/dotfiles
+down:~/Downloads
 dwm:~/repos/dwm
 iml:~/documents/school/introduction_to_machine_learning
 iml_pro:~/repos/iml_project

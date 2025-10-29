@@ -13,10 +13,16 @@ snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
 endsnippet
 
 snippet "(\S+)_" "" r
-(`!p
+`!p
 snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
-`)_($1)$0
+`_($1)$0
 endsnippet
+
+#snippet "(\S+)_" "" r
+#(`!p
+#snip.rv = match.group(1) if match.group(0) is not None else "FAIL"
+#`)_($1)$0
+#endsnippet
 
 snippet "(\w)bb" "make stuff bb" r
 bb(`!p
@@ -122,4 +128,13 @@ endsnippet
 
 snippet sum "sum" i
 sum_($1)^($2)
+endsnippet
+
+snippet ceil "ceil left right" i
+ceil.l $1 ceil.r $0
+endsnippet
+
+
+snippet _ "" 
+_$1_$0
 endsnippet

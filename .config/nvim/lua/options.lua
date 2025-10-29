@@ -84,4 +84,3 @@ local highlight_groups = {
 }
 
 local highlight_group = highlight_groups[diagnostic.severity]
-

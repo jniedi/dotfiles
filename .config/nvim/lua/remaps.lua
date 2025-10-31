@@ -49,6 +49,7 @@ map("n", "<M-n>", ":bn<cr>")
 map("n", "<M-p>", ":bp<cr>")
 map("n", "<M-l>", ":ls<cr>:b ")
 
+
 map("n", "<leader>cm", ":ConfigEdit maps<cr>")
 map("n", "<leader>ce", ":ConfigEdit<cr>")
 map("n", "<leader>co", ":ConfigEdit options<cr>")

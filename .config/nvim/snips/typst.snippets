@@ -60,13 +60,13 @@ endsnippet
 
 
 snippet def "definition block" b
-#definition[$1][
+#def[$1][
 $2
 ]$0
 endsnippet
 
 snippet thm "thm block" b
-#theorem[$1][
+#thm[$1][
 $2
 ]$0
 endsnippet
@@ -137,4 +137,21 @@ endsnippet
 
 snippet _ "" 
 _$1_$0
+endsnippet
+
+snippet pfpx "partial derivative" 
+(partial $1)/(partial $2)$0
+endsnippet
+
+
+snippet "marke?d?" "mark text" r
+#rect(stroke: yellow, fill: yellow)[$1]$0
+endsnippet
+
+snippet box "mark text" 
+#box(stroke: black)[$1]$0
+endsnippet
+
+snippet color "" 
+#text(${1:red})[${2:${VISUAL}}]
 endsnippet

@@ -23,8 +23,13 @@ wd
 source $ZSH/oh-my-zsh.sh
 
 # installed using pacman
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -d /usr/share/zsh/plugins ]]; then
+	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -d ~/.brew ]; then
+	source ~/.brew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+	source ~/.brew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # zsh history
 

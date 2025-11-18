@@ -1,13 +1,15 @@
 local vim = vim
 
-vim.pack.add({"https://github.com/SirVer/ultisnips.git"})
-vim.pack.add({"https://github.com/chomosuke/typst-preview.nvim.git"})
-vim.pack.add({"https://github.com/echasnovski/mini.pick.git"})
-vim.pack.add({"https://github.com/echasnovski/mini.extra.git"})
-vim.pack.add({"https://github.com/navarasu/onedark.nvim"})
-vim.pack.add({"https://github.com/lewis6991/gitsigns.nvim"})
-vim.pack.add({"https://github.com/norcalli/nvim-colorizer.lua"})
-vim.pack.add({"https://github.com/folke/todo-comments.nvim"})
+vim.pack.add(
+	{"https://github.com/SirVer/ultisnips.git"
+,"https://github.com/chomosuke/typst-preview.nvim.git"
+,"https://github.com/echasnovski/mini.pick.git"
+,"https://github.com/echasnovski/mini.extra.git"
+,"https://github.com/navarasu/onedark.nvim"
+,"https://github.com/lewis6991/gitsigns.nvim"
+,"https://github.com/norcalli/nvim-colorizer.lua"
+,"https://github.com/folke/todo-comments.nvim"})
+
 
 
 require('mini.pick').setup()

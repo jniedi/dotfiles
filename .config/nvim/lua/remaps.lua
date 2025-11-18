@@ -7,6 +7,14 @@ map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
 
+-- copy the entire file to the clipboard
+map("n", "<leader>yf", 
+function()
+    functions.yankFile()
+end,
+{}
+)
+
 map("n", "J", "mzJ`z")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
@@ -54,7 +62,6 @@ map("n", "<leader>cm", ":ConfigEdit maps<cr>")
 map("n", "<leader>ce", ":ConfigEdit<cr>")
 map("n", "<leader>co", ":ConfigEdit options<cr>")
 map("n", "<leader>cl", ":ConfigEdit lua<cr>")
-map("n", "<leader>cf", ":ConfigEdit functions<cr>")
 
 -- TODO
 -- make quickfixlist  controlled by control modifier

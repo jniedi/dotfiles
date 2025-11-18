@@ -7,6 +7,13 @@ local M = {}
 _G.basic_excludes = { ".git", "*.egg-info", "__pycache__", "wandb", "target" , "aux", "output" }
 _G.ext_excludes = vim.list_extend(vim.deepcopy(_G.basic_excludes), { ".venv", })
 
+
+
+M.yankFile = function()
+    vim.cmd.normal("mcGVgg\"+y`c")
+    vim.notify("INFO: Yanked entire file", vim.log.levels.NOTE)
+end
+
 M.scratch_to_quickfix = function(close_qf)
     local items, bufnr = {}, vim.api.nvim_get_current_buf()
     for _, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do

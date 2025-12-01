@@ -25,6 +25,7 @@ PS1="%2~ $ "
 plugins=(
 wd
 git
+gitignore
 )
 
 
@@ -73,8 +74,8 @@ alias em=emacs
 alias open=xdg-open
 alias zat=zathura --fork --page=0
 alias nv=nvim
-alias ls='ls --color'
+alias ls'ls --color'
 alias kbb="brightnessctl --device='tpacpi::kbd_backlight' set"
-alias pip3=pip
+alias pip=pip3
 
 source ~/.config/zsh/functions.zsh

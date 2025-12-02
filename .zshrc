@@ -71,7 +71,6 @@ bindkey "^n" down-line-or-beginning-search
 alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias hx=helix
 alias em=emacs
-alias open=xdg-open
 alias zat=zathura --fork --page=0
 alias nv=nvim
 alias ls'ls --color'

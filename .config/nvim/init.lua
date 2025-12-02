@@ -8,7 +8,8 @@ vim.pack.add(
 ,"https://github.com/navarasu/onedark.nvim"
 ,"https://github.com/lewis6991/gitsigns.nvim"
 ,"https://github.com/norcalli/nvim-colorizer.lua"
-,"https://github.com/folke/todo-comments.nvim"})
+,"https://github.com/folke/todo-comments.nvim"
+,"https://github.com/tpope/vim-fugitive"})
 
 
 

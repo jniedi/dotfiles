@@ -11,7 +11,7 @@ _G.ext_excludes = vim.list_extend(vim.deepcopy(_G.basic_excludes), { ".venv", })
 
 M.yankFile = function()
     vim.cmd.normal("mcGVgg\"+y`c")
-    vim.notify("INFO: Yanked entire file", vim.log.levels.NOTE)
+    vim.notify("Yanked entire file", vim.log.levels.INFO)
 end
 
 M.scratch_to_quickfix = function(close_qf)

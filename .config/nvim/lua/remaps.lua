@@ -115,3 +115,35 @@ map("n", "<M-b>", ":Pick buffers<CR>")
 map("n", "<M-h>", ":Pick help<CR>")
 map("n", "<leader>e", ":Explore<cr>")
 map("n", "<C-e>", ":Lexplore<cr>")
+
+
+-- Fugitive remaps
+
+
+-- -- Popup what's changed in a hunk under cursor
+map('n', '<Leader>gp' , ':Gitsigns preview_hunk<CR>')
+
+-- -- Stage/reset individual hunks under cursor in a file)
+-- map('<Leader>gs'] = ':Gitsigns stage_hunk<CR>',)
+-- map(['<Leader>gr'] = ':Gitsigns reset_hunk<CR>',)
+-- map(['<Leader>gu'] = ':Gitsigns undo_stage_hunk<CR>',)
+-- map()
+-- (-- Stage/reset all hunks in a file)
+-- map(['<Leader>gS'] = ':Gitsigns stage_buffer<CR>',)
+-- map(['<Leader>gU'] = ':Gitsigns reset_buffer_index<CR>',)
+-- map(['<Leader>gR'] = ':Gitsigns reset_buffer<CR>',)
+-- map()
+-- map(-- Open git status in interative window (similar to lazygit))
+-- map(['<Leader>gg'] = ':Git<CR>', )
+-- map()
+-- map(-- Show `git status output`)
+-- map(['<Leader>gs'] = ':Git status<CR>',)
+-- map()
+-- map(-- Open commit window (creates commit after writing and saving commit msg))
+-- map(['<Leader>gc'] = ':Git commit | startinsert<CR>',)
+-- map()
+-- map(-- Other tools from fugitive)
+-- map(['<Leader>gd'] = ':Git difftool<CR>',)
+-- map(['<Leader>gm'] = ':Git mergetool<CR>',)
+-- map(['<Leader>g|'] = ':Gvdiffsplit<CR>',)
+-- map(['<Leader>g_'] = ':Gdiffsplit<CR>',)

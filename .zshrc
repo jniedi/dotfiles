@@ -23,6 +23,7 @@ bindkey '^f' finder
 PS1="%2~ $ "
 
 plugins=(
+tmux
 wd
 git
 gitignore

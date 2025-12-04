@@ -76,6 +76,10 @@ alias zat=zathura --fork --page=0
 alias nv=nvim
 alias ls'ls --color'
 alias kbb="brightnessctl --device='tpacpi::kbd_backlight' set"
+<<<<<<< HEAD
 alias pip=pip3
+=======
+alias gg=clear
+>>>>>>> f343b00 (some changes)
 
 source ~/.config/zsh/functions.zsh

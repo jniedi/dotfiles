@@ -38,7 +38,7 @@ endsnippet
 
 snippet mlm "multiline math"
 $ 
-$0 
+${VISUAL}$0 
 $
 endsnippet
 
@@ -154,4 +154,31 @@ endsnippet
 
 snippet color "" 
 #text(${1:red})[${2:${VISUAL}}]
+endsnippet
+
+
+snippet lem "lemma block" b
+#lem[$1][
+$2
+]$0
+endsnippet
+
+snippet obs "lemma block" b
+#obs[$1][
+$2
+]$0
+endsnippet
+
+snippet fact "lemma block" b
+#fact[$1][
+$2
+]$0
+endsnippet
+
+snippet  cbox "Centered box" b
+#align(center,
+rect(stroke: black)[
+${VISUAL}
+])
+$0
 endsnippet

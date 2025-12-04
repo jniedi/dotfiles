@@ -14,6 +14,7 @@ default_border pixel 2
 output eDP-1 resolution 1920x1080 position 3840 1080
 # change to position 1920 0 if laptop is on the left of the display
 output DP-3 resolution 3840x2160 position 0 0
+output DP-2 resolution 3840x2160 position 0 0
 
 exec /usr/bin/dunst
 exec /usr/bin/waybar
@@ -55,6 +56,11 @@ input type:keyboard {
 input "1267:12809:ELAN067D:00_04F3:3209_Touchpad" {
     tap enabled
 }
+
+input * xkb_options compose:prsc
+
+
+
 # Allow switching between workspaces with left and right swipes
 bindgesture swipe:right workspace next
 bindgesture swipe:left workspace prev

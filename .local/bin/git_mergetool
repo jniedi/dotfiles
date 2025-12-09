@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+git config --global merge.tool nvimdiff
+# Optional: Set the merge style to diff3 to get the BASE pane
+git config --global merge.conflictstyle diff3 
+# Optional: Skip the prompt before opening the tool
+git config --global mergetool.prompt false

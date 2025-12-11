@@ -69,6 +69,7 @@ map("n", "<leader>cl", ":ConfigEdit lua<cr>")
 
 -- toggle quickfix list visibility
 map("n", "<C-q>", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
+map("n", "<leader>q", function() vim.cmd(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and "cclose" or "copen") end)
 
 
 map("n", "<leader>ln", "<cmd>set invrelativenumber<cr>", { silent = true } )

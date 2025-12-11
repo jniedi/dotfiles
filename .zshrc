@@ -1,7 +1,8 @@
 #/ Homebrew for non-privileged user install in $HOME/homebrew
 export HOMEBREW_PREFIX=~/.brew/usr/local
-export PATH="$HOME/.brew/bin:$PATH"
-export PATH="/Users/yourusername/.local/share/bob/nvim-bin:$PATH"
+export PATH="$HOME/.brew/bin:/Users/yourusername/.local/share/bob/nvim-bin:$PATH"
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors

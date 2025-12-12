@@ -96,6 +96,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+a focus parent
 bindsym $mod+minus scratchpad show
 bindsym $mod+s mode $screenshot
+bindsym $mod+m mode $mover
 bindsym $mod+b mode $bookmarks
 
 # mod+shift
@@ -238,6 +239,12 @@ mode $network {
     bindsym Escape mode "default"
 }
 
+set $mover mover
+mode $mover {
+    bindsym p mode "default", exec ~/.config/sway/scripts/mover 'res/papers'
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 include /etc/sway/config.d/*
-
-

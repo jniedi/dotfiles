@@ -58,6 +58,8 @@ map("n", "<M-n>", ":bn<cr>")
 map("n", "<M-p>", ":bp<cr>")
 map("n", "<M-l>", ":ls<cr>:b ")
 
+-- set the buffer as readonly
+map({"n","v"}, "<leader>mo", ":set invmodifiable<cr>")
 
 map("n", "<leader>cm", ":ConfigEdit maps<cr>")
 map("n", "<leader>ce", ":ConfigEdit<cr>")

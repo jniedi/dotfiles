@@ -6,6 +6,7 @@ local map = vim.keymap.set
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
+map({ "v", "n"}, "-", "<cmd>Explore<cr>")
 
 -- copy the entire file to the clipboard
 map("n", "<leader>yf", 

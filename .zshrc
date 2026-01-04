@@ -1,7 +1,7 @@
 #/ Homebrew for non-privileged user install in $HOME/homebrew
 export HOMEBREW_PREFIX=~/.brew/usr/local
 export PATH="$HOME/.brew/bin:$PATH"
-export PATH="/Users/yourusername/.local/share/bob/nvim-bin:$PATH"
+export PATH=".:/Users/yourusername/.local/share/bob/nvim-bin:$PATH"
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors
@@ -23,8 +23,12 @@ bindkey '^f' finder
 PS1="%2~ $ "
 
 plugins=(
+tmux
 wd
 git
+fzf
+fzf-tab
+gitignore
 )
 
 
@@ -73,7 +77,9 @@ alias em=emacs
 alias open=xdg-open
 alias zat=zathura --fork --page=0
 alias nv=nvim
-alias ls='ls --color'
+alias ls'ls --color'
 alias kbb="brightnessctl --device='tpacpi::kbd_backlight' set"
+alias pip=pip3
+alias gg=clear
 
 source ~/.config/zsh/functions.zsh

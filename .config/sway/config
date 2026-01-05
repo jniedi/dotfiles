@@ -18,6 +18,7 @@ output DP-2 resolution 3840x2160 position 0 0
 
 exec /usr/bin/dunst
 exec /usr/bin/waybar
+exec /usr/bin/dropbox
 # exec_always (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
 
 

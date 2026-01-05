@@ -4,8 +4,8 @@ export EDITOR=nvim
 export MANPAGER="nvim --clean +Man!"
 export REPOS=$HOME/repos
 export GITHUB_USERNAME=jniedi
+export HOMEBREW_PREFIX=~/.brew/usr/local
 
-export PATH="./usr/lib/ccache/bin:$HOME/.local/bin:/usr/local/texlive/2025/bin/x86_64-linux:/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 if [[ -d "/Users/nej/.local/share/bob/env/env.sh" ]]; then
  . "/Users/nej/.local/share/bob/env/env.sh"
 fi

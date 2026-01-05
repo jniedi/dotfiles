@@ -1,7 +1,4 @@
 #/ Homebrew for non-privileged user install in $HOME/homebrew
-export HOMEBREW_PREFIX=~/.brew/usr/local
-export PATH="$HOME/.brew/bin:$PATH"
-export PATH=".:/Users/yourusername/.local/share/bob/nvim-bin:$PATH"
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors
@@ -15,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 finder() {
     find | fzf
 }
-ZSH_THEME=terminalparty
+# ZSH_THEME=terminalparty
 
 zle -N finder
 bindkey '^f' finder
@@ -81,5 +78,6 @@ alias ls'ls --color'
 alias kbb="brightnessctl --device='tpacpi::kbd_backlight' set"
 alias pip=pip3
 alias gg=clear
+alias pacman='sudo pacman'
 
 source ~/.config/zsh/functions.zsh

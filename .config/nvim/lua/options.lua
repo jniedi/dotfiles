@@ -40,7 +40,7 @@ vim.o.ttimeoutlen = 0
 vim.o.autoread = true
 vim.o.autowrite = false -- todo: checkout what this does
 vim.o.cul = true
-vim.o.nrformats="bin,hex,alpha,unsigned"
+vim.o.nrformats="bin,hex,unsigned"
 
 vim.opt.winborder="rounded"
 

@@ -116,7 +116,7 @@ map("n", "<leader><space>", ":Pick buffers<CR>")
 map("n", "<M-f>", ":Pick files<CR>")
 map("n", "<M-b>", ":Pick buffers<CR>")
 map("n", "<M-h>", ":Pick help<CR>")
-map("n", "<leader>e", ":Explore<cr>")
+map("n", "<leader>e", ":Lexplore<cr>")
 map("n", "<C-e>", ":Lexplore<cr>")
 
 

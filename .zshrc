@@ -12,7 +12,6 @@ export ZSH="$HOME/.oh-my-zsh"
 finder() {
     find | fzf
 }
-# ZSH_THEME=terminalparty
 
 zle -N finder
 bindkey '^f' finder

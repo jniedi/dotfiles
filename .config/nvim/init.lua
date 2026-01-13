@@ -11,6 +11,8 @@ vim.pack.add(
 ,"https://github.com/norcalli/nvim-colorizer.lua"
 ,"https://github.com/folke/todo-comments.nvim"
 , "https://github.com/rebelot/kanagawa.nvim"
+, "https://github.com/tpope/vim-surround"
+, "https://github.com/tpope/vim-repeat" -- further checkout https://github.com/tpope/vim-repeat
 })
 
 

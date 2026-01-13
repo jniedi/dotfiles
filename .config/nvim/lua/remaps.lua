@@ -94,10 +94,15 @@ map("n","<Right>" ,"<C-w>>",{})
 
 
 -- Pick stuff
-map("n", "<leader>f", ":Pick files<CR>")
-map("n", "<leader>s", ":Pick files<CR>")
-map("n", "<leader>b", ":Pick buffers<CR>")
-map("n", "<leader>h", ":Pick help<CR>")
+map("n", "<leader>ff", ":Pick files<CR>")
+map("n", "<leader>fs", ":Pick files<CR>")
+map("n", "<leader>fa", ":Pick <CR>")
+map("n", "<leader>fb", ":Pick buffers<CR>")
+map("n", "<leader>fg", ":Pick grep<CR>")
+map("n", "<leader>fh", ":Pick help<CR>")
+map("n", "<leader>fb", ":GitBranches<CR>") -- find buffer
+
+
 
 -- remove mini.extra if I don't actually need it
 map("n", "<leader>d", function() MiniExtra.pickers.diagnostic() end, {})

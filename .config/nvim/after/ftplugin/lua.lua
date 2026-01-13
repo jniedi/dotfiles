@@ -2,7 +2,7 @@ local vim = vim
 local funcs = require("functions")
 
 vim.cmd([[
-set formatprg=stylua
+set formatprg=stylua\-i\ % 
 ]])
 
 local server = 'lua-language-server'

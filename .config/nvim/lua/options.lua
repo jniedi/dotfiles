@@ -2,10 +2,12 @@ local vim=vim
 local diagnostic = vim.diagnostic
 
 -- Lua
-require('onedark').setup {
-    style = 'darker'
-}
-require('onedark').load()
+-- require('onedark').setup {
+--     style = 'darker'
+-- }
+-- require('onedark').load()
+
+vim.cmd("colorscheme kanagawa")
 
 vim.g.UltiSnipsExpandTrigger = '<C-l>'
 vim.g.UltiSnipsJumpForwardTrigger = '<C-l>'

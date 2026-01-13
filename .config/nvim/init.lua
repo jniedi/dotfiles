@@ -13,11 +13,13 @@ vim.pack.add(
 , "https://github.com/rebelot/kanagawa.nvim"
 , "https://github.com/tpope/vim-surround"
 , "https://github.com/tpope/vim-repeat" -- further checkout https://github.com/tpope/vim-repeat
+, "https://github.com/folke/persistence.nvim"
 })
 
 
 
 require('mini.pick').setup()
+require("persistence").setup()
 require('mini.extra').setup()
 require('todo-comments').setup()
 require("options")

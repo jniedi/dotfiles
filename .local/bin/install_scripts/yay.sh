@@ -3,7 +3,7 @@
 sudo pacman -S --needed git base-devel
 
 mkdir -p ~/repos
-rm -r ~/repos/yay
+rm -fr ~/repos/yay
 git clone https://aur.archlinux.org/yay.git ~/repos/yay
 cd ~/repos/yay
 makepkg -si

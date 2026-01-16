@@ -134,3 +134,4 @@ vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last 
 
 -- stop Persistence => session won't be saved on exit
 vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end)
+

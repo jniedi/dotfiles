@@ -84,5 +84,3 @@ local highlight_groups = {
   [vim.diagnostic.severity.INFO] = "DiagnosticVirtualTextInfo",
   [vim.diagnostic.severity.HINT] = "DiagnosticVirtualTextHint",
 }
-
-local highlight_group = highlight_groups[diagnostic.severity]

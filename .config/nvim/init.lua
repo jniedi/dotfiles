@@ -16,6 +16,7 @@ vim.pack.add({
 	"https://github.com/tpope/vim-repeat", -- further checkout https://github.com/tpope/vim-repeat
 	"https://github.com/folke/persistence.nvim",
 	"https://github.com/stevearc/conform.nvim", -- formatting
+	"https://github.com/tpope/vim-fugitive.nvim", -- git standard stuff
 })
 
 require("mini.pick").setup()

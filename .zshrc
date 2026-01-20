@@ -20,6 +20,8 @@ PS1="%2~ $ "
 
 plugins=(
 tmux
+pip
+python
 wd
 git
 fzf

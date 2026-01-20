@@ -12,7 +12,7 @@ if vim.fn.executable(server) == 1 then
         name = server,
         cmd = { server },
         filetypes = { 'python' },
-        root_dir = funcs.find_root({ 'pyproject.toml', 'setup.py', 'setup.cfg', 'main.py', 'requirements.txt', '.git' }),
+        root_dir = funcs.find_root({ '.venv', 'pyproject.toml', 'setup.py', 'setup.cfg', 'main.py', 'requirements.txt', '.git'}),
         settings = {
             pylsp = {
                 plugins = {

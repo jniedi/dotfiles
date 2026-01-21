@@ -81,5 +81,6 @@ alias kbb="brightnessctl --device='tpacpi::kbd_backlight' set"
 alias pip=pip3
 alias gg=clear
 alias pacman='sudo pacman'
+alias cal='cal -m'
 
 source ~/.config/zsh/functions.zsh

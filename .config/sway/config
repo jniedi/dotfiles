@@ -128,12 +128,20 @@ bindsym $mod+Shift+p exec ~/.config/sway/scripts/get_password
 bindsym $mod+p mode $PDF
 bindsym $mod+w mode $websearch
 bindsym $mod+n scratchpad show
-bindsym $mod+d exec ~/.config/sway/scripts/system_do 
+bindsym $mod+d exec ~/.config/sway/scripts/sway_do
 bindsym $mod+t fullscreen,focus right,fullscreen
 
 # ------------------------------------------
 # ------------------------------------------
 # modes
+
+# mode system
+set $locker locker
+mode $locker  {
+    bindsym $mod+f fullscreen
+    bindsym $mod+e mode "default"
+    bindsym $mod+u mode "default" 
+}
 
 # mode system
 set $system system

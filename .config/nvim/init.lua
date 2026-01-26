@@ -16,7 +16,7 @@ vim.pack.add({
 	"https://github.com/tpope/vim-repeat", -- further checkout https://github.com/tpope/vim-repeat
 	"https://github.com/folke/persistence.nvim",
 	"https://github.com/stevearc/conform.nvim", -- formatting
-	"https://github.com/tpope/vim-fugitive.nvim", -- git standard stuff
+	"https://github.com/tpope/vim-fugitive", -- git standard stuff
 })
 
 require("mini.pick").setup()
@@ -29,7 +29,7 @@ require ('colorizer').setup()
 require ('colorizer').setup()
 require("colorizer").setup()
 
-require("formatting")
+-- require("formatting")
 require("remaps")
 require("autocommands")
 require("usercommands")

@@ -9,3 +9,4 @@ export HOMEBREW_PREFIX=~/.brew/usr/local
 if [[ -d "/Users/nej/.local/share/bob/env/env.sh" ]]; then
  . "/Users/nej/.local/share/bob/env/env.sh"
 fi
+. "/Users/jaron/.local/share/bob/env/env.sh"

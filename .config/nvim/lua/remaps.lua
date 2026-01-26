@@ -105,7 +105,7 @@ end, {})
 
 local gitsigns = require("gitsigns")
 -- Git stuff
-map("n", "<leader>gb",function() gitsigns.blame end, {})
+map("n", "<leader>gb", function() gitsigns.blame() end, {})
 
 map("n", "<leader><space>", ":Pick buffers<CR>")
 

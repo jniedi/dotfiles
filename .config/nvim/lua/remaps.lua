@@ -14,11 +14,16 @@ map("n", "<leader>yf", function()
 end, {})
 
 map("n", "J", "mzJ`z")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 map("n", "=ap", "ma=ap'a")
+map("n", "<leader>b",
+function()
+    vim.cmd("buffers")
+    vim.api.nvim_input(":b ")
+end)
+
+
 
 map({ "x", "n" }, "<leader>p", '"+p')
 map({ "x", "n" }, "<leader>P", '"+P')
@@ -117,37 +122,37 @@ map("n", "<C-e>", ":Lexplore<cr>")
 
 -- sessions
 -- load the session for the current directory
-vim.keymap.set("n", "<leader>qs", function()
+map("n", "<leader>qs", function()
 	require("persistence").load()
 end)
 
 -- select a session to load
-vim.keymap.set("n", "<leader>qS", function()
+map("n", "<leader>qS", function()
 	require("persistence").select()
 end)
 
 -- load the last session
-vim.keymap.set("n", "<leader>ql", function()
+map("n", "<leader>ql", function()
 	require("persistence").load({ last = true })
 end)
 
 -- stop Persistence => session won't be saved on exit
-vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end)
+map("n", "<leader>qd", function() require("persistence").stop() end)
 
 -- Formatting
-vim.keymap.set("n", "<leader>fo", "<cmd>Format<CR>")
+map("n", "<leader>fo", "<cmd>Format<CR>")
 
 
-vim.keymap.set("n", "]t", function()
+map("n", "]t", function()
   require("todo-comments").jump_next()
 end, { desc = "Next todo comment" })
 
-vim.keymap.set("n", "[t", function()
+map("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
 -- You can also specify a list of valid jump keywords
 
-vim.keymap.set("n", "]t", function()
+map("n", "]t", function()
   require("todo-comments").jump_next({keywords = { "ERROR", "WARNING" }})
 end, { desc = "Next error/warning todo comment" })

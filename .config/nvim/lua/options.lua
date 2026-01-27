@@ -7,7 +7,7 @@ local diagnostic = vim.diagnostic
 -- }
 -- require('onedark').load()
 
-vim.cmd("colorscheme onedark") -- best git colors
+vim.cmd("colorscheme pablo") 
 
 vim.g.UltiSnipsExpandTrigger = '<C-l>'
 vim.g.UltiSnipsJumpForwardTrigger = '<C-l>'

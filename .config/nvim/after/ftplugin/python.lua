@@ -3,7 +3,7 @@ local vim = vim
 local funcs = require("functions")
 
 vim.cmd([[
-setlocal makeprg=python3\ %
+setlocal makeprg=.venv/bin/python3\ %
 ]])
 
 local server = 'pylsp'

@@ -75,6 +75,7 @@ alias em=emacs
 alias open=xdg-open
 alias zat=zathura --fork --page=0
 alias nv=nvim
+alias nvs='nvim -S'
 alias ls'ls --color'
 alias kbb="brightnessctl --device='tpacpi::kbd_backlight' set"
 alias pip=pip3

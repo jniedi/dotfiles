@@ -156,3 +156,5 @@ end, { desc = "Previous todo comment" })
 map("n", "]t", function()
   require("todo-comments").jump_next({keywords = { "ERROR", "WARNING" }})
 end, { desc = "Next error/warning todo comment" })
+
+map("n","<leader>gf", ":e <cfile><cr>")

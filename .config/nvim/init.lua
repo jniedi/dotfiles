@@ -7,17 +7,15 @@ vim.pack.add({
 	"https://github.com/chomosuke/typst-preview.nvim.git",
 	"https://github.com/echasnovski/mini.pick.git",
 	"https://github.com/echasnovski/mini.extra.git",
-	"https://github.com/navarasu/onedark.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/norcalli/nvim-colorizer.lua",
 	"https://github.com/folke/todo-comments.nvim",
-	"https://github.com/rebelot/kanagawa.nvim",
 	"https://github.com/tpope/vim-surround",
 	"https://github.com/tpope/vim-repeat", -- further checkout https://github.com/tpope/vim-repeat
 	"https://github.com/folke/persistence.nvim",
 	"https://github.com/stevearc/conform.nvim", -- formatting
 	"https://github.com/tpope/vim-fugitive", -- git standard stuff
-    "https://github.com/nvim-zh/colorful-winsep.nvim"
+	"https://github.com/nvim-zh/colorful-winsep.nvim",
 })
 
 require("mini.pick").setup()

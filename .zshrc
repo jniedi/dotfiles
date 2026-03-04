@@ -16,7 +16,7 @@ finder() {
 zle -N finder
 bindkey '^f' finder
 
-PS1="%2~ $ "
+PS1="%2~ [%j] $ "
 
 plugins=(
 tmux
@@ -27,8 +27,9 @@ git
 fzf
 fzf-tab
 gitignore
+pass
+common-aliases
 )
-
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,7 +74,7 @@ alias con='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias hx=helix
 alias em=emacs
 alias open=xdg-open
-alias zat=zathura --fork --page=0
+alias zat='zathura --fork --page=0'
 alias nv=nvim
 alias nvs='nvim -S'
 alias ls'ls --color'
@@ -82,5 +83,6 @@ alias pip=pip3
 alias gg=clear
 alias pacman='sudo pacman'
 alias cal='cal -m'
+alias z='zathura --fork --page=0'
 
 source ~/.config/zsh/functions.zsh

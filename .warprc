@@ -19,9 +19,10 @@ down:~/Downloads
 dwm:~/repos/dwm
 iml:~/documents/school/introduction_to_machine_learning
 iml_pro:~/repos/iml_project
-n:~/documents/notes
+n:~/docs/documents/notes
 notes:~/drive/notes
 nv:~/.config/nvim
+p:~/docs/private
 r:~/res
 rai:~/resources/books/computer_science/ai
 rana2:~/resources/books/mathematics/analysis/real_analysis/course_analysis_2
@@ -32,6 +33,7 @@ re:~/resources/books
 real_analysis:~/resources/books/mathematics/analysis/real_analysis
 riml:~/resources/books/computer_science/ai/machine_learning/course_iml_2025
 rinfsec:~/resources/books/computer_science/information_security
+ringier-eu-datalake:~/projects/blickplus/ringier-eu-datalake
 rlinalg:~/resources/books/mathematics/linear_algebra
 rmath:~/resources/books/mathematics
 rml:~/resources/books/computer_science/ai/machine_learning
@@ -41,4 +43,4 @@ s:~/documents/school
 siml:~/documents/school/introduction_to_machine_learning
 st:~/repos/st
 sway:~/.config/sway
-ringier-eu-datalake:~/projects/blickplus/ringier-eu-datalake
+zsh:~/.config/zsh

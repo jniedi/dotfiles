@@ -77,12 +77,42 @@ $2
 ]$0
 endsnippet
 
+snippet kor "corollar block" b
+#korollar[$1][
+$2
+]$0
+endsnippet
+
+snippet "noti?o?n?" "notion block" br
+#notion[$1][
+$2
+]$0
+endsnippet
+
+
+snippet "ass?u?m?p?t?i?o?n?" "assumption block" br
+#assumption[$1][
+$2
+]$0
+endsnippet
+
+snippet "hl" "hl block" br
+#hl[$1][
+$2
+]$0
+endsnippet
+
 snippet note "note block" b
 #note[$1][
 $2
 ]$0
 endsnippet
 
+snippet rr "note block" b
+#rechenregeln[$1][
+$2
+]$0
+endsnippet
 
 
 snippet ex "example block" b
@@ -179,4 +209,26 @@ endsnippet
 
 snippet todo "Todo comments snippet" 
 // TODO: $0
+endsnippet
+
+snippet rem "lemma block" b
+#remark[$1][
+$2
+]$0
+endsnippet
+
+snippet code "Sourcecode" 
+#sourcecode[\`\`\`${1:java}$0\`\`\`]
+endsnippet
+
+snippet ilib "Import lib" b
+#import "../lib.typ": *
+endsnippet
+
+snippet sse "" 
+subset.eq
+endsnippet
+
+snippet neq "not equal" 
+equal.not
 endsnippet

@@ -8,6 +8,10 @@ _G.basic_excludes = { ".git", "*.egg-info", "__pycache__", "wandb", "target" , "
 _G.ext_excludes = vim.list_extend(vim.deepcopy(_G.basic_excludes), { ".venv", })
 
 
+M.yankLine = function()
+    vim.cmd.normal("\"+yy")
+    vim.notify("INFO: Yanked line", vim.log.levels.NOTE)
+end
 
 M.yankFile = function()
     vim.cmd.normal("mcGVgg\"+y`c")

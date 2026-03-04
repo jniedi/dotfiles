@@ -22,7 +22,7 @@ exec /usr/bin/dropbox
 # exec_always (( $(cat /sys/class/power_supply/AC/online) )) && proton-mail --ozone-platform-hint=auto
 
 
-focus_on_window_activation focus
+focus_on_window_activation none
 
 # colors
 client.focused          #ffc0cb #ffc0cb #ffffff
@@ -124,7 +124,7 @@ bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+r reload
-bindsym $mod+Shift+p exec ~/.config/sway/scripts/get_password
+bindsym $mod+Shift+p exec ~/.config/sway/scripts/menupass.sh
 bindsym $mod+p mode $PDF
 bindsym $mod+w mode $websearch
 bindsym $mod+n scratchpad show
@@ -204,6 +204,7 @@ mode $websearch {
     bindsym Escape mode "default"
     bindsym b           mode default, exec "~/.config/sway/scripts/bookmarks.sh"
     bindsym w           mode default, exec "~/.config/sway/scripts/websearch wikipedia"
+    bindsym Shift+w           mode default, exec "~/.config/sway/scripts/websearch wthis"
     bindsym g           mode default, exec "~/.config/sway/scripts/websearch google"
     # wiby: search engine for the *c*lassic web
     bindsym c           mode default, exec "~/.config/sway/scripts/websearch wiby"
@@ -255,5 +256,24 @@ mode $mover {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+# pomodoro sections
+set $cheatsheet cheatsheet
+mode $cheatsheet {
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    bindsym $mod+f fullscreen
+    bindsym $mod+n scratchpad show
+}
+
+# lock mode
+set $light_lock light_lock
+mode $light_lock  {
+    bindsym u mode "default"
+}
+
+
 
 include /etc/sway/config.d/*

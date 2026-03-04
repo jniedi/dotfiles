@@ -31,7 +31,6 @@ if vim.fn.executable(server) == 1 then
 else
     vim.notify("Server " .. server .. " not found!", vim.log.levels.WARN)
 end
-print("HELLO")
 vim.api.nvim_create_autocmd('InsertCharPre', {
     buffer = vim.api.nvim_get_current_buf(),
     callback = function()

@@ -19,7 +19,7 @@ vim.cmd([[
 "obfuscate paragraph
 nmap <leader>op vapg?
 nmap <leader>tp :TypstPreview<CR>
-setlocal makeprg=typst\ compile\ --ignore-system-fonts\ %
+setlocal makeprg=typst\ compile\ --ignore-system-fonts\ main.typ
 set spell
 set formatprg=typstyle
 ]])

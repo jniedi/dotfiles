@@ -4,6 +4,7 @@
 # type the query and go back to the current workspace
 # TODO: checkout if there is another solution to achieve the same
 # maybe you can use ddg bangs?
+# TODO: rewrite to case
 
 
 if [[ $1 == 'wikipedia' ]]; then
@@ -13,6 +14,11 @@ if [[ $1 == 'wikipedia' ]]; then
 
 elif [[ $1 == 'this' ]]; then
    xdg-open "https://duckduckgo.com/?q=$(wl-paste)"
+
+elif [[ $1 == 'wthis' ]]; then
+   # TODO: change this to go directly to wikipedia (first search result)
+   xdg-open "https://duckduckgo.com/?q=$(echo "\  wikipedia " $(wl-paste))"
+   # xdg-open "https://en.wikipedia.org/w/index.php?search=$(wl-paste)"
 
 elif [[ $1 == 'scholar' ]]; then
    query="$(echo "" | bemenu --prompt 'scholar>' | tr ' ' '+')"
